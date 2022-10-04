@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour
     public float jumpForce;
     public float moveInput;
 
+    public Joystick joystick;
+
     private Rigidbody2D rb;
 
     private bool facingRight = true;
@@ -25,7 +27,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        moveInput = Input.GetAxis("Horizontal");
+        moveInput = joystick.Horizontal;
         rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
         if (facingRight == false && moveInput > 0)
         {
@@ -39,8 +41,9 @@ public class PlayerController : MonoBehaviour
 
     public void Update()
     {
+        float verticalMove = joystick.Vertical;
         isGrounded = Physics2D.OverlapCircle(feetPos.position, checkRadius, whatIsGround);
-        if (isGrounded == true && Input.GetKeyDown(KeyCode.Space))
+        if (isGrounded == true && verticalMove >= .5f)
         {
             rb.velocity = Vector2.up * jumpForce;
         }

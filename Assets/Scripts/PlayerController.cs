@@ -6,10 +6,12 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float speed;
+    public float normalSpeed;
+    
     public float jumpForce;
     public float moveInput;
 
-    public Joystick joystick;
+    
 
     private Rigidbody2D rb;
 
@@ -22,13 +24,13 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        speed = 0f;
         rb = GetComponent<Rigidbody2D>();
     }
 
     private void FixedUpdate()
     {
-        moveInput = joystick.Horizontal;
-        rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
+        rb.velocity = new Vector2( speed, rb.velocity.y);
         if (facingRight == false && moveInput > 0)
         {
             Flip();
@@ -39,14 +41,38 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void Update()
+    public void OnJumpButtonDown()
     {
-        float verticalMove = joystick.Vertical;
-        isGrounded = Physics2D.OverlapCircle(feetPos.position, checkRadius, whatIsGround);
-        if (isGrounded == true && verticalMove >= .5f)
+        if (isGrounded == true)
         {
             rb.velocity = Vector2.up * jumpForce;
+        } 
+    }
+
+    public void OnLeftButtonDown()
+    {
+        if (speed >= 0f)
+        {
+            speed = -normalSpeed;
         }
+    }
+    
+    public void OnRightButtonDown()
+    {
+        if (speed <= 0f)
+        {
+            speed = normalSpeed;
+        }
+    }
+
+    public void OnButtonUp()
+    {
+        speed = 0f;
+    }
+
+    public void Update()
+    {
+        isGrounded = Physics2D.OverlapCircle(feetPos.position, checkRadius, whatIsGround);
     }
 
     void Flip()

@@ -2,84 +2,47 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    public float speed;
-    public float normalSpeed;
-    
-    public float jumpForce;
-    public float moveInput;
+    public Rigidbody2D PlayerRb;
 
-    
+    public float Speed;
+    public float MoveInput;
 
-    private Rigidbody2D rb;
-
-    private bool facingRight = true;
-
-    private bool isGrounded;
-    public Transform feetPos;
-    public float checkRadius;
-    public LayerMask whatIsGround;
+    public bool FacingRight;
+    public bool IsGrounded;
+    public Transform FeetPos;
+    public float CheckRadius;
+    public LayerMask WhatIsGround;
 
     private void Start()
     {
-        speed = 0f;
-        rb = GetComponent<Rigidbody2D>();
-    }
-
-    private void FixedUpdate()
-    {
-        rb.velocity = new Vector2( speed, rb.velocity.y);
-        if (facingRight == false && moveInput > 0)
-        {
-            Flip();
-        }
-        else if (facingRight == true && moveInput < 0)
-        {
-            Flip();
-        }
-    }
-
-    public void OnJumpButtonDown()
-    {
-        if (isGrounded == true)
-        {
-            rb.velocity = Vector2.up * jumpForce;
-        } 
-    }
-
-    public void OnLeftButtonDown()
-    {
-        if (speed >= 0f)
-        {
-            speed = -normalSpeed;
-        }
-    }
-    
-    public void OnRightButtonDown()
-    {
-        if (speed <= 0f)
-        {
-            speed = normalSpeed;
-        }
-    }
-
-    public void OnButtonUp()
-    {
-        speed = 0f;
+        Speed = 0f;
+        IsGrounded = true;
+        FacingRight = true;
     }
 
     public void Update()
     {
-        isGrounded = Physics2D.OverlapCircle(feetPos.position, checkRadius, whatIsGround);
+        IsGrounded = Physics2D.OverlapCircle(FeetPos.position, CheckRadius, WhatIsGround);
+
+        PlayerRb.velocity = new Vector2(Speed, PlayerRb.velocity.y);
+        if ((!FacingRight && MoveInput > 0) || (FacingRight && MoveInput < 0))
+        {
+            PlayerRb.BroadcastMessage("Flip");
+        }
     }
 
-    void Flip()
+    public void OnJump()
     {
-        facingRight = !facingRight;
-        Vector3 Scaler = transform.localScale;
-        Scaler.x *= -1;
-        transform.localScale = Scaler;
+        PlayerRb.BroadcastMessage("Jump");
     }
+
+    public void OnRun(InputValue input)
+    {
+        PlayerRb.BroadcastMessage("Run", input);
+    }
+
 }

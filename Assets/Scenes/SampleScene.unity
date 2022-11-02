@@ -286,15 +286,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerRb: {fileID: 18619510}
-  Speed: 6
-  MoveInput: 0
+  Speed: 4
   FacingRight: 0
   IsGrounded: 0
   FeetPos: {fileID: 213888593}
-  CheckRadius: 0
+  CheckRadius: 0.3
   WhatIsGround:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
 --- !u!114 &18619516
 MonoBehaviour:
   m_ObjectHideFlags: 0

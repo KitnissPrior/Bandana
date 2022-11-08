@@ -7,7 +7,7 @@
             "actions": [
                 {
                     "name": "Jump",
-                    "type": "Button",
+                    "type": "PassThrough",
                     "id": "a75a3ef8-2400-4b8e-b979-66b0e31583a9",
                     "expectedControlType": "Button",
                     "processors": "",
@@ -50,7 +50,7 @@
                 {
                     "name": "up",
                     "id": "4b2ac3d6-d0c3-47ed-bee8-513463a7baa7",
-                    "path": "",
+                    "path": "<Keyboard>/upArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -61,7 +61,7 @@
                 {
                     "name": "down",
                     "id": "e9f8b5ef-f0bd-46c4-9a40-69b92809d681",
-                    "path": "",
+                    "path": "<Keyboard>/downArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

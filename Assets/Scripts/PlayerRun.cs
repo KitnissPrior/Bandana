@@ -12,9 +12,7 @@ public class PlayerRun : MonoBehaviour
     {
         Vector2 inputVec = input.Get<Vector2>();
 
-        PlayerController.PlayerRb.velocity = new Vector2(inputVec.x, inputVec.y);
-
-        PlayerController.Speed = NormalSpeed * inputVec.x;
+        PlayerController.PlayerVelocity = NormalSpeed * inputVec;
     }
 
 }

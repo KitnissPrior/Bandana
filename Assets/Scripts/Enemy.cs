@@ -5,16 +5,16 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-  public int health;
-  public float speed;
+  public int Health;
+  public float Speed;
 
   private void Update()
   {
-    if (health <= 0) Destroy(gameObject);
-    transform.Translate(Vector2.left * speed * Time.deltaTime);
+    if (Health <= 0) Destroy(gameObject);
+    transform.Translate(Vector2.left * Speed * Time.deltaTime);
   }
   public void TakeDamage(int damage)
   {
-    health -= damage;
+    Health -= damage;
   }
 }

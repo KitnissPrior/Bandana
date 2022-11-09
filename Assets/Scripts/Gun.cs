@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Gun : MonoBehaviour
 {
-    public float offset;
+    public float Offset;
     public Bullet Bullet;
-    public Transform shotPoint;
-    private float timeBtwShots;
-    public float startTimeBtwShots;
+    public Transform ShotPoint;
+    private float TimeBtwShots;
+    public float StartTimeBtwShots;
 
     [SerializeField] private DamageReceiver _parent;
     [SerializeField] private Vector2 _direction;
@@ -21,20 +21,20 @@ public class Gun : MonoBehaviour
 
         Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         float rotZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0f,0f, rotZ + offset);
+        transform.rotation = Quaternion.Euler(0f,0f, rotZ + Offset);
 
-        if (timeBtwShots <= 0)
+        if (TimeBtwShots <= 0)
         {
             if (Input.GetMouseButton(0))
             {
-                Bullet bullet = Instantiate(Bullet, shotPoint.position, transform.rotation);
+                Bullet bullet = Instantiate(Bullet, ShotPoint.position, transform.rotation);
                 bullet.Initialize(_parent, _direction, _lifetime, _speed, _damage);
-                timeBtwShots = startTimeBtwShots;
+                TimeBtwShots = StartTimeBtwShots;
             }
         }
         else
         {
-            timeBtwShots -= Time.deltaTime;
+            TimeBtwShots -= Time.deltaTime;
         }
     }
 }

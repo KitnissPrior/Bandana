@@ -5,19 +5,26 @@ using System;
 
 public class Health : MonoBehaviour
 {
-    public int HitPoints { get; private set; }
+    public int HitPoints => _hitPoints;
     public event Action <int> OnHit;
     public event Action<int> OnHeal;
 
+    [SerializeField] private int _hitPoints;
+
     public void TakeDamage(int damage)
     {
-        HitPoints -= damage;
+        _hitPoints -= damage;
         OnHit?.Invoke(damage);
+    }
+
+    public void Initialize(int hP)
+    {
+        _hitPoints = hP;
     }
 
     public void Heal(int hp)
     {
-        HitPoints += hp;
+        _hitPoints += hp;
         OnHeal?.Invoke(hp);
     }
 

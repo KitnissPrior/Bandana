@@ -10,7 +10,7 @@ public class Bullet : MonoBehaviour
     public LayerMask SolidLayer;
     public Collider2D Collider;
     public UnityEvent OnDestroy; 
-    public float distance;
+    public float Distance;
 
     private DamageReceiver _parent;
     private Vector2 _direction;

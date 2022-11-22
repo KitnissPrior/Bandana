@@ -7,7 +7,6 @@ using UnityEngine.Events;
 public class Bullet : MonoBehaviour
 {
  
-    public LayerMask SolidLayer;
     public Collider2D Collider;
     public UnityEvent OnDestroy; 
     public float Distance;
@@ -18,6 +17,9 @@ public class Bullet : MonoBehaviour
     private float _speed;
     private int _damage;
 
+    private string _blockTag = "Block";
+    private string _enemyTag = "Enemy";
+
 
     private void FixedUpdate()
     {
@@ -26,14 +28,14 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.layer == SolidLayer)
+        if (collision.tag == _blockTag || collision.gameObject.tag == _enemyTag)
         {
             Destroy(gameObject);
         }
 
         if(collision.TryGetComponent<Health>(out Health health))
         {
-            if(health.gameObject != _parent.gameObject)
+            if (health != _parent)
             {
                 health.TakeDamage(_damage);
                 Destroy(gameObject);

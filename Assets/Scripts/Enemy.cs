@@ -5,16 +5,17 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-  public int Health;
+  public Health Health;
   public float Speed;
+  public CharacterData CharacterData;
 
-  private void Update()
+    private void Start()
+    {
+        Health.Initialize(CharacterData.HP);
+    }
+    private void Update()
   {
-    if (Health <= 0) Destroy(gameObject);
-    transform.Translate(Vector2.left * Speed * Time.deltaTime);
-  }
-  public void TakeDamage(int damage)
-  {
-    Health -= damage;
+     if (Health.HitPoints <= 0) Destroy(gameObject);
+     //transform.Translate(Vector2.right * Speed * Time.deltaTime);
   }
 }

@@ -6,6 +6,7 @@ using System;
 public class Health : MonoBehaviour
 {
     public int HitPoints => _hitPoints;
+    public int MaxHP;
     public event Action <int> OnHit;
     public event Action<int> OnHeal;
 
@@ -14,6 +15,7 @@ public class Health : MonoBehaviour
     public void TakeDamage(int damage)
     {
         _hitPoints -= damage;
+        Debug.Log(_hitPoints);
         OnHit?.Invoke(damage);
     }
 

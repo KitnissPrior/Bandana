@@ -9,4 +9,5 @@ public class CharacterData : ScriptableObject
     public Gun Gun;
     public float Speed;
     public CharacterGraphics Graphics;
+    public int Damage;
 }

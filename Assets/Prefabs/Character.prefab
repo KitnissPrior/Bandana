@@ -187,6 +187,9 @@ MonoBehaviour:
   Gun: {fileID: 8095630895893119974, guid: d2de8116e05ab6b43b37e80059fdf3ee, type: 3}
   GunPosition: {fileID: 2399156687375928126}
   CharacterData: {fileID: 11400000, guid: 86e3ca47930adcf498f8d91d0daaa6c8, type: 2}
+  HealthView: {fileID: 0}
+  _badEndScene: BadEndScene
+  _goodEndScene: GoodEndScene
 --- !u!114 &2399156686435274973
 MonoBehaviour:
   m_ObjectHideFlags: 0

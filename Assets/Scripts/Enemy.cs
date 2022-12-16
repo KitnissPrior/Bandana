@@ -9,13 +9,19 @@ public class Enemy : MonoBehaviour
   public float Speed;
   public CharacterData CharacterData;
 
+    [SerializeField] private EnemiesCountManager _enemiesCountManager;
+
     private void Start()
     {
         Health.Initialize(CharacterData.HP);
     }
     private void Update()
   {
-     if (Health.HitPoints <= 0) Destroy(gameObject);
+        if (Health.HitPoints <= 0)
+        {
+            Destroy(gameObject);
+            _enemiesCountManager.EnemiesCount--;
+        }
      //transform.Translate(Vector2.right * Speed * Time.deltaTime);
   }
 }

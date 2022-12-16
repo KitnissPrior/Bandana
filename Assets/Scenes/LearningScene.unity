@@ -1796,7 +1796,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CharacterPrefab: {fileID: 2399156686435274972, guid: 6b08085f751710b45a5632df3cc79104, type: 3}
-  CharacterData: {fileID: 11400000, guid: 86e3ca47930adcf498f8d91d0daaa6c8, type: 2}
+  CharacterData: {fileID: 11400000, guid: 62cc687ff76b1c6428af98807ca20cf7, type: 2}
 --- !u!4 &547853117
 Transform:
   m_ObjectHideFlags: 0
@@ -2593,10 +2593,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 21
+  m_fontSize: 18
   m_fontSizeBase: 21
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -5755,8 +5755,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -173.54407, y: 27.85991}
-  m_SizeDelta: {x: 155.64, y: 52.63}
+  m_AnchoredPosition: {x: -173, y: 27.86}
+  m_SizeDelta: {x: 155.64001, y: 52.63}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2115715220
 MonoBehaviour:

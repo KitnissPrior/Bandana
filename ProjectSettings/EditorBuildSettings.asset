@@ -26,6 +26,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SettingsScene.unity
     guid: 0bc5f58ca8f9c774bbff97a3ade9a8b6
+  - enabled: 1
+    path: Assets/Scenes/BadEndScene.unity
+    guid: 6f83b2d6b824bb04e8d14f51fcb4209d
+  - enabled: 1
+    path: Assets/Scenes/GoodEndScene.unity
+    guid: b2125c29a68b42b40bcc36aec3aa4640
   m_configObjects:
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 78f3e610d545a4e42bf379adffb62782, type: 2}
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: 0da034706e4b6b1489db00e023a5f41a, type: 2}

@@ -15,7 +15,6 @@ public class Health : MonoBehaviour
     public void TakeDamage(int damage)
     {
         _hitPoints -= damage;
-        Debug.Log(_hitPoints);
         OnHit?.Invoke(damage);
     }
 

@@ -25,9 +25,9 @@ public class Character : MonoBehaviour
         Gun = Instantiate(CharacterData.Gun, GunPosition);
     }
 
-    private void OnTriggerEnter2D(Collider2D collider)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collider.gameObject.TryGetComponent<Enemy>(out Enemy enemy))
+        if (collision.gameObject.TryGetComponent<Enemy>(out Enemy enemy))
         {
             Health.TakeDamage(enemy.CharacterData.Damage);
             HealthView.HP -= enemy.CharacterData.Damage;

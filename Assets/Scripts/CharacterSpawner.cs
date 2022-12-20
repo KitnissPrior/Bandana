@@ -9,6 +9,7 @@ public class CharacterSpawner : MonoBehaviour
     public CharacterData CharacterData;
     public HealthView HealthView;
     public CinemachineVirtualCamera Camera;
+    public Enemy[] Enemies;
 
     void Start()
     {
@@ -16,6 +17,11 @@ public class CharacterSpawner : MonoBehaviour
         character.Initialize(CharacterData, HealthView);
         Instantiate(CharacterData.Graphics, character.transform);
         Camera.Follow = character.transform;
+
+        foreach (Enemy enemy in Enemies)
+        {
+            enemy.Target = character.transform;
+        }
         
     }
 

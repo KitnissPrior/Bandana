@@ -26,14 +26,14 @@ public class Bullet : MonoBehaviour
         transform.Translate(_direction * _speed * Time.fixedDeltaTime);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == _blockTag || collision.gameObject.tag == _enemyTag)
         {
             Destroy(gameObject);
         }
 
-        if(collision.TryGetComponent<Health>(out Health health))
+        if(collision.gameObject.TryGetComponent<Health>(out Health health) && collision.gameObject.tag == _enemyTag)
         {
             if (health != _parent)
             {

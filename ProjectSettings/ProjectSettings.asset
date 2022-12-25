@@ -13,7 +13,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: LamArt
-  productName: MouseVSCats
+  productName: 'Mouse vs Cats: escape from the maze'
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -137,12 +137,16 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleVersion: 1.0.2
+  bundleVersion: 1.0
   preloadedAssets:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 11400000, guid: a068b34c49b918b49a701efeb89ec6d8, type: 2}
+  - {fileID: 8625736748138555947, guid: 78f3e610d545a4e42bf379adffb62782, type: 2}
   - {fileID: 0}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
@@ -830,7 +834,8 @@ PlayerSettings:
   scriptingDefineSymbols: {}
   additionalCompilerArguments: {}
   platformArchitecture: {}
-  scriptingBackend: {}
+  scriptingBackend:
+    Standalone: 1
   il2cppCompilerConfiguration: {}
   il2cppCodeGeneration: {}
   managedStrippingLevel: {}

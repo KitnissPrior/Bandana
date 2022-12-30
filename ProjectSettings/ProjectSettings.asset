@@ -145,8 +145,9 @@ PlayerSettings:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 11400000, guid: a068b34c49b918b49a701efeb89ec6d8, type: 2}
-  - {fileID: 8625736748138555947, guid: 78f3e610d545a4e42bf379adffb62782, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
@@ -929,11 +930,11 @@ PlayerSettings:
     m_VersionName: 
   apiCompatibilityLevel: 6
   activeInputHandler: 2
-  cloudProjectId: 01b7bc39-6844-41c9-ab95-d3d278acdc43
+  cloudProjectId: e86b123e-20ef-4ca8-bfef-e6eafc1ade42
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: OopsBandana
-  organizationId: lene4ka
+  projectName: 'Mouse vs Cats: escape from the maze'
+  organizationId: tris_prior
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   playerDataPath: 

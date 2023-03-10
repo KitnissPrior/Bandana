@@ -12,17 +12,21 @@ public class Character : MonoBehaviour
     public Transform GunPosition;
     public CharacterData CharacterData;
     public HealthView HealthView;
+    public Inventory Inventory;
 
     [SerializeField] private string _badEndScene;
     [SerializeField] private string _goodEndScene;
 
-    internal void Initialize(CharacterData characterData, HealthView healthView)
+    internal void Initialize(CharacterData characterData, HealthView healthView, Inventory inventory)
     {
         CharacterData = characterData;
         HealthView = healthView;
         Health.Initialize(CharacterData.HP);
         PlayerRun.Initialize(CharacterData.Speed);
         Gun = Instantiate(CharacterData.Gun, GunPosition);
+
+        Inventory = inventory;
+        Inventory.Initialize(this);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -37,6 +41,13 @@ public class Character : MonoBehaviour
                 Destroy(gameObject);
                 SceneManager.LoadScene(_badEndScene);
             }
+        }
+
+        if (collision.gameObject.tag == "Cheese") 
+        {
+            Inventory.AddCheese();
+            
+            Destroy(collision.gameObject);
         }
     }
 

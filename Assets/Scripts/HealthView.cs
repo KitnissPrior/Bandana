@@ -27,6 +27,12 @@ public class HealthView : MonoBehaviour
             if(i < HP)
             {
                 _healthImages[i].sprite = _healthSprite;
+
+                if (!_healthImages[i].gameObject.activeSelf)
+                {
+                    _healthImages[i].gameObject.SetActive(true);
+
+                }
             }
             else
             {

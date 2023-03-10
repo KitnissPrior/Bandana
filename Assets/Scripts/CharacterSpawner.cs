@@ -10,11 +10,12 @@ public class CharacterSpawner : MonoBehaviour
     public HealthView HealthView;
     public CinemachineVirtualCamera Camera;
     public Enemy[] Enemies;
+    public Inventory Inventory;
 
     void Start()
     {
         Character character = Instantiate(CharacterPrefab, transform.position, transform.rotation);
-        character.Initialize(CharacterData, HealthView);
+        character.Initialize(CharacterData, HealthView, Inventory);
         Instantiate(CharacterData.Graphics, character.transform);
         Camera.Follow = character.transform;
 

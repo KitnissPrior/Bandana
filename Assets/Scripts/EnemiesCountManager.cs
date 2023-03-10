@@ -15,9 +15,9 @@ public class EnemiesCountManager : MonoBehaviour
 
     void Update()
     {
-        if (EnemiesCount == 0)
+        /*if (EnemiesCount == 0)
         {
             SceneManager.LoadScene(_goodEndScene);
-        }
+        }*/
     }
 }

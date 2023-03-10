@@ -188,6 +188,7 @@ MonoBehaviour:
   GunPosition: {fileID: 2399156687375928126}
   CharacterData: {fileID: 11400000, guid: 86e3ca47930adcf498f8d91d0daaa6c8, type: 2}
   HealthView: {fileID: 0}
+  Inventory: {fileID: 0}
   _badEndScene: BadEndScene
   _goodEndScene: GoodEndScene
 --- !u!114 &2399156686435274973
@@ -202,8 +203,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd26ae41e90572c418faadb82151b938, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHP: 10
-  _hitPoints: 10
+  MaxHP: 4
+  _hitPoints: 4
 --- !u!1 &2399156686491869709
 GameObject:
   m_ObjectHideFlags: 0

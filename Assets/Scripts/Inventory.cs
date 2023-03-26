@@ -5,74 +5,109 @@ using TMPro;
 
 public class Inventory : MonoBehaviour
 {
-    [SerializeField] private int cheeseHP = 1;
-    [SerializeField] private TMP_Text cheeseText;
-    [SerializeField] private TMP_Text healthComment;
-    [SerializeField] private GameObject window;
-    [SerializeField] private GameObject eatButton;
+    [SerializeField] private int _cheeseHP = 1;
+    [SerializeField] private TMP_Text _cheeseText;
+    [SerializeField] private TMP_Text _healthComment;
+    [SerializeField] private GameObject _panel;
+    [SerializeField] private GameObject _eatButton;
+    [SerializeField] private TMP_Text _scissorsText;
+    [SerializeField] private GameObject _useScissorsButton;
 
-    private Character character;
-    private int cheeseCount;
+    private Character _character;
+    private int _cheeseCount;
+    private int _scissorsCount;
+    private bool _isFrozen;
 
     public void Initialize(Character player)
     {
-        character = player;
-        cheeseCount = 0;
+        _character = player;
+        _cheeseCount = 0;
+        _scissorsCount = 0;
     }
 
     void ShowCheeseInfo ()
     {
-        cheeseText.text = $"Сыра: {cheeseCount}";
+        _cheeseText.text = $"Сыра: {_cheeseCount}";
 
-        int HP = character.Health.HitPoints;
-        int maxHP = character.Health.MaxHP;
+        int HP = _character.Health.HitPoints;
+        int maxHP = _character.Health.MaxHP;
 
         if (HP == maxHP)
         {
-            healthComment.text = "Здоровье максимальное";
-            eatButton.SetActive(false);
+            _healthComment.text = "Здоровье максимальное";
+            _eatButton.SetActive(false);
         }
-        if (HP < maxHP && cheeseCount == 0)
+        if (HP < maxHP && _cheeseCount == 0)
         {
-            healthComment.text = "";
-            eatButton.SetActive(false);
+            _healthComment.text = "";
+            _eatButton.SetActive(false);
         }
-        if (HP < maxHP && cheeseCount > 0)
+        if (HP < maxHP && _cheeseCount > 0)
         {
-            healthComment.text = "";
-            eatButton.SetActive(true);
+            _healthComment.text = "";
+            _eatButton.SetActive(true);
+        }
+    }
+
+    void showScissorsInfo()
+    {
+        _scissorsText.text = $"Ножниц: {_scissorsCount}";
+
+        if(_scissorsCount > 0 && _isFrozen)
+        {
+            _useScissorsButton.SetActive(true);
+        }
+        else
+        {
+            _useScissorsButton.SetActive(false);
         }
     }
 
     public void Update()
     {
         ShowCheeseInfo();
+        showScissorsInfo();
+        if(_character)
+        {
+            _isFrozen = _character.GetComponent<PlayerController>().IsFrozen;
+        }
     }
 
     public void OpenInventory()
     {
-        if (!window.activeSelf)
+        if (!_panel.activeSelf)
         {
-            window.SetActive(true);
+            _panel.SetActive(true);
         }
     }
 
     public void CloseInventory()
     {
-        window.SetActive(false);
+        _panel.SetActive(false);
     }
 
     public void AddCheese()
     {
-        cheeseCount++;
+        _cheeseCount++;
     }
 
     public void EatCheese()
     {
-        cheeseCount--;
+        _cheeseCount--;
 
-        character.Health.Heal(cheeseHP);
-        character.HealthView.HP += cheeseHP;
+        _character.Health.Heal(_cheeseHP);
+        _character.HealthView.HP += _cheeseHP;
+    }
+
+    public void AddScissors()
+    {
+        _scissorsCount++;
+    }
+
+    public void UseScissors()
+    {
+        _scissorsCount--;
+        _character.UnfreezeCharacter();
     }
 
 }

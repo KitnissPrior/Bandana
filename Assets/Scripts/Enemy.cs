@@ -5,12 +5,10 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-  public Health Health;
-  public float Speed;
-  public CharacterData CharacterData;
+    public Health Health;
+    public float Speed;
+    public CharacterData CharacterData;
     public Transform Target;
-
-    [SerializeField] private EnemiesCountManager _enemiesCountManager;
 
     private bool _facingRight = false;
     private Rigidbody2D _rb;
@@ -21,9 +19,10 @@ public class Enemy : MonoBehaviour
         Target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         _rb = gameObject.GetComponent<Rigidbody2D>();
     }
-    private void FixedUpdate()
+
+    private void Move()
     {
-        if(Target != null && Vector3.Distance(Target.position, transform.position) < 300)
+        if (Target != null && Vector3.Distance(Target.position, transform.position) < 300)
         {
             transform.position = Vector2.MoveTowards(transform.position, Target.position, Speed * Time.deltaTime);
             CheckDirection();
@@ -32,11 +31,15 @@ public class Enemy : MonoBehaviour
         {
             transform.Translate(Vector3.left * Speed * Time.deltaTime);
         }
+    }
+
+    private void FixedUpdate()
+    {
+        Move();
 
         if (Health.HitPoints <= 0)
         {
             Destroy(gameObject);
-            _enemiesCountManager.EnemiesCount--;
         }
     }
 
@@ -51,9 +54,6 @@ public class Enemy : MonoBehaviour
 
     void CheckDirection()
     {
-        //float rad = Mathf.Atan2(_rb.velocity.x, _rb.velocity.y);
-        //float angle = rad / Mathf.PI * 180f;
-
         if (_facingRight == false && _rb.velocity.x <= 0) Flip();
 
         else if (_facingRight == true && _rb.velocity.x > 0) Flip();

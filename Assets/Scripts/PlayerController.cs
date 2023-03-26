@@ -14,21 +14,21 @@ public class PlayerController : MonoBehaviour
     public Transform FeetPos;
     public float CheckRadius;
     public LayerMask WhatIsGround;
+    public bool IsFrozen;
 
-    private Vector2 moveInput;
+    private Vector2 _moveInput;
 
     private void Start()
     {
         PlayerVelocity = new Vector2();
         FacingRight = true;
+        IsFrozen = false;
     }
 
     public void Update()
     {
-        //IsGrounded = Physics2D.OverlapCircle(FeetPos.position, CheckRadius, WhatIsGround);
-
         PlayerRb.velocity = PlayerVelocity;
-        if ((!FacingRight && moveInput.x > 0) || (FacingRight && moveInput.x < 0))
+        if (((!FacingRight && _moveInput.x > 0) || (FacingRight && _moveInput.x < 0)) && !IsFrozen)
         {
             PlayerRb.BroadcastMessage("Flip");
         }
@@ -46,9 +46,15 @@ public class PlayerController : MonoBehaviour
 
     public void OnRun(InputValue input)
     {
-        moveInput = input.Get<Vector2>();
-
-        PlayerRb.BroadcastMessage("Run", input);
+        if (IsFrozen)
+        {
+            PlayerVelocity = new Vector2(0, 0);
+        }
+        else
+        {
+            _moveInput = input.Get<Vector2>();
+            PlayerRb.BroadcastMessage("Run", input);
+        }
     }
 
 }

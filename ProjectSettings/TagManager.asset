@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Block
   - Enemy
+  - Cheese
+  - Clew
+  - Scissors
   layers:
   - Default
   - TransparentFX

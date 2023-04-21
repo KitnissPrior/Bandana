@@ -21,6 +21,7 @@ public class Health : MonoBehaviour
     public void Initialize(int hP)
     {
         _hitPoints = hP;
+        MaxHP = hP;
     }
 
     public void Heal(int hp)

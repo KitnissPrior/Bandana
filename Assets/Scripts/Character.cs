@@ -14,17 +14,22 @@ public class Character : MonoBehaviour
     public CharacterData CharacterData;
     public HealthView HealthView;
     public Inventory Inventory;
-    public float FreezingDelay = 3f;
+    public int FreezingDelay = 5;
+    public BindingBar BindingBar;
 
     [SerializeField] private string _badEndScene;
     [SerializeField] private string _goodEndScene;
 
-    internal void Initialize(CharacterData characterData, HealthView healthView, Inventory inventory)
+    private int _smoothingFreezeCoeff = 10;
+
+    internal void Initialize(CharacterData characterData, HealthView healthView, Inventory inventory, BindingBar bindingBar)
     {
         CharacterData = characterData;
         HealthView = healthView;
         Health.Initialize(CharacterData.HP);
         PlayerRun.Initialize(CharacterData.Speed);
+
+        BindingBar = bindingBar;
 
         Gun = Instantiate(CharacterData.Gun, GunPosition);
         Gun.Initialize(gameObject.GetComponent<PlayerController>());
@@ -58,12 +63,28 @@ public class Character : MonoBehaviour
         gameObject.GetComponent<PlayerController>().IsFrozen = false;
     }
 
+    IEnumerator UpdateBindingBar()
+    {
+        int count = _smoothingFreezeCoeff * FreezingDelay;
+
+        for (int i = 0; i < count; i++)
+        {
+            BindingBar.ReduceTimeLeft(1f / count);
+            yield return new WaitForSeconds(1f / _smoothingFreezeCoeff);
+        }
+    }
+
     private void CheckIfClewCollided(GameObject collidedObject)
     {
         if (collidedObject.tag == "Clew")
         {
+            BindingBar.Value = 1f;
+
             Destroy(collidedObject);
             gameObject.GetComponent<PlayerController>().IsFrozen = true;
+
+            StartCoroutine(UpdateBindingBar());
+
             Invoke("UnfreezeCharacter", FreezingDelay);
         }
     }

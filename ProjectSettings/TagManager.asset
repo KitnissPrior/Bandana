@@ -9,6 +9,7 @@ TagManager:
   - Cheese
   - Clew
   - Scissors
+  - Trap
   layers:
   - Default
   - TransparentFX

@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour
     public float Speed;
     public CharacterData CharacterData;
     public Transform Target;
+    public EnemyHealthBar HealthBar;
 
     private bool _facingRight = false;
     private Rigidbody2D _rb;

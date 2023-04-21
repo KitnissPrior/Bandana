@@ -107,6 +107,7 @@ public class Inventory : MonoBehaviour
     public void UseScissors()
     {
         _scissorsCount--;
+        _character.BindingBar.ReduceTimeLeft(_character.FreezingDelay);
         _character.UnfreezeCharacter();
     }
 

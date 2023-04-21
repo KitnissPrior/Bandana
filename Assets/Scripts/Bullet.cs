@@ -19,6 +19,8 @@ public class Bullet : MonoBehaviour
 
     private string _blockTag = "Block";
     private string _enemyTag = "Enemy";
+    private string _trapTag = "Trap";
+    private string _clewTag = "Clew";
 
 
     private void FixedUpdate()
@@ -28,16 +30,21 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == _blockTag || collision.gameObject.tag == _enemyTag)
+        if (collision.gameObject.tag == _blockTag || collision.gameObject.tag == _enemyTag
+            || collision.gameObject.tag == _trapTag || collision.gameObject.tag == _clewTag)
         {
             Destroy(gameObject);
         }
 
-        if(collision.gameObject.TryGetComponent<Health>(out Health health) && collision.gameObject.tag == _enemyTag)
+        if (collision.gameObject.TryGetComponent<Health>(out Health health) && collision.gameObject.tag == _enemyTag)
         {
             if (health != _parent)
             {
+                Enemy enemy = collision.gameObject.GetComponent<Enemy>();
+
+                enemy.HealthBar.ReduceValue(1f / health.MaxHP);
                 health.TakeDamage(_damage);
+
                 Destroy(gameObject);
             }             
         }

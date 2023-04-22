@@ -10,20 +10,22 @@ public class Enemy : MonoBehaviour
     public CharacterData CharacterData;
     public Transform Target;
     public EnemyHealthBar HealthBar;
+    public int MaxDistanceToTarget = 300;
 
     private bool _facingRight = false;
     private Rigidbody2D _rb;
 
-    private void Start()
+    public void Start()
     {
         Health.Initialize(CharacterData.HP);
         Target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         _rb = gameObject.GetComponent<Rigidbody2D>();
+        Speed = CharacterData.Speed;
     }
 
     private void Move()
     {
-        if (Target != null && Vector3.Distance(Target.position, transform.position) < 300)
+        if (Target != null && Vector3.Distance(Target.position, transform.position) < MaxDistanceToTarget)
         {
             transform.position = Vector2.MoveTowards(transform.position, Target.position, Speed * Time.deltaTime);
             CheckDirection();
@@ -44,7 +46,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    void Flip()
+    public void Flip()
     {
 
         _facingRight = !_facingRight;
@@ -53,7 +55,7 @@ public class Enemy : MonoBehaviour
         transform.localScale = Scaler;
     }
 
-    void CheckDirection()
+    public void CheckDirection()
     {
         if (_facingRight == false && _rb.velocity.x <= 0) Flip();
 

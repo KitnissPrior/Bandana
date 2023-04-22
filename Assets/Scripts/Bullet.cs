@@ -21,6 +21,7 @@ public class Bullet : MonoBehaviour
     private string _enemyTag = "Enemy";
     private string _trapTag = "Trap";
     private string _clewTag = "Clew";
+    private string _cheeseTag = "Cheese";
 
 
     private void FixedUpdate()
@@ -31,7 +32,8 @@ public class Bullet : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == _blockTag || collision.gameObject.tag == _enemyTag
-            || collision.gameObject.tag == _trapTag || collision.gameObject.tag == _clewTag)
+            || collision.gameObject.tag == _trapTag || collision.gameObject.tag == _clewTag
+            || collision.gameObject.tag == _cheeseTag)
         {
             Destroy(gameObject);
         }

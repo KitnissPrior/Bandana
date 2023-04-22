@@ -13,18 +13,25 @@ public class CharacterSpawner : MonoBehaviour
     public Inventory Inventory;
     public BindingBar BindingBar;
 
+    private Character _character;
+
     void Start()
     {
-        Character character = Instantiate(CharacterPrefab, transform.position, transform.rotation);
-        character.Initialize(CharacterData, HealthView, Inventory, BindingBar);
-        Instantiate(CharacterData.Graphics, character.transform);
-        Camera.Follow = character.transform;
+        _character = Instantiate(CharacterPrefab, transform.position, transform.rotation);
+        _character.Initialize(CharacterData, HealthView, Inventory, BindingBar);
+        Instantiate(CharacterData.Graphics, _character.transform);
+        Camera.Follow = _character.transform;
+    }
 
-        foreach (Enemy enemy in Enemies)
+    void Update()
+    {
+        if(_character != null)
         {
-            enemy.Target = character.transform;
+            foreach (Enemy enemy in Enemies)
+            {
+                enemy.Target = _character.transform;
+            }
         }
-        
     }
 
 }

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 
@@ -15,14 +16,17 @@ public class Character : MonoBehaviour
     public HealthView HealthView;
     public Inventory Inventory;
     public int FreezingDelay = 5;
-    public BindingBar BindingBar;
+    public ProgressBar BindingBar;
+    public ProgressBar ShieldBar;
+    public Shield Shield;
 
     [SerializeField] private string _badEndScene;
     [SerializeField] private string _goodEndScene;
 
-    private int _smoothingFreezeCoeff = 10;
+    private int _barSmoothingCoeff = 10;
 
-    internal void Initialize(CharacterData characterData, HealthView healthView, Inventory inventory, BindingBar bindingBar)
+    internal void Initialize(CharacterData characterData, HealthView healthView, Inventory inventory,
+        ProgressBar bindingBar, ProgressBar shieldBar)
     {
         CharacterData = characterData;
         HealthView = healthView;
@@ -31,11 +35,13 @@ public class Character : MonoBehaviour
 
         BindingBar = bindingBar;
 
+        ShieldBar = shieldBar;
+
         Gun = Instantiate(CharacterData.Gun, GunPosition);
         Gun.Initialize(gameObject.GetComponent<PlayerController>());
 
         Inventory = inventory;
-        Inventory.Initialize(this);
+        Inventory.Initialize(this, Shield, ShieldBar);
     }
 
     private void CheckIfNotDead()
@@ -49,7 +55,7 @@ public class Character : MonoBehaviour
 
     private void CheckIfEnemyCollided(GameObject collidedObject)
     {
-        if (collidedObject.TryGetComponent<Enemy>(out Enemy enemy))
+        if (collidedObject.TryGetComponent<Enemy>(out Enemy enemy) && !Shield.IsActive)
         {
             Health.TakeDamage(enemy.CharacterData.Damage);
             HealthView.HP -= enemy.CharacterData.Damage;
@@ -63,14 +69,14 @@ public class Character : MonoBehaviour
         gameObject.GetComponent<PlayerController>().IsFrozen = false;
     }
 
-    IEnumerator UpdateBindingBar()
+    public IEnumerator UpdateProgressBar(ProgressBar progressBar, int delay)
     {
-        int count = _smoothingFreezeCoeff * FreezingDelay;
+        int count = _barSmoothingCoeff * delay;
 
         for (int i = 0; i < count; i++)
         {
-            BindingBar.ReduceTimeLeft(1f / count);
-            yield return new WaitForSeconds(1f / _smoothingFreezeCoeff);
+            progressBar.ReduceTimeLeft(1f / count);
+            yield return new WaitForSeconds(1f / _barSmoothingCoeff);
         }
     }
 
@@ -78,14 +84,23 @@ public class Character : MonoBehaviour
     {
         if (collidedObject.tag == "Clew")
         {
-            BindingBar.Value = 1f;
-
             Destroy(collidedObject);
-            gameObject.GetComponent<PlayerController>().IsFrozen = true;
 
-            StartCoroutine(UpdateBindingBar());
+            if (Shield.IsActive)
+            {
+                Inventory.DeactivateShield();
+                ShieldBar.ReduceTimeLeft(Shield.ProtectingTime);
+            }
+            else
+            {
+                BindingBar.Value = 1f;
 
-            Invoke("UnfreezeCharacter", FreezingDelay);
+                gameObject.GetComponent<PlayerController>().IsFrozen = true;
+
+                StartCoroutine(UpdateProgressBar(BindingBar, FreezingDelay));
+
+                Invoke("UnfreezeCharacter", FreezingDelay);
+            }
         }
     }
 
@@ -109,7 +124,7 @@ public class Character : MonoBehaviour
 
     private void CheckIfTrapCollided(GameObject collidedObject)
     {
-        if (collidedObject.TryGetComponent<Trap>(out Trap trap))
+        if (collidedObject.TryGetComponent<Trap>(out Trap trap) && !Shield.IsActive)
         {
             Health.TakeDamage(trap.Damage);
             HealthView.HP -= trap.Damage;
@@ -118,13 +133,24 @@ public class Character : MonoBehaviour
         }
     }
 
+    private void CheckIfShieldCollided(GameObject collidedObject)
+    {
+        if (collidedObject.tag == "Shield")
+        {
+            Destroy(collidedObject);
+            Inventory.AddShield();
+        }
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         CheckIfEnemyCollided(collision.gameObject);
-        CheckIfCheeseCollided(collision.gameObject);
-        CheckIfClewCollided(collision.gameObject);
-        CheckIfScissorsCollided(collision.gameObject);
         CheckIfTrapCollided(collision.gameObject);
+        CheckIfClewCollided(collision.gameObject);
+
+        CheckIfScissorsCollided(collision.gameObject);
+        CheckIfCheeseCollided(collision.gameObject);
+        CheckIfShieldCollided(collision.gameObject);
     }
 
 }

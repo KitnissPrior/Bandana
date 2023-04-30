@@ -10,6 +10,7 @@ TagManager:
   - Clew
   - Scissors
   - Trap
+  - Shield
   layers:
   - Default
   - TransparentFX

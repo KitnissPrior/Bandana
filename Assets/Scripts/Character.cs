@@ -16,6 +16,7 @@ public class Character : MonoBehaviour
     public Inventory Inventory;
     public int FreezingDelay = 5;
     public BindingBar BindingBar;
+    public Shield Shield;
 
     [SerializeField] private string _badEndScene;
     [SerializeField] private string _goodEndScene;
@@ -49,7 +50,7 @@ public class Character : MonoBehaviour
 
     private void CheckIfEnemyCollided(GameObject collidedObject)
     {
-        if (collidedObject.TryGetComponent<Enemy>(out Enemy enemy))
+        if (collidedObject.TryGetComponent<Enemy>(out Enemy enemy) && !Shield.IsActive)
         {
             Health.TakeDamage(enemy.CharacterData.Damage);
             HealthView.HP -= enemy.CharacterData.Damage;
@@ -76,7 +77,7 @@ public class Character : MonoBehaviour
 
     private void CheckIfClewCollided(GameObject collidedObject)
     {
-        if (collidedObject.tag == "Clew")
+        if (collidedObject.tag == "Clew" && !Shield.IsActive)
         {
             BindingBar.Value = 1f;
 
@@ -109,7 +110,7 @@ public class Character : MonoBehaviour
 
     private void CheckIfTrapCollided(GameObject collidedObject)
     {
-        if (collidedObject.TryGetComponent<Trap>(out Trap trap))
+        if (collidedObject.TryGetComponent<Trap>(out Trap trap) && !Shield.IsActive)
         {
             Health.TakeDamage(trap.Damage);
             HealthView.HP -= trap.Damage;
@@ -118,13 +119,25 @@ public class Character : MonoBehaviour
         }
     }
 
+    private void CheckIfShieldCollided(GameObject collidedObject)
+    {
+        if (collidedObject.tag == "Shield")
+        {
+            Destroy(collidedObject);
+
+            Shield.IsActive = true;
+        }
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         CheckIfEnemyCollided(collision.gameObject);
-        CheckIfCheeseCollided(collision.gameObject);
-        CheckIfClewCollided(collision.gameObject);
-        CheckIfScissorsCollided(collision.gameObject);
         CheckIfTrapCollided(collision.gameObject);
+        CheckIfClewCollided(collision.gameObject);
+
+        CheckIfScissorsCollided(collision.gameObject);
+        CheckIfCheeseCollided(collision.gameObject);
+        CheckIfShieldCollided(collision.gameObject);
     }
 
 }

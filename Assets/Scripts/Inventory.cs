@@ -27,7 +27,7 @@ public class Inventory : MonoBehaviour
 
     void ShowCheeseInfo ()
     {
-        _cheeseText.text = $"Сыра: {_cheeseCount}";
+        _cheeseText.text = $"{_cheeseCount} шт.";
 
         int HP = _character.Health.HitPoints;
         int maxHP = _character.Health.MaxHP;
@@ -51,7 +51,7 @@ public class Inventory : MonoBehaviour
 
     void showScissorsInfo()
     {
-        _scissorsText.text = $"Ножниц: {_scissorsCount}";
+        _scissorsText.text = $"{_scissorsCount} шт.";
 
         if(_scissorsCount > 0 && _isFrozen)
         {

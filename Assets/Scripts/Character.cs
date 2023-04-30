@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 
@@ -24,7 +25,8 @@ public class Character : MonoBehaviour
 
     private int _barSmoothingCoeff = 10;
 
-    internal void Initialize(CharacterData characterData, HealthView healthView, Inventory inventory, ProgressBar bindingBar, ProgressBar shieldBar)
+    internal void Initialize(CharacterData characterData, HealthView healthView, Inventory inventory,
+        ProgressBar bindingBar, ProgressBar shieldBar)
     {
         CharacterData = characterData;
         HealthView = healthView;
@@ -32,6 +34,7 @@ public class Character : MonoBehaviour
         PlayerRun.Initialize(CharacterData.Speed);
 
         BindingBar = bindingBar;
+
         ShieldBar = shieldBar;
 
         Gun = Instantiate(CharacterData.Gun, GunPosition);

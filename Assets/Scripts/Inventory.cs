@@ -96,7 +96,9 @@ public class Inventory : MonoBehaviour
         ShowScissorsInfo();
         ShowShieldInfo();
 
-        if(_character)
+        _shieldCircle.Update();
+
+        if (_character)
         {
             _isFrozen = _character.GetComponent<PlayerController>().IsFrozen;
         }

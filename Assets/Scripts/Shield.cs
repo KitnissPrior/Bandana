@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Shield : MonoBehaviour
 {
     public bool IsActive;
-    public int ProtectingTime = 6;
+    public int ProtectingTime = 10;
     public GameObject Knife;
     public GameObject Cheese;
 
@@ -17,7 +17,7 @@ public class Shield : MonoBehaviour
         Physics2D.IgnoreCollision(Cheese.GetComponent<Collider2D>(), GetComponent<Collider2D>());
     }
 
-    void Update()
+    public void Update()
     {
         if (IsActive)
         {

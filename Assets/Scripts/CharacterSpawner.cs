@@ -11,14 +11,15 @@ public class CharacterSpawner : MonoBehaviour
     public CinemachineVirtualCamera Camera;
     public Enemy[] Enemies;
     public Inventory Inventory;
-    public BindingBar BindingBar;
+    public ProgressBar BindingBar;
+    public ProgressBar ShieldBar;
 
     private Character _character;
 
     void Start()
     {
         _character = Instantiate(CharacterPrefab, transform.position, transform.rotation);
-        _character.Initialize(CharacterData, HealthView, Inventory, BindingBar);
+        _character.Initialize(CharacterData, HealthView, Inventory, BindingBar, ShieldBar);
         Instantiate(CharacterData.Graphics, _character.transform);
         Camera.Follow = _character.transform;
     }

@@ -6,23 +6,36 @@ using TMPro;
 public class Inventory : MonoBehaviour
 {
     [SerializeField] private int _cheeseHP = 1;
-    [SerializeField] private TMP_Text _cheeseText;
-    [SerializeField] private TMP_Text _healthComment;
     [SerializeField] private GameObject _panel;
-    [SerializeField] private GameObject _eatButton;
+    [SerializeField] private TMP_Text _healthComment;
+
+    [SerializeField] private TMP_Text _cheeseText;
+    [SerializeField] private TMP_Text _shieldText;
     [SerializeField] private TMP_Text _scissorsText;
+
     [SerializeField] private GameObject _useScissorsButton;
+    [SerializeField] private GameObject _eatButton;
+    [SerializeField] private GameObject _useShieldButton;
 
     private Character _character;
-    private int _cheeseCount;
-    private int _scissorsCount;
     private bool _isFrozen;
 
-    public void Initialize(Character player)
+    private int _cheeseCount;
+    private int _scissorsCount;
+    private int _shieldsCount;
+
+    private Shield _shieldCircle;
+    private ProgressBar _shieldBar;
+
+    public void Initialize(Character player, Shield shieldCircle, ProgressBar shieldBar)
     {
         _character = player;
+        _shieldCircle = shieldCircle;
+        _shieldBar = shieldBar;
+
         _cheeseCount = 0;
         _scissorsCount = 0;
+        _shieldsCount = 0;
     }
 
     void ShowCheeseInfo ()
@@ -49,7 +62,7 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    void showScissorsInfo()
+    void ShowScissorsInfo()
     {
         _scissorsText.text = $"{_scissorsCount} רע.";
 
@@ -63,10 +76,26 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    void ShowShieldInfo()
+    {
+        _shieldText.text = $"{_shieldsCount} רע.";
+
+        if (_shieldsCount > 0)
+        {
+            _useShieldButton.SetActive(true);
+        }
+        else
+        {
+            _useShieldButton.SetActive(false);
+        }
+    }
+
     public void Update()
     {
         ShowCheeseInfo();
-        showScissorsInfo();
+        ShowScissorsInfo();
+        ShowShieldInfo();
+
         if(_character)
         {
             _isFrozen = _character.GetComponent<PlayerController>().IsFrozen;
@@ -109,6 +138,27 @@ public class Inventory : MonoBehaviour
         _scissorsCount--;
         _character.BindingBar.ReduceTimeLeft(_character.FreezingDelay);
         _character.UnfreezeCharacter();
+    }
+
+    public void AddShield()
+    {
+        _shieldsCount++;
+    }
+
+    public void DeactivateShield()
+    {
+        _shieldCircle.IsActive = false;
+    }
+
+    public void UseShield()
+    {
+        _shieldsCount--;
+        _shieldCircle.IsActive = true;
+
+        _shieldBar.Value = 1f;
+
+        StartCoroutine(_character.UpdateProgressBar(_shieldBar, _shieldCircle.ProtectingTime));
+        Invoke("DeactivateShield", _shieldCircle.ProtectingTime);
     }
 
 }

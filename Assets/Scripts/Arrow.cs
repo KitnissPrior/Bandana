@@ -16,7 +16,6 @@ public class Arrow : Bullet
 
                 if (!character.Shield.IsActive)
                 {
-                    Debug.Log(Damage);
                     health.TakeDamage(Damage);
                     character.HealthView.HP -= Damage;
 

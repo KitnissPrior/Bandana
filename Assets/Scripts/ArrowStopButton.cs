@@ -6,7 +6,7 @@ public class ArrowStopButton : MonoBehaviour
 {
     public ArrowGun ArrowGun;
     public ProgressBar ProgressBar;
-    public int Delay = 5;
+    public int Delay = 4;
 
     private string _characterTag = "Character";
     private int _barSmoothingCoeff = 5;
@@ -41,7 +41,9 @@ public class ArrowStopButton : MonoBehaviour
             {
                 ArrowGun.StopFire();
 
-                //StartCoroutine(UpdateProgressBar());
+                ProgressBar.Value = 1f;
+                StartCoroutine(UpdateProgressBar());
+
                 Invoke("StartFire", Delay);
             }
         }

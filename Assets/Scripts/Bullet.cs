@@ -27,6 +27,7 @@ public class Bullet : MonoBehaviour
             "Trap",
             "Clew",
             "Arrow",
+            "ArrowButton",
             "Scissors",
             "Shield",
             "Cheese"

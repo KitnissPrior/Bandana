@@ -13,6 +13,7 @@ TagManager:
   - Shield
   - Arrow
   - Character
+  - ArrowButton
   layers:
   - Default
   - TransparentFX

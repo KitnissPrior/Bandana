@@ -11,6 +11,8 @@ TagManager:
   - Scissors
   - Trap
   - Shield
+  - Arrow
+  - Character
   layers:
   - Default
   - TransparentFX

@@ -10,57 +10,64 @@ public class Bullet : MonoBehaviour
     public Collider2D Collider;
     public UnityEvent OnDestroy; 
     public float Distance;
+    public int Damage;
+    public DamageReceiver Parent;
+    public List<string> ItemTags;
 
-    private DamageReceiver _parent;
     private Vector2 _direction;
     private float _lifetime;
     private float _speed;
-    private int _damage;
 
-    private string _blockTag = "Block";
     private string _enemyTag = "Enemy";
-    private string _trapTag = "Trap";
-    private string _clewTag = "Clew";
-    private string _cheeseTag = "Cheese";
 
+    void Start()
+    {
+        ItemTags = new List<string> {
+            "Block",
+            "Trap",
+            "Clew",
+            "Arrow",
+            "Scissors",
+            "Shield",
+            "Cheese"
+        };
+    }
+
+    public void Initialize(DamageReceiver parent, Vector2 direction, float lifetime, float speed, int damage)
+    {
+        Parent = parent;
+        _direction = direction;
+        _lifetime = lifetime;
+        _speed = speed;
+        Damage = damage;
+
+        StartCoroutine(DestroyOnLifetimeOut());
+    }
 
     private void FixedUpdate()
     {
         transform.Translate(_direction * _speed * Time.fixedDeltaTime);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    public void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == _blockTag || collision.gameObject.tag == _enemyTag
-            || collision.gameObject.tag == _trapTag || collision.gameObject.tag == _clewTag
-            || collision.gameObject.tag == _cheeseTag)
+        foreach(var tag in ItemTags)
         {
-            Destroy(gameObject);
+            if(collision.gameObject.tag == tag) Destroy(gameObject);
         }
 
         if (collision.gameObject.TryGetComponent<Health>(out Health health) && collision.gameObject.tag == _enemyTag)
         {
-            if (health != _parent)
+            if (health != Parent)
             {
                 Enemy enemy = collision.gameObject.GetComponent<Enemy>();
 
                 enemy.HealthBar.ReduceValue(1f / health.MaxHP);
-                health.TakeDamage(_damage);
+                health.TakeDamage(Damage);
 
                 Destroy(gameObject);
             }             
         }
-    }
-
-    public void Initialize(DamageReceiver parent, Vector2 direction, float lifetime, float speed, int damage)
-    {
-        _parent = parent;
-        _direction = direction;
-        _lifetime = lifetime;
-        _speed = speed;
-        _damage = damage;
-
-        StartCoroutine(DestroyOnLifetimeOut());
     }
 
     private void DestroyBullet()

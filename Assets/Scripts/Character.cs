@@ -44,7 +44,7 @@ public class Character : MonoBehaviour
         Inventory.Initialize(this, Shield, ShieldBar);
     }
 
-    private void CheckIfNotDead()
+    public void CheckIfNotDead()
     {
         if (Health.HitPoints <= 0)
         {

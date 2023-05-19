@@ -2,16 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {
     [SerializeField] private int _cheeseHP = 1;
-    [SerializeField] private GameObject _panel;
-    [SerializeField] private TMP_Text _healthComment;
 
     [SerializeField] private TMP_Text _cheeseText;
     [SerializeField] private TMP_Text _shieldText;
     [SerializeField] private TMP_Text _scissorsText;
+
+    [SerializeField] private Sprite _transparentScissors;
+    [SerializeField] private Sprite _transparentCheese;
+    [SerializeField] private Sprite _transparentShield;
+
+    [SerializeField] private Sprite _brightCheese;
+    [SerializeField] private Sprite _brightShield;
+    [SerializeField] private Sprite _brightScissors;
 
     [SerializeField] private GameObject _useScissorsButton;
     [SerializeField] private GameObject _eatButton;
@@ -38,56 +45,63 @@ public class Inventory : MonoBehaviour
         _shieldsCount = 0;
     }
 
+    string GetItemInfo(int count)
+    {
+        if (count < 10) return $" {count}";
+
+        return $"{count}";
+    }
+
     void ShowCheeseInfo ()
     {
-        _cheeseText.text = $"{_cheeseCount} шт.";
+        _cheeseText.text = GetItemInfo(_cheeseCount);
 
-        int HP = _character.Health.HitPoints;
-        int maxHP = _character.Health.MaxHP;
-
-        if (HP == maxHP)
+        if (_cheeseCount > 0)
         {
-            _healthComment.text = "Здоровье максимальное";
-            _eatButton.SetActive(false);
+            _eatButton.GetComponent<Image>().sprite = _brightCheese;
         }
-        if (HP < maxHP && _cheeseCount == 0)
+        else
         {
-            _healthComment.text = "";
-            _eatButton.SetActive(false);
-        }
-        if (HP < maxHP && _cheeseCount > 0)
-        {
-            _healthComment.text = "";
-            _eatButton.SetActive(true);
+            _eatButton.GetComponent<Image>().sprite = _transparentCheese;
         }
     }
 
     void ShowScissorsInfo()
     {
-        _scissorsText.text = $"{_scissorsCount} шт.";
+        _scissorsText.text = GetItemInfo(_scissorsCount);
 
-        if(_scissorsCount > 0 && _isFrozen)
+        if(_scissorsCount > 0)
         {
-            _useScissorsButton.SetActive(true);
+            _useScissorsButton.GetComponent<Image>().sprite = _brightScissors;
         }
         else
         {
-            _useScissorsButton.SetActive(false);
+            _useScissorsButton.GetComponent<Image>().sprite = _transparentScissors;
         }
     }
 
     void ShowShieldInfo()
     {
-        _shieldText.text = $"{_shieldsCount} шт.";
+        _shieldText.text = GetItemInfo(_shieldsCount);
 
         if (_shieldsCount > 0)
         {
-            _useShieldButton.SetActive(true);
+            _useShieldButton.GetComponent<Image>().sprite = _brightShield;
         }
         else
         {
-            _useShieldButton.SetActive(false);
+            _useShieldButton.GetComponent<Image>().sprite = _transparentShield;
         }
+    }
+
+    void ControlUsingItemsByKeyBoard()
+    {
+        if (Input.GetKey(KeyCode.Keypad1) || Input.GetKey(KeyCode.Alpha1)) 
+            UseScissors();
+        if (Input.GetKey(KeyCode.Keypad2) || Input.GetKey(KeyCode.Alpha2)) 
+            EatCheese();
+        if (Input.GetKey(KeyCode.Keypad3) || Input.GetKey(KeyCode.Alpha3)) 
+            UseShield();
     }
 
     public void Update()
@@ -101,19 +115,8 @@ public class Inventory : MonoBehaviour
             _isFrozen = _character.GetComponent<PlayerController>().IsFrozen;
             _shieldCircle.Update();
         }
-    }
 
-    public void OpenInventory()
-    {
-        if (!_panel.activeSelf)
-        {
-            _panel.SetActive(true);
-        }
-    }
-
-    public void CloseInventory()
-    {
-        _panel.SetActive(false);
+        ControlUsingItemsByKeyBoard();
     }
 
     public void AddCheese()
@@ -123,10 +126,13 @@ public class Inventory : MonoBehaviour
 
     public void EatCheese()
     {
-        _cheeseCount--;
+        if(_cheeseCount > 0 && _character.Health.HitPoints < _character.Health.MaxHP)
+        {
+            _cheeseCount--;
 
-        _character.Health.Heal(_cheeseHP);
-        _character.HealthView.HP += _cheeseHP;
+            _character.Health.Heal(_cheeseHP);
+            _character.HealthView.HP += _cheeseHP;
+        }
     }
 
     public void AddScissors()
@@ -136,9 +142,12 @@ public class Inventory : MonoBehaviour
 
     public void UseScissors()
     {
-        _scissorsCount--;
-        _character.BindingBar.ReduceTimeLeft(_character.FreezingDelay);
-        _character.UnfreezeCharacter();
+        if(_scissorsCount > 0 && _isFrozen)
+        {
+            _scissorsCount--;
+            _character.BindingBar.ReduceTimeLeft(_character.FreezingDelay);
+            _character.UnfreezeCharacter();
+        }
     }
 
     public void AddShield()
@@ -153,13 +162,16 @@ public class Inventory : MonoBehaviour
 
     public void UseShield()
     {
-        _shieldsCount--;
-        _shieldCircle.IsActive = true;
+        if(_shieldsCount > 0)
+        {
+            _shieldsCount--;
+            _shieldCircle.IsActive = true;
 
-        _shieldBar.Value = 1f;
+            _shieldBar.Value = 1f;
 
-        StartCoroutine(_character.UpdateProgressBar(_shieldBar, _shieldCircle.ProtectingTime));
-        Invoke("DeactivateShield", _shieldCircle.ProtectingTime);
+            StartCoroutine(_character.UpdateProgressBar(_shieldBar, _shieldCircle.ProtectingTime));
+            Invoke("DeactivateShield", _shieldCircle.ProtectingTime);
+        }
     }
 
 }

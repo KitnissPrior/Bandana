@@ -229,8 +229,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b5a32887980c61a49b52656ad0df955a, type: 3}
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 21300000, guid: e6527cad460b23e49aeb3f37d90a0166, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -279,14 +279,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 120, y: 51}
+    oldSize: {x: 139.5, y: 61.5}
     newSize: {x: 120, y: 51}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 120, y: 51}
+  m_Size: {x: 120, y: 30}
   m_EdgeRadius: 0
 --- !u!114 &1097836785358165992
 MonoBehaviour:
@@ -302,7 +302,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Offset: 0
   Arrow: {fileID: 30328018155362352, guid: e49601fddffede146b856c60d2362f68, type: 3}
-  StartTimeBtwShots: 0.3
+  StartTimeBtwShots: 0.5
   ShotPoints:
   - {fileID: 666926700897636251}
   - {fileID: 1045879416427802340}

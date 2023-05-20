@@ -23,7 +23,7 @@ public class Enemy : MonoBehaviour
         Speed = CharacterData.Speed;
     }
 
-    private void Move()
+    public void Move()
     {
         if (Target != null && Vector3.Distance(Target.position, transform.position) < MaxDistanceToTarget)
         {
@@ -36,7 +36,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void FixedUpdate()
+    public void FixedUpdate()
     {
         Move();
 

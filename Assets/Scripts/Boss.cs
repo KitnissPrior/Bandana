@@ -7,14 +7,29 @@ public class Boss : Enemy
 {
     public GameObject Clew;
     public Transform ShotPoint;
+    public GameObject Key;
+    public Transform KeyPoint;
+
     public bool IsCharacterEntered = false;
+    public GameObject DoorIn;
 
     public float FireRate = 0.5f;
     public float NextFire = 0.0f;
     
-    void Update()
+    public void FixedUpdate()
     {
-        if (IsCharacterEntered) Fire();
+        if (IsCharacterEntered)
+        {
+            Move();
+            Fire();
+            DoorIn.SetActive(true);
+        }
+
+        if (Health.HitPoints <= 0)
+        {
+            GameObject key = Instantiate(Key, KeyPoint.position, KeyPoint.rotation);
+            Destroy(gameObject);
+        }
     }
 
     void Fire()

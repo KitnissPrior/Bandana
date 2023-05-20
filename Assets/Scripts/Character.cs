@@ -19,11 +19,13 @@ public class Character : MonoBehaviour
     public ProgressBar BindingBar;
     public ProgressBar ShieldBar;
     public Shield Shield;
+    public bool HasKey => _hasKey;
 
     [SerializeField] private string _badEndScene;
     [SerializeField] private string _goodEndScene;
 
     private int _barSmoothingCoeff = 10;
+    private bool _hasKey = false;
 
     internal void Initialize(CharacterData characterData, HealthView healthView, Inventory inventory,
         ProgressBar bindingBar, ProgressBar shieldBar)
@@ -50,6 +52,15 @@ public class Character : MonoBehaviour
         {
             Destroy(gameObject);
             SceneManager.LoadScene(_badEndScene);
+        }
+    }
+
+    private void CheckIfKeyCollided(GameObject collidedObject)
+    {
+        if (collidedObject.tag == "Key")
+        {
+            Destroy(collidedObject);
+            _hasKey = true;
         }
     }
 
@@ -151,6 +162,8 @@ public class Character : MonoBehaviour
         CheckIfScissorsCollided(collision.gameObject);
         CheckIfCheeseCollided(collision.gameObject);
         CheckIfShieldCollided(collision.gameObject);
+
+        CheckIfKeyCollided(collision.gameObject);
     }
 
 }

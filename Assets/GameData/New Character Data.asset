@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc4ce68bca2f0934eb65cfec2e60aca7, type: 3}
   m_Name: New Character Data
   m_EditorClassIdentifier: 
-  HP: 4
+  HP: 5
   Gun: {fileID: 8095630895893119974, guid: d2de8116e05ab6b43b37e80059fdf3ee, type: 3}
   Speed: 7
   Graphics: {fileID: 1479163244201193703, guid: eac1c556ec5ba78409f96c6fc148775f, type: 3}
+  Damage: 0

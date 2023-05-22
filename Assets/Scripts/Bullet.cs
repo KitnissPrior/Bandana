@@ -30,7 +30,10 @@ public class Bullet : MonoBehaviour
             "ArrowButton",
             "Scissors",
             "Shield",
-            "Cheese"
+            "Cheese",
+            "Key",
+            "Chest",
+            "InvisibleDetector",
         };
     }
 

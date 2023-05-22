@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2399156686435274791}
-  - component: {fileID: 2399156686435274794}
   - component: {fileID: 2399156686435274795}
   - component: {fileID: 2399156686435274790}
   - component: {fileID: 2399156686435274785}
@@ -18,6 +17,7 @@ GameObject:
   - component: {fileID: 2399156686435274784}
   - component: {fileID: 2399156686435274972}
   - component: {fileID: 2399156686435274973}
+  - component: {fileID: 4525412227605636402}
   m_Layer: 0
   m_Name: Character
   m_TagString: Character
@@ -43,22 +43,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!70 &2399156686435274794
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2399156686435274792}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.0032908916, y: 0}
-  m_Size: {x: 1.8, y: 0.6}
-  m_Direction: 0
 --- !u!50 &2399156686435274795
 Rigidbody2D:
   serializedVersion: 4
@@ -211,6 +195,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHP: 4
   _hitPoints: 4
+--- !u!70 &4525412227605636402
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2399156686435274792}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.2}
+  m_Size: {x: 1.25, y: 1.2}
+  m_Direction: 0
 --- !u!1 &2399156686491869709
 GameObject:
   m_ObjectHideFlags: 0

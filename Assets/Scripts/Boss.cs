@@ -12,6 +12,7 @@ public class Boss : Enemy
 
     public bool IsCharacterEntered = false;
     public GameObject DoorIn;
+    public int FireDelay = 3;
 
     public float FireRate = 0.5f;
     public float NextFire = 0.0f;
@@ -21,7 +22,8 @@ public class Boss : Enemy
         if (IsCharacterEntered)
         {
             Move();
-            Fire();
+            Invoke("Fire", FireDelay);
+
             DoorIn.SetActive(true);
         }
 

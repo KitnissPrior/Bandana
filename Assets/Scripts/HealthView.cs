@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class HealthView : MonoBehaviour
 {
     public int HP;
+    public float BlinkingDelay = 0.4f;
 
     [SerializeField] private CharacterData _characterData;
     [SerializeField] private Image[] _healthImages;
@@ -20,6 +21,14 @@ public class HealthView : MonoBehaviour
         _maxHealth = HP;
     }
 
+    private IEnumerator HideHP(int index)
+    {
+        yield return new WaitForSeconds(BlinkingDelay);
+
+        //_healthImages[index].GetComponent<Animator>().SetBool("isDamaged", false);
+        _healthImages[index].gameObject.SetActive(false);
+    }
+
     private void Update()
     {
         for (int i = 0; i < _maxHealth; i++)
@@ -27,17 +36,22 @@ public class HealthView : MonoBehaviour
             if(i < HP)
             {
                 _healthImages[i].sprite = _healthSprite;
-
-                if (!_healthImages[i].gameObject.activeSelf)
+                _healthImages[i].GetComponent<Animator>().SetBool("isDamaged", false);
+                /*if (!_healthImages[i].gameObject.activeSelf)
                 {
+                    
                     _healthImages[i].gameObject.SetActive(true);
 
-                }
+                    _healthImages[i].GetComponent<Animator>().SetBool("isDamaged", false);
+                    Debug.Log($"{i} {_healthImages[i].gameObject.activeSelf}");
+                    
+                }*/
             }
             else
             {
-                //скрываем одну жизнь
-                _healthImages[i].gameObject.SetActive(false);
+                //запускаем мерцание
+                _healthImages[i].GetComponent<Animator>().SetBool("isDamaged", true);
+                //StartCoroutine(HideHP(i));
             }
         }
     }

@@ -15,7 +15,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4983175629552063375
 Transform:
   m_ObjectHideFlags: 0
@@ -848,7 +848,7 @@ GameObject:
   - component: {fileID: 2002601550655212435}
   m_Layer: 0
   m_Name: Point2
-  m_TagString: InvisibleDetector
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -909,6 +909,7 @@ MonoBehaviour:
   ArrowGun: {fileID: 1097836785358165992}
   AnotherController: {fileID: 8264067820901873360}
   TimeToLeave: 5
+  Knife: {fileID: 0}
 --- !u!1 &4921349406111559940
 GameObject:
   m_ObjectHideFlags: 0
@@ -1352,7 +1353,7 @@ GameObject:
   - component: {fileID: 731151187111309059}
   m_Layer: 0
   m_Name: Point1
-  m_TagString: InvisibleDetector
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1413,6 +1414,7 @@ MonoBehaviour:
   ArrowGun: {fileID: 1097836785358165992}
   AnotherController: {fileID: 4298010291584019572}
   TimeToLeave: 5
+  Knife: {fileID: 8333215524714180262, guid: 2b75793a58623be4291ddfa1e4bf18a2, type: 3}
 --- !u!1 &9150534400604215010
 GameObject:
   m_ObjectHideFlags: 0

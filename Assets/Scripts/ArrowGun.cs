@@ -18,11 +18,11 @@ public class ArrowGun : MonoBehaviour
     [SerializeField] private float _timeBtwShots;
 
     private Vector2 _direction = Vector2.down;
-    private bool _isActive = true;
+    private bool _isActive = false;
 
     public void Update()
     {
-        if (_isActive) Fire();
+        if (_isActive && EnteredArrowArea) Fire();
     }
 
     public void StartFire()

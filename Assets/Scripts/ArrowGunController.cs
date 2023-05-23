@@ -6,7 +6,8 @@ public class ArrowGunController : MonoBehaviour
 {
     public ArrowGun ArrowGun;
     public GameObject AnotherController;
-    public int TimeToLeave = 5;
+    public int TimeToLeave = 2;
+    public Bullet Knife;
 
     private string _characterTag = "Character";
 
@@ -14,15 +15,20 @@ public class ArrowGunController : MonoBehaviour
     {
         yield return new WaitForSeconds(TimeToLeave);
 
-        gameObject.SetActive(true);
-        AnotherController.gameObject.SetActive(true);
+        gameObject.GetComponent<Collider2D>().enabled = true;
+        AnotherController.gameObject.GetComponent<Collider2D>().enabled = true;
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
+        if (collision.gameObject.TryGetComponent<Bullet>(out Bullet bullet))
+        {
+            Physics2D.IgnoreCollision(bullet.GetComponent<Collider2D>(), gameObject.GetComponent<Collider2D>());
+        }
+
         if (collision.gameObject.tag == _characterTag)
         {
-            gameObject.SetActive(false);
+            gameObject.GetComponent<Collider2D>().enabled = false;
 
             if (!ArrowGun.EnteredArrowArea)
             {
@@ -33,6 +39,7 @@ public class ArrowGunController : MonoBehaviour
             {
                 ArrowGun.EnteredArrowArea = false;
                 ArrowGun.StopFire();
+
                 StartCoroutine(StartControllers());
             }
         }

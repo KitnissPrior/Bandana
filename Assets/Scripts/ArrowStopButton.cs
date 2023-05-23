@@ -13,7 +13,6 @@ public class ArrowStopButton : MonoBehaviour
 
     void Start()
     {
-        StartFire();
         ArrowGun.Update();
     }
 
@@ -44,7 +43,7 @@ public class ArrowStopButton : MonoBehaviour
                 ProgressBar.Value = 1f;
                 StartCoroutine(UpdateProgressBar());
 
-                Invoke("StartFire", Delay);
+                if (ArrowGun.EnteredArrowArea) Invoke("StartFire", Delay);
             }
         }
     }

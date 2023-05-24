@@ -35,5 +35,10 @@ public class Message : MonoBehaviour
             PauseGame();
             MessageWindow.SetActive(true);
         }
+
+        if (collision.gameObject.TryGetComponent<Bullet>(out Bullet bullet))
+        {
+            Physics2D.IgnoreCollision(bullet.GetComponent<Collider2D>(), gameObject.GetComponent<Collider2D>());
+        }
     }
 }

@@ -6,6 +6,13 @@ using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {
+    public Message ArrowMessage;
+    public Message ClewMessage;
+    public Message ScissorsMessage;
+    public Message CheeseMessage;
+    public Message ShieldMessage;
+    public Message FightMessage;
+
     [SerializeField] private int _cheeseHP = 1;
 
     [SerializeField] private TMP_Text _cheeseText;
@@ -33,6 +40,7 @@ public class Inventory : MonoBehaviour
 
     private Shield _shieldCircle;
     private ProgressBar _shieldBar;
+    private Message[] _messages;
 
     public void Initialize(Character player, Shield shieldCircle, ProgressBar shieldBar)
     {
@@ -43,6 +51,14 @@ public class Inventory : MonoBehaviour
         _cheeseCount = 0;
         _scissorsCount = 0;
         _shieldsCount = 0;
+
+        _messages = new Message[]{
+            ArrowMessage,
+            CheeseMessage,
+            ScissorsMessage,
+            ClewMessage,
+            FightMessage,
+        };
     }
 
     string GetItemInfo(int count)
@@ -104,11 +120,38 @@ public class Inventory : MonoBehaviour
             UseShield();
     }
 
+    private bool MessageActive(Message message)
+    {
+        return message && message.MessageWindow.gameObject.active;
+    }
+
+    private void SetMessageInactive(Message message)
+    {
+        message.MessageWindow.gameObject.SetActive(false);
+    }
+
+    private void CloseUnneccessaryMessages()
+    {
+        for(int i = 1; i < _messages.Length; i++)
+        {
+            if (MessageActive(_messages[i]))
+            {
+                for(int j = 0; j < i; j++)
+                {
+                    if (MessageActive(_messages[j]))
+                        SetMessageInactive(_messages[j]);
+                }
+            }
+        }
+    }
+
     public void Update()
     {
         ShowCheeseInfo();
         ShowScissorsInfo();
         ShowShieldInfo();
+
+        CloseUnneccessaryMessages();
 
         if (_character)
         {
@@ -126,7 +169,9 @@ public class Inventory : MonoBehaviour
 
     public void EatCheese()
     {
-        if(_cheeseCount > 0 && _character.Health.HitPoints < _character.Health.MaxHP)
+        if (CheeseMessage) Destroy(CheeseMessage.gameObject);
+
+        if (_cheeseCount > 0 && _character.Health.HitPoints < _character.Health.MaxHP)
         {
             _cheeseCount--;
 
@@ -142,11 +187,15 @@ public class Inventory : MonoBehaviour
 
     public void UseScissors()
     {
-        if(_scissorsCount > 0 && _isFrozen)
+        if (ScissorsMessage) Destroy(ScissorsMessage.gameObject);
+
+        if (_scissorsCount > 0 && _isFrozen)
         {
             _scissorsCount--;
             _character.BindingBar.ReduceTimeLeft(_character.FreezingDelay);
             _character.UnfreezeCharacter();
+
+            if (ClewMessage) Destroy(ClewMessage.gameObject);
         }
     }
 
@@ -168,6 +217,12 @@ public class Inventory : MonoBehaviour
             _shieldCircle.IsActive = true;
 
             _shieldBar.Value = 1f;
+
+            if (ShieldMessage)
+            {
+                Time.timeScale = 1;
+                Destroy(ShieldMessage.gameObject);
+            }
 
             StartCoroutine(_character.UpdateProgressBar(_shieldBar, _shieldCircle.ProtectingTime));
             Invoke("DeactivateShield", _shieldCircle.ProtectingTime);

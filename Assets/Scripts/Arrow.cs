@@ -14,12 +14,13 @@ public class Arrow : Bullet
             {
                 Character character = collidedObject.GetComponent<Character>();
 
-                if (!character.Shield.IsActive)
+                if (!character.Shield.IsActive && !character.Invulnerable)
                 {
                     health.TakeDamage(Damage);
                     character.HealthView.HP -= Damage;
 
                     character.CheckIfNotDead();
+                    character.StartInvulnerability();
                 }
                 
                 Destroy(gameObject);

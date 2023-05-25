@@ -55,7 +55,12 @@ public class Bullet : MonoBehaviour
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        foreach(var tag in ItemTags)
+        if (collision.gameObject.TryGetComponent<Character>(out Character character))
+        {
+            Physics2D.IgnoreCollision(gameObject.GetComponent<Collider2D>(), character.GetComponent<Collider2D>());
+        }
+
+        foreach (var tag in ItemTags)
         {
             if(collision.gameObject.tag == tag) Destroy(gameObject);
         }

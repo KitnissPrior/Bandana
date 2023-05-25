@@ -409,7 +409,7 @@ GameObject:
   - component: {fileID: 231921287}
   - component: {fileID: 231921286}
   m_Layer: 0
-  m_Name: Ellipse
+  m_Name: TextArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -634,7 +634,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 1cc472826ce17c24780204f135a3bfe9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bff835d7037d0f24e932c05cf6c07259, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1219,7 +1219,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 1e1a16e1e2f6341408f0aff1b296c456, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3158e035ed99ff84e940b42ff6104429, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

@@ -20,12 +20,23 @@ public class Character : MonoBehaviour
     public ProgressBar ShieldBar;
     public Shield Shield;
     public bool HasKey => _hasKey;
+    /// <summary>
+    /// Неуязвимый
+    /// </summary>
+    public bool Invulnerable => _invulnerable;
 
     [SerializeField] private string _badEndScene;
     [SerializeField] private string _goodEndScene;
 
     private int _barSmoothingCoeff = 10;
     private bool _hasKey = false;
+
+    private Collider2D _characterCollider;
+    private Collider2D _shieldCollider;
+    private float _restartCollisionDelay = 0.8f;
+
+    private float _invulnerabilityDelay = 2f;
+    private bool _invulnerable = false;
 
     internal void Initialize(CharacterData characterData, HealthView healthView, Inventory inventory,
         ProgressBar bindingBar, ProgressBar shieldBar)
@@ -36,7 +47,6 @@ public class Character : MonoBehaviour
         PlayerRun.Initialize(CharacterData.Speed);
 
         BindingBar = bindingBar;
-
         ShieldBar = shieldBar;
 
         Gun = Instantiate(CharacterData.Gun, GunPosition);
@@ -44,6 +54,9 @@ public class Character : MonoBehaviour
 
         Inventory = inventory;
         Inventory.Initialize(this, Shield, ShieldBar);
+
+        _characterCollider = gameObject.GetComponent<Collider2D>();
+        _shieldCollider = Shield.GetComponent<Collider2D>();
     }
 
     public void CheckIfNotDead()
@@ -64,14 +77,64 @@ public class Character : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Выключает эффект неуязвимости
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator StopInvulnerability()
+    {
+        yield return new WaitForSeconds(_invulnerabilityDelay);
+        _invulnerable = false;
+    }
+
+    /// <summary>
+    /// Включает эффект неуязвимости
+    /// </summary>
+    /// <returns></returns>
+    public void StartInvulnerability()
+    {
+        _invulnerable = true;
+        StartCoroutine(StopInvulnerability());
+    }
+
     private void CheckIfEnemyCollided(GameObject collidedObject)
     {
-        if (collidedObject.TryGetComponent<Enemy>(out Enemy enemy) && !Shield.IsActive)
+        if (collidedObject.TryGetComponent<Enemy>(out Enemy enemy) && !Shield.IsActive && !Invulnerable)
         {
+            Debug.Log(Invulnerable);
             Health.TakeDamage(enemy.CharacterData.Damage);
             HealthView.HP -= enemy.CharacterData.Damage;
-
             CheckIfNotDead();
+
+            StartInvulnerability();
+        }
+    }
+
+    private IEnumerator RestartCollision(Collider2D collider)
+    {
+        yield return new WaitForSeconds(_restartCollisionDelay);
+        Physics2D.IgnoreCollision(collider, _characterCollider, false);
+    }
+
+    private void CheckIfTrapCollided(GameObject collidedObject)
+    {
+        if (collidedObject.TryGetComponent<Trap>(out Trap trap))
+        {
+            Collider2D trapCollider = collidedObject.GetComponent<Collider2D>();
+            Physics2D.IgnoreCollision(trapCollider, _characterCollider, true);
+
+            if (Shield.IsActive)
+            {
+                Physics2D.IgnoreCollision(trapCollider, _shieldCollider);
+            }
+            else
+            {
+                Health.TakeDamage(trap.Damage);
+                HealthView.HP -= trap.Damage;
+                CheckIfNotDead();
+            }
+
+            StartCoroutine(RestartCollision(trapCollider));
         }
     }
 
@@ -130,17 +193,6 @@ public class Character : MonoBehaviour
         {
             Inventory.AddScissors();
             Destroy(collidedObject);
-        }
-    }
-
-    private void CheckIfTrapCollided(GameObject collidedObject)
-    {
-        if (collidedObject.TryGetComponent<Trap>(out Trap trap) && !Shield.IsActive)
-        {
-            Health.TakeDamage(trap.Damage);
-            HealthView.HP -= trap.Damage;
-
-            CheckIfNotDead();
         }
     }
 

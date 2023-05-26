@@ -25,7 +25,6 @@ public class HealthView : MonoBehaviour
     {
         yield return new WaitForSeconds(BlinkingDelay);
 
-        //_healthImages[index].GetComponent<Animator>().SetBool("isDamaged", false);
         _healthImages[index].gameObject.SetActive(false);
     }
 
@@ -37,21 +36,11 @@ public class HealthView : MonoBehaviour
             {
                 _healthImages[i].sprite = _healthSprite;
                 _healthImages[i].GetComponent<Animator>().SetBool("isDamaged", false);
-                /*if (!_healthImages[i].gameObject.activeSelf)
-                {
-                    
-                    _healthImages[i].gameObject.SetActive(true);
-
-                    _healthImages[i].GetComponent<Animator>().SetBool("isDamaged", false);
-                    Debug.Log($"{i} {_healthImages[i].gameObject.activeSelf}");
-                    
-                }*/
             }
             else
             {
                 //запускаем мерцание
                 _healthImages[i].GetComponent<Animator>().SetBool("isDamaged", true);
-                //StartCoroutine(HideHP(i));
             }
         }
     }

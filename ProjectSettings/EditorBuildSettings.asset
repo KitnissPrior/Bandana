@@ -9,29 +9,17 @@ EditorBuildSettings:
     path: Assets/Scenes/MenuScene.unity
     guid: 74b4672ab793eec43aa70912c72c2e62
   - enabled: 1
-    path: Assets/Scenes/IntroductionScene.unity
-    guid: 9605c57099481fc41bb60054217b844c
-  - enabled: 0
-    path: Assets/Scenes/LearningScene.unity
-    guid: 2720cd539fb110846a8f58119a63ced9
-  - enabled: 1
-    path: Assets/Scenes/SawHouseScene.unity
-    guid: 743b96c69c80ebe4e8545aaff4f448ae
-  - enabled: 1
-    path: Assets/Scenes/CatHouseScene.unity
-    guid: 97f5d3db157fff746be3adea4f971f82
-  - enabled: 1
     path: Assets/Scenes/MainScene.unity
     guid: 3fc8acdd13e6c734bafef6554d6fdbcd
-  - enabled: 0
-    path: Assets/Scenes/SettingsScene.unity
-    guid: 0bc5f58ca8f9c774bbff97a3ade9a8b6
   - enabled: 1
     path: Assets/Scenes/BadEndScene.unity
     guid: 6f83b2d6b824bb04e8d14f51fcb4209d
   - enabled: 1
     path: Assets/Scenes/GoodEndScene.unity
     guid: b2125c29a68b42b40bcc36aec3aa4640
+  - enabled: 1
+    path: Assets/Scenes/LoadingScene.unity
+    guid: ccc2a231da43ff745a1c5aadc35579e5
   m_configObjects:
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 78f3e610d545a4e42bf379adffb62782, type: 2}
     com.unity.adaptiveperformance.samsung.android.provider_settings: {fileID: 11400000, guid: a068b34c49b918b49a701efeb89ec6d8, type: 2}

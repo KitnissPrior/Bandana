@@ -101,7 +101,6 @@ public class Character : MonoBehaviour
     {
         if (collidedObject.TryGetComponent<Enemy>(out Enemy enemy) && !Shield.IsActive && !Invulnerable)
         {
-            Debug.Log(Invulnerable);
             Health.TakeDamage(enemy.CharacterData.Damage);
             HealthView.HP -= enemy.CharacterData.Damage;
             CheckIfNotDead();

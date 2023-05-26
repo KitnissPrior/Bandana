@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Gun : MonoBehaviour
 {
@@ -45,7 +46,7 @@ public class Gun : MonoBehaviour
 
     void Update()
     {
-        if(!PlayerController.IsFrozen)
+        if(!PlayerController.IsFrozen && !EventSystem.current.IsPointerOverGameObject())
         {
             Fire();
         }

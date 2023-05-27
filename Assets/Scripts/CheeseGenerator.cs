@@ -8,18 +8,19 @@ public class CheeseGenerator : MonoBehaviour
     public GameObject CheesePrefab;
     public GameObject[] Points;
 
-    [SerializeField] private int minCount = 1;
-    [SerializeField] private int maxCount = 4;
+    private int _minCount = 1;
+    private int _maxCount;
 
     private List<int> usedPoints = new List<int>();
 
     void Start()
     {
-        int cheeseCount = Random.Range(minCount, maxCount);
+        _maxCount = Points.Length;
+        int cheeseCount = Random.Range(_minCount, _maxCount);
 
         while(usedPoints.Count < cheeseCount)
         {
-            int pointId = Random.Range(0, Points.Length-1);
+            int pointId = Random.Range(0, _maxCount - 1);
             if (!usedPoints.Contains(pointId))
             { 
                 usedPoints.Add(pointId);

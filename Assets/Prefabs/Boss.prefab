@@ -412,6 +412,7 @@ MonoBehaviour:
   KeyPoint: {fileID: 4895563988625828088}
   IsCharacterEntered: 0
   DoorIn: {fileID: 0}
+  FireDelay: 3
   FireRate: 2
   NextFire: 0
 --- !u!1 &4895563990571859222
@@ -474,6 +475,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
+  m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 4
   m_TargetDisplay: 0

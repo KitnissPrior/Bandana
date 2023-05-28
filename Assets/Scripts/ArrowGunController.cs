@@ -6,14 +6,14 @@ public class ArrowGunController : MonoBehaviour
 {
     public ArrowGun ArrowGun;
     public GameObject AnotherController;
-    public int TimeToLeave = 2;
-    public Bullet Knife;
+    public Bullet Stone;
 
     private string _characterTag = "Character";
+    private int _timeToLeave = 1;
 
     private IEnumerator StartControllers()
     {
-        yield return new WaitForSeconds(TimeToLeave);
+        yield return new WaitForSeconds(_timeToLeave);
 
         gameObject.GetComponent<Collider2D>().enabled = true;
         AnotherController.gameObject.GetComponent<Collider2D>().enabled = true;
@@ -39,9 +39,8 @@ public class ArrowGunController : MonoBehaviour
             {
                 ArrowGun.EnteredArrowArea = false;
                 ArrowGun.StopFire();
-
-                StartCoroutine(StartControllers());
             }
+            StartCoroutine(StartControllers());
         }
     }
 }

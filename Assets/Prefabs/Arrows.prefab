@@ -908,8 +908,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ArrowGun: {fileID: 1097836785358165992}
   AnotherController: {fileID: 8264067820901873360}
-  TimeToLeave: 5
-  Knife: {fileID: 0}
+  Stone: {fileID: 8333215524714180262, guid: 2b75793a58623be4291ddfa1e4bf18a2, type: 3}
 --- !u!1 &4921349406111559940
 GameObject:
   m_ObjectHideFlags: 0
@@ -1413,8 +1412,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ArrowGun: {fileID: 1097836785358165992}
   AnotherController: {fileID: 4298010291584019572}
-  TimeToLeave: 5
-  Knife: {fileID: 8333215524714180262, guid: 2b75793a58623be4291ddfa1e4bf18a2, type: 3}
+  Stone: {fileID: 8333215524714180262, guid: 2b75793a58623be4291ddfa1e4bf18a2, type: 3}
 --- !u!1 &9150534400604215010
 GameObject:
   m_ObjectHideFlags: 0

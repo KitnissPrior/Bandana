@@ -19,13 +19,13 @@ public class Bullet : MonoBehaviour
     private float _speed;
 
     private string _enemyTag = "Enemy";
+    private string _clewTag = "Clew";
+    private string _trapTag = "Trap";
 
     void Start()
     {
         ItemTags = new List<string> {
             "Block",
-            "Trap",
-            "Clew",
             "Arrow",
             "ArrowButton",
             "Scissors",
@@ -53,12 +53,22 @@ public class Bullet : MonoBehaviour
         transform.Translate(_direction * _speed * Time.fixedDeltaTime);
     }
 
-    public void OnCollisionEnter2D(Collision2D collision)
+    private void IgnoreSomeCOllisions(GameObject collidedObject)
     {
-        if (collision.gameObject.TryGetComponent<Character>(out Character character))
+        if (collidedObject.TryGetComponent<Character>(out Character character))
         {
             Physics2D.IgnoreCollision(gameObject.GetComponent<Collider2D>(), character.GetComponent<Collider2D>());
         }
+
+        if(collidedObject.tag == _trapTag || collidedObject.tag == _clewTag)
+        {
+            Physics2D.IgnoreCollision(gameObject.GetComponent<Collider2D>(), collidedObject.GetComponent<Collider2D>());
+        }
+    }
+
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+        IgnoreSomeCOllisions(collision.gameObject);
 
         foreach (var tag in ItemTags)
         {

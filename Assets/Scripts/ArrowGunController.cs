@@ -30,7 +30,7 @@ public class ArrowGunController : MonoBehaviour
         {
             gameObject.GetComponent<Collider2D>().enabled = false;
 
-            if (!ArrowGun.EnteredArrowArea)
+            /*if (!ArrowGun.EnteredArrowArea)
             {
                 ArrowGun.EnteredArrowArea = true;
                 ArrowGun.StartFire();
@@ -39,7 +39,7 @@ public class ArrowGunController : MonoBehaviour
             {
                 ArrowGun.EnteredArrowArea = false;
                 ArrowGun.StopFire();
-            }
+            }*/
             StartCoroutine(StartControllers());
         }
     }

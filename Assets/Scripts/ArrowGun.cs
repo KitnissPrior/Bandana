@@ -9,7 +9,7 @@ public class ArrowGun : MonoBehaviour
     public float StartTimeBtwShots;
     public Transform[] ShotPoints;
     public bool IsActive => _isActive;
-    public bool EnteredArrowArea = false;
+    public bool IsCharacterEntered = false;
 
     [SerializeField] private DamageReceiver _parent;
     [SerializeField] private float _lifetime;
@@ -22,7 +22,7 @@ public class ArrowGun : MonoBehaviour
 
     public void Update()
     {
-        if (_isActive && EnteredArrowArea) Fire();
+        if (_isActive && IsCharacterEntered) Fire();
     }
 
     public void StartFire()

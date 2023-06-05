@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HP: 7
   Gun: {fileID: 8095630895893119974, guid: d2de8116e05ab6b43b37e80059fdf3ee, type: 3}
-  Speed: 3
+  Speed: 4
   Graphics: {fileID: 1479163244201193703, guid: eac1c556ec5ba78409f96c6fc148775f, type: 3}
   Damage: 1

@@ -43,7 +43,7 @@ public class ArrowStopButton : MonoBehaviour
                 ProgressBar.Value = 1f;
                 StartCoroutine(UpdateProgressBar());
 
-                if (ArrowGun.EnteredArrowArea) Invoke("StartFire", Delay);
+                if (ArrowGun.IsCharacterEntered) Invoke("StartFire", Delay);
             }
         }
     }

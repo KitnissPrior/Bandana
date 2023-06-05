@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4983175629552063375}
   m_Layer: 0
-  m_Name: EntrancePoints
+  m_Name: Starters
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -560,6 +560,7 @@ Transform:
   - {fileID: 8620174569345638706}
   - {fileID: 5099580351572852085}
   - {fileID: 4983175629552063375}
+  - {fileID: 4305639522414550702}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -715,6 +716,81 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &3647703181008811178
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4633013387989020712}
+  - component: {fileID: 7284319299788231459}
+  - component: {fileID: 7269835828953469640}
+  m_Layer: 0
+  m_Name: Stopper1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4633013387989020712
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3647703181008811178}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.26, y: -1.14, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4305639522414550702}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &7284319299788231459
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3647703181008811178}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.2, y: 3}
+  m_EdgeRadius: 0
+--- !u!114 &7269835828953469640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3647703181008811178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef3f3f16cdb73ae47a41290bee0dd9aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ArrowGun: {fileID: 1097836785358165992}
+  Starter1: {fileID: 8264067820901873360}
+  Starter2: {fileID: 4298010291584019572}
+  Stone: {fileID: 8333215524714180262, guid: 2b75793a58623be4291ddfa1e4bf18a2, type: 3}
 --- !u!1 &4076086848074022728
 GameObject:
   m_ObjectHideFlags: 0
@@ -845,9 +921,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7457335909051123176}
   - component: {fileID: 3656801880700436160}
-  - component: {fileID: 2002601550655212435}
+  - component: {fileID: 7605970298080389124}
   m_Layer: 0
-  m_Name: Point2
+  m_Name: Starter2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -894,7 +970,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.2, y: 2}
   m_EdgeRadius: 0
---- !u!114 &2002601550655212435
+--- !u!114 &7605970298080389124
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -903,11 +979,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 4298010291584019572}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ca37ce6ed1cbef499d4f1fd51adbb08, type: 3}
+  m_Script: {fileID: 11500000, guid: c6d75a0bb4bf36147b9d1cc19341e237, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ArrowGun: {fileID: 1097836785358165992}
-  AnotherController: {fileID: 8264067820901873360}
+  Stopper1: {fileID: 3647703181008811178}
+  Stopper2: {fileID: 8948885559956963310}
   Stone: {fileID: 8333215524714180262, guid: 2b75793a58623be4291ddfa1e4bf18a2, type: 3}
 --- !u!1 &4921349406111559940
 GameObject:
@@ -1339,6 +1416,39 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &7642626629847775238
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4305639522414550702}
+  m_Layer: 0
+  m_Name: Stoppers
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4305639522414550702
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7642626629847775238}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4633013387989020712}
+  - {fileID: 571491054329303243}
+  m_Father: {fileID: 8869887863183595768}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8264067820901873360
 GameObject:
   m_ObjectHideFlags: 0
@@ -1349,9 +1459,9 @@ GameObject:
   m_Component:
   - component: {fileID: 941348646371717541}
   - component: {fileID: 3300043081508068393}
-  - component: {fileID: 731151187111309059}
+  - component: {fileID: 1860685258823340707}
   m_Layer: 0
-  m_Name: Point1
+  m_Name: Starter1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1398,7 +1508,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.2, y: 2}
   m_EdgeRadius: 0
---- !u!114 &731151187111309059
+--- !u!114 &1860685258823340707
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1407,11 +1517,87 @@ MonoBehaviour:
   m_GameObject: {fileID: 8264067820901873360}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ca37ce6ed1cbef499d4f1fd51adbb08, type: 3}
+  m_Script: {fileID: 11500000, guid: c6d75a0bb4bf36147b9d1cc19341e237, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ArrowGun: {fileID: 1097836785358165992}
-  AnotherController: {fileID: 4298010291584019572}
+  Stopper1: {fileID: 3647703181008811178}
+  Stopper2: {fileID: 8948885559956963310}
+  Stone: {fileID: 8333215524714180262, guid: 2b75793a58623be4291ddfa1e4bf18a2, type: 3}
+--- !u!1 &8948885559956963310
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 571491054329303243}
+  - component: {fileID: 9184762326549655715}
+  - component: {fileID: 7315922281238364722}
+  m_Layer: 0
+  m_Name: Stopper2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &571491054329303243
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8948885559956963310}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.74, y: -1.14, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4305639522414550702}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &9184762326549655715
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8948885559956963310}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.2, y: 3}
+  m_EdgeRadius: 0
+--- !u!114 &7315922281238364722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8948885559956963310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef3f3f16cdb73ae47a41290bee0dd9aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ArrowGun: {fileID: 1097836785358165992}
+  Starter1: {fileID: 8264067820901873360}
+  Starter2: {fileID: 4298010291584019572}
   Stone: {fileID: 8333215524714180262, guid: 2b75793a58623be4291ddfa1e4bf18a2, type: 3}
 --- !u!1 &9150534400604215010
 GameObject:

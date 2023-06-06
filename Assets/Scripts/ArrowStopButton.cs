@@ -23,6 +23,9 @@ public class ArrowStopButton : MonoBehaviour
         for (int i = 0; i < count; i++)
         {
             ProgressBar.ReduceTimeLeft(1f / count);
+
+            if (i == count - 1) ArrowGun.IsButtonPressed = false;
+
             yield return new WaitForSeconds(1f / _barSmoothingCoeff);
         }
     }
@@ -39,10 +42,11 @@ public class ArrowStopButton : MonoBehaviour
             if(ArrowGun.IsActive)
             {
                 ArrowGun.StopFire();
+                ArrowGun.IsButtonPressed = true;
 
                 ProgressBar.Value = 1f;
                 StartCoroutine(UpdateProgressBar());
-
+                Debug.Log(ArrowGun.IsButtonPressed);
                 if (ArrowGun.IsCharacterEntered) Invoke("StartFire", Delay);
             }
         }

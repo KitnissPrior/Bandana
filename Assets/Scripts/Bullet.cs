@@ -12,19 +12,17 @@ public class Bullet : MonoBehaviour
     public float Distance;
     public int Damage;
     public DamageReceiver Parent;
-    public List<string> ItemTags;
+    public List<string> DestroyingTags;
+    public List<string> NoCollisionTags;
+    public string EnemyTag = "Enemy";
 
     private Vector2 _direction;
     private float _lifetime;
     private float _speed;
 
-    private string _enemyTag = "Enemy";
-    private string _clewTag = "Clew";
-    private string _trapTag = "Trap";
-
     void Start()
     {
-        ItemTags = new List<string> {
+        DestroyingTags = new List<string> {
             "Block",
             "Arrow",
             "ArrowButton",
@@ -33,7 +31,14 @@ public class Bullet : MonoBehaviour
             "Cheese",
             "Key",
             "Chest",
+        };
+
+        NoCollisionTags = new List<string>
+        {
+            "Clew",
+            "Trap",
             "InvisibleDetector",
+            "Character",
         };
     }
 
@@ -53,29 +58,32 @@ public class Bullet : MonoBehaviour
         transform.Translate(_direction * _speed * Time.fixedDeltaTime);
     }
 
-    private void IgnoreSomeCOllisions(GameObject collidedObject)
+    private void IgnoreSomeCollisions(GameObject collidedObject)
     {
         if (collidedObject.TryGetComponent<Character>(out Character character))
         {
             Physics2D.IgnoreCollision(gameObject.GetComponent<Collider2D>(), character.GetComponent<Collider2D>());
         }
 
-        if(collidedObject.tag == _trapTag || collidedObject.tag == _clewTag)
+        foreach(var tag in NoCollisionTags)
         {
-            Physics2D.IgnoreCollision(gameObject.GetComponent<Collider2D>(), collidedObject.GetComponent<Collider2D>());
+            if (collidedObject.tag == tag)
+            {
+                Physics2D.IgnoreCollision(gameObject.GetComponent<Collider2D>(), collidedObject.GetComponent<Collider2D>());
+            }
         }
     }
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        IgnoreSomeCOllisions(collision.gameObject);
+        IgnoreSomeCollisions(collision.gameObject);
 
-        foreach (var tag in ItemTags)
+        foreach (var tag in DestroyingTags)
         {
             if(collision.gameObject.tag == tag) Destroy(gameObject);
         }
 
-        if (collision.gameObject.TryGetComponent<Health>(out Health health) && collision.gameObject.tag == _enemyTag)
+        if (collision.gameObject.TryGetComponent<Health>(out Health health) && collision.gameObject.tag == EnemyTag)
         {
             if (health != Parent)
             {

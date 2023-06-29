@@ -14,6 +14,7 @@ public class Enemy : MonoBehaviour
 
     private bool _facingRight = false;
     private Rigidbody2D _rb;
+    private string _invisibleDetectorTag = "InvisibleDetector";
 
     public void Start()
     {
@@ -48,7 +49,6 @@ public class Enemy : MonoBehaviour
 
     public void Flip()
     {
-
         _facingRight = !_facingRight;
         Vector3 Scaler = transform.localScale;
         Scaler.x *= -1;
@@ -74,6 +74,10 @@ public class Enemy : MonoBehaviour
                 Speed = -Speed;
                 transform.Translate(Vector3.left * Speed * Time.deltaTime);
             }
+        }
+        if(collision.gameObject.tag == _invisibleDetectorTag)
+        {
+            Physics2D.IgnoreCollision(gameObject.GetComponent<Collider2D>(), collision.gameObject.GetComponent<Collider2D>());
         }
     }
 

@@ -10,6 +10,7 @@ public class ArrowGun : MonoBehaviour
     public Transform[] ShotPoints;
     public bool IsActive => _isActive;
     public bool IsCharacterEntered = false;
+    public bool IsButtonPressed = false;
 
     [SerializeField] private DamageReceiver _parent;
     [SerializeField] private float _lifetime;
@@ -27,7 +28,7 @@ public class ArrowGun : MonoBehaviour
 
     public void StartFire()
     {
-        _isActive = true;
+        if(!IsButtonPressed) _isActive = true;
     }
 
     public void StopFire()

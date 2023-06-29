@@ -14,6 +14,11 @@ public class Arrow : Bullet
             {
                 Character character = collidedObject.GetComponent<Character>();
 
+                if (character.Shield.IsActive)
+                {
+                    Physics2D.IgnoreCollision(character.Shield.GetComponent<Collider2D>(), gameObject.GetComponent<Collider2D>());
+                }
+
                 if (!character.Shield.IsActive && !character.Invulnerable)
                 {
                     health.TakeDamage(Damage);
@@ -30,11 +35,15 @@ public class Arrow : Bullet
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        foreach (var tag in ItemTags)
+        if(collision.gameObject.tag == EnemyTag) Destroy(gameObject);
+        else
         {
-            if (collision.gameObject.tag == tag) Destroy(gameObject);
-        }
+            foreach (var tag in DestroyingTags)
+            {
+                if (collision.gameObject.tag == tag) Destroy(gameObject);
+            }
 
-        CheckIfCharacterCollided(collision.gameObject);
+            CheckIfCharacterCollided(collision.gameObject);
+        }
     }
 }

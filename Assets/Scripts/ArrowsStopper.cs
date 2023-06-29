@@ -9,26 +9,27 @@ public class ArrowsStopper : MonoBehaviour
     public GameObject Starter2;
     public Bullet Stone;
 
-    private string _characterTag = "Character";
     private Collider2D _startCollider1;
     private Collider2D _startCollider2;
+    private Collider2D _thisCollider;
 
     void Start()
     {
         _startCollider1 = Starter1.GetComponent<Collider2D>();
         _startCollider2 = Starter2.GetComponent<Collider2D>();
+        _thisCollider = gameObject.GetComponent<Collider2D>();
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.TryGetComponent<Bullet>(out Bullet bullet))
+        if (collision.gameObject.TryGetComponent<Character>(out Character character))
         {
-            Physics2D.IgnoreCollision(bullet.GetComponent<Collider2D>(), gameObject.GetComponent<Collider2D>());
-        }
+            if (character.Shield.IsActive)
+            {
+                Physics2D.IgnoreCollision(character.Shield.GetComponent<Collider2D>(), _thisCollider);
+            }
 
-        if (collision.gameObject.tag == _characterTag)
-        {
-            gameObject.GetComponent<Collider2D>().enabled = false;
+            _thisCollider.enabled = false;
             ArrowGun.StopFire();
 
             _startCollider1.enabled = true;

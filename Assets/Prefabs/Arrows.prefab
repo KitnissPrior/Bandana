@@ -263,7 +263,7 @@ MonoBehaviour:
   ShotPoints:
   - {fileID: 666926700897636251}
   - {fileID: 1045879416427802340}
-  EnteredArrowArea: 0
+  IsCharacterEntered: 0
   _parent: {fileID: 0}
   _lifetime: 2
   _speed: 4
@@ -729,7 +729,7 @@ GameObject:
   - component: {fileID: 7269835828953469640}
   m_Layer: 0
   m_Name: Stopper1
-  m_TagString: Untagged
+  m_TagString: InvisibleDetector
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -924,7 +924,7 @@ GameObject:
   - component: {fileID: 7605970298080389124}
   m_Layer: 0
   m_Name: Starter2
-  m_TagString: Untagged
+  m_TagString: InvisibleDetector
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1462,7 +1462,7 @@ GameObject:
   - component: {fileID: 1860685258823340707}
   m_Layer: 0
   m_Name: Starter1
-  m_TagString: Untagged
+  m_TagString: InvisibleDetector
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1537,7 +1537,7 @@ GameObject:
   - component: {fileID: 7315922281238364722}
   m_Layer: 0
   m_Name: Stopper2
-  m_TagString: Untagged
+  m_TagString: InvisibleDetector
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

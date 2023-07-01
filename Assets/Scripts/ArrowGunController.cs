@@ -29,17 +29,6 @@ public class ArrowGunController : MonoBehaviour
         if (collision.gameObject.tag == _characterTag)
         {
             gameObject.GetComponent<Collider2D>().enabled = false;
-
-            /*if (!ArrowGun.EnteredArrowArea)
-            {
-                ArrowGun.EnteredArrowArea = true;
-                ArrowGun.StartFire();
-            }
-            else
-            {
-                ArrowGun.EnteredArrowArea = false;
-                ArrowGun.StopFire();
-            }*/
             StartCoroutine(StartControllers());
         }
     }

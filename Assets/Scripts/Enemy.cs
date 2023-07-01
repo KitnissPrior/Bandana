@@ -10,9 +10,9 @@ public class Enemy : MonoBehaviour
     public CharacterData CharacterData;
     public Transform Target;
     public EnemyHealthBar HealthBar;
-    public int MaxDistanceToTarget = 300;
 
     private bool _facingRight = false;
+    private int _maxDistanceToTarget = 25;
     private Rigidbody2D _rb;
     private string _invisibleDetectorTag = "InvisibleDetector";
 
@@ -26,14 +26,10 @@ public class Enemy : MonoBehaviour
 
     public void Move()
     {
-        if (Target != null && Vector3.Distance(Target.position, transform.position) < MaxDistanceToTarget)
+        if (Target != null && Vector3.Distance(Target.position, transform.position) < _maxDistanceToTarget)
         {
             transform.position = Vector2.MoveTowards(transform.position, Target.position, Speed * Time.deltaTime);
             CheckDirection();
-        }
-        else if (Target != null)
-        {
-            transform.Translate(Vector3.left * Speed * Time.deltaTime);
         }
     }
 

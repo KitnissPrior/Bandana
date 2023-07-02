@@ -212,7 +212,6 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
-  m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 4
   m_TargetDisplay: 0
@@ -413,7 +412,6 @@ MonoBehaviour:
   CharacterData: {fileID: 11400000, guid: df0424225415ece4e91a780f9ad8cfd1, type: 2}
   Target: {fileID: 0}
   HealthBar: {fileID: 20496145336078752}
-  MaxDistanceToTarget: 300
 --- !u!114 &20496146019809994
 MonoBehaviour:
   m_ObjectHideFlags: 0

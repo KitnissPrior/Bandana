@@ -36,6 +36,8 @@ public class PlayerController : MonoBehaviour
 
     public void FixedUpdate()
     {
+        if (IsFrozen) PlayerVelocity = new Vector2(0, 0);
+
         PlayerRb.MovePosition(PlayerRb.position + PlayerVelocity * Time.fixedDeltaTime);
     }
 
@@ -46,15 +48,8 @@ public class PlayerController : MonoBehaviour
 
     public void OnRun(InputValue input)
     {
-        if (IsFrozen)
-        {
-            PlayerVelocity = new Vector2(0, 0);
-        }
-        else
-        {
-            _moveInput = input.Get<Vector2>();
-            PlayerRb.BroadcastMessage("Run", input);
-        }
+        _moveInput = input.Get<Vector2>();
+        PlayerRb.BroadcastMessage("Run", input);
     }
 
 }

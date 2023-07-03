@@ -100,10 +100,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d2c3d246d23f464c816f69d8b6eb32a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Offset: 0
-  Bullet: {fileID: 8333215524714180262, guid: 2b75793a58623be4291ddfa1e4bf18a2, type: 3}
+  Offset: -90
+  Bullet: {fileID: -6000007623783262534, guid: 2b75793a58623be4291ddfa1e4bf18a2, type: 3}
   ShotPoint: {fileID: 8095630896380303656}
   StartTimeBtwShots: 0.3
+  PlayerController: {fileID: 0}
   _parent: {fileID: 0}
   _direction: {x: 1, y: -0.1}
   _lifetime: 2
@@ -121,14 +122,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c183357071bdaf548baec49fef7cc7cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SolidLayer:
-    serializedVersion: 2
-    m_Bits: 64
   Collider: {fileID: -601871508224539796}
   OnDestroy:
     m_PersistentCalls:
       m_Calls: []
   Distance: 0
+  Damage: 0
+  Parent: {fileID: 0}
+  DestroyingTags: []
+  NoCollisionTags: []
+  EnemyTag: Enemy
 --- !u!70 &-601871508224539796
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -174,5 +177,5 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8095630895893119969}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -0.379, z: 0}

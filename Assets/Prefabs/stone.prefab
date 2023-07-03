@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3470832350744789286}
   - component: {fileID: 3470832350744789287}
-  - component: {fileID: 8333215524714180262}
   - component: {fileID: 8592825771008978723}
   - component: {fileID: 8068362778336847448}
+  - component: {fileID: -6000007623783262534}
   m_Layer: 0
   m_Name: stone
   m_TagString: Bullet
@@ -87,38 +87,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8333215524714180262
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3470832350744789284}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c183357071bdaf548baec49fef7cc7cd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Collider: {fileID: 8068362778336847448}
-  OnDestroy:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3470832350744789284}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  Distance: 0
-  Damage: 0
-  Parent: {fileID: 0}
-  ItemTags: []
 --- !u!50 &8592825771008978723
 Rigidbody2D:
   serializedVersion: 4
@@ -201,3 +169,37 @@ PolygonCollider2D:
       - {x: 0.35, y: -0.3825}
       - {x: 0.435, y: -0.2725}
       - {x: 0.48999998, y: -0.2075}
+--- !u!114 &-6000007623783262534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3470832350744789284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3a6663e63c750244a839ad2509820a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Damage: 1
+  Speed: 15
+  Lifetime: 0.5
+  DestroyingTags: []
+  NoCollisionTags: []
+  EnemyTag: Enemy
+  Parent: {fileID: 0}
+  OnDestroy:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3470832350744789284}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

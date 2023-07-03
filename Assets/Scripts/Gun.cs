@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 public class Gun : MonoBehaviour
 {
     public float Offset;
-    public Bullet Bullet;
+    public CharacterBullet Bullet;
     public Transform ShotPoint;
     private float TimeBtwShots;
     public float StartTimeBtwShots;
@@ -25,16 +25,11 @@ public class Gun : MonoBehaviour
 
     private void Fire()
     {
-        Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-        float rotZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0f, 0f, rotZ + Offset);
-
         if (TimeBtwShots <= 0)
         {
-            if (Input.GetMouseButton(0))
+            if (Input.GetKeyDown(KeyCode.Mouse0))
             {
-                Bullet bullet = Instantiate(Bullet, ShotPoint.position, transform.rotation);
-                bullet.Initialize(_parent, _direction, _lifetime, _speed, _damage);
+                Instantiate(Bullet, ShotPoint.position, Quaternion.identity);
                 TimeBtwShots = StartTimeBtwShots;
             }
         }

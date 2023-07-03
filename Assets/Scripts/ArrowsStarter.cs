@@ -7,7 +7,6 @@ public class ArrowsStarter : MonoBehaviour
     public ArrowGun ArrowGun;
     public GameObject Stopper1;
     public GameObject Stopper2;
-    public Bullet Stone;
 
     private string _characterTag = "Character";
     private Collider2D _stopCollider1;

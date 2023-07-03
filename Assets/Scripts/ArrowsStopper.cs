@@ -7,7 +7,6 @@ public class ArrowsStopper : MonoBehaviour
     public ArrowGun ArrowGun;
     public GameObject Starter1;
     public GameObject Starter2;
-    public Bullet Stone;
 
     private Collider2D _startCollider1;
     private Collider2D _startCollider2;

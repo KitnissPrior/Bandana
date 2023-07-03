@@ -405,7 +405,6 @@ MonoBehaviour:
   CharacterData: {fileID: 11400000, guid: e3709f41e09de5e4db1744da184a2897, type: 2}
   Target: {fileID: 0}
   HealthBar: {fileID: 4895563990571859216}
-  MaxDistanceToTarget: 300
   Clew: {fileID: 4664594154594189527, guid: 0f16d2bd4b21d224e9f470abb428cc88, type: 3}
   ShotPoint: {fileID: 4895563989689965068}
   Key: {fileID: 4891859448509977094, guid: ff3fcbe8315d53e42bbc849d11ef9563, type: 3}
@@ -475,7 +474,6 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
-  m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 4
   m_TargetDisplay: 0

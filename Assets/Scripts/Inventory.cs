@@ -211,7 +211,7 @@ public class Inventory : MonoBehaviour
 
     public void UseShield()
     {
-        if(_shieldsCount > 0)
+        if(_shieldsCount > 0 && !_shieldCircle.IsActive)
         {
             _shieldsCount--;
             _shieldCircle.IsActive = true;

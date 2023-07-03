@@ -264,6 +264,7 @@ MonoBehaviour:
   - {fileID: 666926700897636251}
   - {fileID: 1045879416427802340}
   IsCharacterEntered: 0
+  IsButtonPressed: 0
   _parent: {fileID: 0}
   _lifetime: 2
   _speed: 4
@@ -727,6 +728,7 @@ GameObject:
   - component: {fileID: 4633013387989020712}
   - component: {fileID: 7284319299788231459}
   - component: {fileID: 7269835828953469640}
+  - component: {fileID: 7233049505824036545}
   m_Layer: 0
   m_Name: Stopper1
   m_TagString: InvisibleDetector
@@ -791,6 +793,27 @@ MonoBehaviour:
   Starter1: {fileID: 8264067820901873360}
   Starter2: {fileID: 4298010291584019572}
   Stone: {fileID: 8333215524714180262, guid: 2b75793a58623be4291ddfa1e4bf18a2, type: 3}
+--- !u!50 &7233049505824036545
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3647703181008811178}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &4076086848074022728
 GameObject:
   m_ObjectHideFlags: 0
@@ -922,6 +945,7 @@ GameObject:
   - component: {fileID: 7457335909051123176}
   - component: {fileID: 3656801880700436160}
   - component: {fileID: 7605970298080389124}
+  - component: {fileID: 7547227171593275535}
   m_Layer: 0
   m_Name: Starter2
   m_TagString: InvisibleDetector
@@ -986,6 +1010,27 @@ MonoBehaviour:
   Stopper1: {fileID: 3647703181008811178}
   Stopper2: {fileID: 8948885559956963310}
   Stone: {fileID: 8333215524714180262, guid: 2b75793a58623be4291ddfa1e4bf18a2, type: 3}
+--- !u!50 &7547227171593275535
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4298010291584019572}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &4921349406111559940
 GameObject:
   m_ObjectHideFlags: 0
@@ -1460,6 +1505,7 @@ GameObject:
   - component: {fileID: 941348646371717541}
   - component: {fileID: 3300043081508068393}
   - component: {fileID: 1860685258823340707}
+  - component: {fileID: 6447277663326705000}
   m_Layer: 0
   m_Name: Starter1
   m_TagString: InvisibleDetector
@@ -1524,6 +1570,27 @@ MonoBehaviour:
   Stopper1: {fileID: 3647703181008811178}
   Stopper2: {fileID: 8948885559956963310}
   Stone: {fileID: 8333215524714180262, guid: 2b75793a58623be4291ddfa1e4bf18a2, type: 3}
+--- !u!50 &6447277663326705000
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8264067820901873360}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &8948885559956963310
 GameObject:
   m_ObjectHideFlags: 0
@@ -1535,6 +1602,7 @@ GameObject:
   - component: {fileID: 571491054329303243}
   - component: {fileID: 9184762326549655715}
   - component: {fileID: 7315922281238364722}
+  - component: {fileID: 8305666354786829194}
   m_Layer: 0
   m_Name: Stopper2
   m_TagString: InvisibleDetector
@@ -1599,6 +1667,27 @@ MonoBehaviour:
   Starter1: {fileID: 8264067820901873360}
   Starter2: {fileID: 4298010291584019572}
   Stone: {fileID: 8333215524714180262, guid: 2b75793a58623be4291ddfa1e4bf18a2, type: 3}
+--- !u!50 &8305666354786829194
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8948885559956963310}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &9150534400604215010
 GameObject:
   m_ObjectHideFlags: 0

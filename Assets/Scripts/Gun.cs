@@ -25,28 +25,12 @@ public class Gun : MonoBehaviour
 
     private void Fire()
     {
-        /*Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-        float rotZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0f, 0f, rotZ + Offset);
-
-        if (TimeBtwShots <= 0)
-        {
-            if (Input.GetMouseButton(0))
-            {
-                //CharacterBullet bullet = Instantiate(Bullet, ShotPoint.position, transform.rotation);
-                Bullet.Initialize(_parent, _direction, _lifetime, _speed, _damage);
-                TimeBtwShots = StartTimeBtwShots;
-            }
-        }
-        else
-        {
-            TimeBtwShots -= Time.deltaTime;
-        }*/
         if (TimeBtwShots <= 0)
         {
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {
                 Instantiate(Bullet, ShotPoint.position, Quaternion.identity);
+                TimeBtwShots = StartTimeBtwShots;
             }
         }
         else

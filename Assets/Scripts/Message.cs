@@ -133,14 +133,6 @@ public class Message : MonoBehaviour
         Time.timeScale = 1;
     }
 
-    private void CheckIfBulletCollided(GameObject collidedObject)
-    {
-        if (collidedObject.TryGetComponent<Bullet>(out Bullet bullet))
-        {
-            Physics2D.IgnoreCollision(bullet.GetComponent<Collider2D>(), _detectorCollider);
-        }
-    }
-
     private void CheckIfCharacterCollided(GameObject collidedObject)
     {
         if (collidedObject.TryGetComponent<Character>(out Character character))
@@ -161,6 +153,5 @@ public class Message : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         CheckIfCharacterCollided(collision.gameObject);
-        CheckIfBulletCollided(collision.gameObject);
     }
 }

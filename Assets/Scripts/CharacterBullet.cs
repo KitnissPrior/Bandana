@@ -6,20 +6,18 @@ using UnityEngine.Events;
 public class CharacterBullet : MonoBehaviour
 {
     public int Damage;
-    public LayerMask whatIsSolid;
+    public float Speed;
+    public float Lifetime;
+
     public List<string> DestroyingTags;
     public List<string> NoCollisionTags;
-    public string EnemyTag = "Enemy";
     public DamageReceiver Parent;
     public UnityEvent OnDestroy;
 
-    public float Speed;
-    public float Lifetime;
-    public float Distance;
-
-    private Vector2 _direction;
     private Rigidbody2D _rb;
     private float _offset = -90;
+    private Collider2D _thisCollider;
+    private string _enemyTag = "Enemy";
 
     void Start()
     {
@@ -30,11 +28,7 @@ public class CharacterBullet : MonoBehaviour
             "Scissors",
             "Shield",
             "Cheese",
-            "Key",
             "Chest",
-            "Clew",
-            "Trap",
-            "InvisibleDetector",
         };
 
         NoCollisionTags = new List<string>
@@ -42,8 +36,19 @@ public class CharacterBullet : MonoBehaviour
             "Clew",
             "Trap",
             "InvisibleDetector",
+            "Character",
+            "Key",
         };
 
+        _thisCollider = GetComponent<Collider2D>();
+        IgnoreSomeCollisions();
+
+        StartMoving();
+        StartCoroutine(DestroyOnLifetimeOut());
+    }
+
+    void StartMoving()
+    {
         _rb = GetComponent<Rigidbody2D>();
 
         Vector3 diference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
@@ -51,36 +56,32 @@ public class CharacterBullet : MonoBehaviour
         transform.rotation = Quaternion.Euler(0f, 0f, rotateZ + _offset);
 
         _rb.velocity = transform.up * Speed;
-
-        StartCoroutine(DestroyOnLifetimeOut());
     }
 
-    private void IgnoreSomeCollisions(GameObject collidedObject)
+    private void IgnoreSomeCollisions()
     {
-        if (collidedObject.TryGetComponent<Character>(out Character character))
-        {
-            Physics2D.IgnoreCollision(gameObject.GetComponent<Collider2D>(), character.GetComponent<Collider2D>());
-        }
-
         foreach (var tag in NoCollisionTags)
         {
-            if (collidedObject.tag == tag)
+            GameObject[] otherObjects = GameObject.FindGameObjectsWithTag(tag);
+
+            foreach (var obj in otherObjects)
             {
-                Physics2D.IgnoreCollision(gameObject.GetComponent<Collider2D>(), collidedObject.GetComponent<Collider2D>());
+                if(obj.TryGetComponent<Collider2D>(out Collider2D coll))
+                {
+                    Physics2D.IgnoreCollision(_thisCollider, coll);
+                }
             }
         }
     }
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        //IgnoreSomeCollisions(collision.gameObject);
-
         foreach (var tag in DestroyingTags)
         {
             if (collision.gameObject.tag == tag) Destroy(gameObject);
         }
 
-        if (collision.gameObject.TryGetComponent<Health>(out Health health) && collision.gameObject.tag == EnemyTag)
+        if (collision.gameObject.TryGetComponent<Health>(out Health health) && collision.gameObject.tag == _enemyTag)
         {
             if (health != Parent)
             {

@@ -1883,7 +1883,7 @@ GameObject:
   - component: {fileID: 1132297291574708396}
   m_Layer: 0
   m_Name: ArrowButton
-  m_TagString: Untagged
+  m_TagString: InvisibleDetector
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1961,7 +1961,7 @@ GameObject:
   - component: {fileID: 1132297291624748928}
   m_Layer: 0
   m_Name: TakeShield
-  m_TagString: Untagged
+  m_TagString: InvisibleDetector
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2037,7 +2037,7 @@ GameObject:
   - component: {fileID: 1132297291642661678}
   m_Layer: 0
   m_Name: EatCheese
-  m_TagString: Untagged
+  m_TagString: InvisibleDetector
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4240,7 +4240,7 @@ GameObject:
   - component: {fileID: 1132297292432187051}
   m_Layer: 0
   m_Name: CutClew
-  m_TagString: Untagged
+  m_TagString: InvisibleDetector
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4407,7 +4407,7 @@ GameObject:
   - component: {fileID: 1132297292503830119}
   m_Layer: 0
   m_Name: Fight
-  m_TagString: Untagged
+  m_TagString: InvisibleDetector
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4483,7 +4483,7 @@ GameObject:
   - component: {fileID: 1132297292505279348}
   m_Layer: 0
   m_Name: TakeScissors
-  m_TagString: Untagged
+  m_TagString: InvisibleDetector
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4833,7 +4833,7 @@ GameObject:
   - component: {fileID: 1132297292547146406}
   m_Layer: 0
   m_Name: Start
-  m_TagString: Untagged
+  m_TagString: InvisibleDetector
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

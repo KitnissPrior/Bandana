@@ -157,6 +157,7 @@ MonoBehaviour:
   - {fileID: 2004137716995194216, guid: 3bc49903cd8bd79419a0e861345b53b1, type: 3}
   - {fileID: 6701883855153371406, guid: 54d0e4500369ef34291f2af5c3cd1d38, type: 3}
   - {fileID: 4229561574215937639, guid: 19a62e0e628117545afd6b442aac60b5, type: 3}
+  Money: {fileID: -1307350982068415689, guid: cebedb39c176c244c8ba2434b57366b7, type: 3}
   BonusPoint: {fileID: 2151903666166884387}
   ShowingDelay: 0.7
   Animator: {fileID: 0}

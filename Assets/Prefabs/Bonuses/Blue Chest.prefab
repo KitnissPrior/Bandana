@@ -43,8 +43,8 @@ GameObject:
   - component: {fileID: 1726236944883949856}
   - component: {fileID: 3292264864192763084}
   - component: {fileID: 4947871805650097856}
-  - component: {fileID: 5943928607662576937}
   - component: {fileID: 1390804941476842276}
+  - component: {fileID: 8468148174926420609}
   m_Layer: 0
   m_Name: Blue Chest
   m_TagString: Chest
@@ -109,7 +109,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 6de8cf4557f26b4449970d59ece78137, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 029b10f686658d9479e04a8851666eb3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -157,31 +157,11 @@ MonoBehaviour:
   - {fileID: 2004137716995194216, guid: 3bc49903cd8bd79419a0e861345b53b1, type: 3}
   - {fileID: 6701883855153371406, guid: 54d0e4500369ef34291f2af5c3cd1d38, type: 3}
   - {fileID: 4229561574215937639, guid: 19a62e0e628117545afd6b442aac60b5, type: 3}
+  Money: {fileID: -1307350982068415689, guid: cebedb39c176c244c8ba2434b57366b7, type: 3}
   BonusPoint: {fileID: 2151903666166884387}
   ShowingDelay: 0.7
   Animator: {fileID: 0}
-  BonusType: 3
---- !u!95 &5943928607662576937
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5018148986826816952}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: a7c45300cfb0b834e8118749e18dba7a, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
+  BonusType: 4
 --- !u!60 &1390804941476842276
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -461,3 +441,24 @@ PolygonCollider2D:
       - {x: 0.0055555557, y: -0.7022222}
       - {x: 0.02, y: -0.7022222}
       - {x: 0.023333333, y: -0.70111114}
+--- !u!95 &8468148174926420609
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5018148986826816952}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: fc9c78007384be241bd874df2dab1a6e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

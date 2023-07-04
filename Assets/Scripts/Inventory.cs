@@ -13,11 +13,15 @@ public class Inventory : MonoBehaviour
     public Message ShieldMessage;
     public Message FightMessage;
 
+    public int MaxCrystalsCount;
+
     [SerializeField] private int _cheeseHP = 1;
 
     [SerializeField] private TMP_Text _cheeseText;
     [SerializeField] private TMP_Text _shieldText;
     [SerializeField] private TMP_Text _scissorsText;
+    [SerializeField] private TMP_Text _moneyText;
+    [SerializeField] private TMP_Text _crystalsText;
 
     [SerializeField] private Sprite _transparentScissors;
     [SerializeField] private Sprite _transparentCheese;
@@ -37,6 +41,8 @@ public class Inventory : MonoBehaviour
     private int _cheeseCount;
     private int _scissorsCount;
     private int _shieldsCount;
+    private int _moneyCount;
+    private int _crystalsCount;
 
     private Shield _shieldCircle;
     private ProgressBar _shieldBar;
@@ -51,6 +57,8 @@ public class Inventory : MonoBehaviour
         _cheeseCount = 0;
         _scissorsCount = 0;
         _shieldsCount = 0;
+        _moneyCount = 0;
+        _crystalsCount = 0;
 
         _messages = new Message[]{
             ArrowMessage,
@@ -110,6 +118,16 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    void ShowMoneyInfo()
+    {
+        _moneyText.text = $"{_moneyCount}";
+    }
+
+    void ShowCrystalsInfo()
+    {
+        _crystalsText.text = $"{_crystalsCount}/{MaxCrystalsCount}";
+    }
+
     void ControlUsingItemsByKeyBoard()
     {
         if (Input.GetKey(KeyCode.Keypad1) || Input.GetKey(KeyCode.Alpha1)) 
@@ -165,6 +183,18 @@ public class Inventory : MonoBehaviour
     public void AddCheese()
     {
         _cheeseCount++;
+    }
+
+    public void AddMoney(int count)
+    {
+        _moneyCount += count;
+        ShowMoneyInfo();
+    }
+
+    public void AddCrystal()
+    {
+        _crystalsCount++;
+        ShowCrystalsInfo();
     }
 
     public void EatCheese()

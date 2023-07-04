@@ -17,6 +17,9 @@ TagManager:
   - Key
   - Chest
   - InvisibleDetector
+  - Bullet
+  - Money
+  - Crystal
   layers:
   - Default
   - TransparentFX

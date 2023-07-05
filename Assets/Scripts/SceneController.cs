@@ -5,14 +5,19 @@ using UnityEngine.SceneManagement;
 
 public class SceneController : MonoBehaviour
 {
+    public CommonData CommonData;
+
     public void OpenScene(string scene)
     {
+        CommonData.NextScene = scene;
         SceneManager.LoadScene(scene);
     }
 
-    public void LoadMainScene()
+    public void ShowLoading(string nextScene)
     {
         SceneManager.LoadScene("LoadingScene");
+
+        if(nextScene != "") CommonData.NextScene = nextScene;
     }
 
 }

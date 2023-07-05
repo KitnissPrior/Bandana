@@ -13,6 +13,8 @@ public class Inventory : MonoBehaviour
     public Message ShieldMessage;
     public Message FightMessage;
 
+    public CommonData CommonData;
+
     public int MaxCrystalsCount;
 
     [SerializeField] private int _cheeseHP = 1;
@@ -188,6 +190,7 @@ public class Inventory : MonoBehaviour
     public void AddMoney(int count)
     {
         _moneyCount += count;
+        CommonData.AddMoney(count);
         ShowMoneyInfo();
     }
 

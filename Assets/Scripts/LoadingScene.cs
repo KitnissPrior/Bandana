@@ -6,18 +6,12 @@ using UnityEngine.SceneManagement;
 
 public class LoadingScene : MonoBehaviour
 {
-    public string NextScene;
+    public CommonData CommonData;
     public Slider LoadingBar;
 
     private IEnumerator ShowNextScene()
     {
-        AsyncOperation operation = SceneManager.LoadSceneAsync(NextScene);
-        /*while (!operation.isDone)
-        {
-            float progress = operation.progress / 0.9f;
-            LoadingBar.value = progress;
-            yield return null;
-        }*/
+        AsyncOperation operation = SceneManager.LoadSceneAsync(CommonData.NextScene);
         yield return null;
     }
 

@@ -103,7 +103,7 @@ MonoBehaviour:
   Offset: -90
   Bullet: {fileID: -6000007623783262534, guid: 2b75793a58623be4291ddfa1e4bf18a2, type: 3}
   ShotPoint: {fileID: 8095630896380303656}
-  StartTimeBtwShots: 0.3
+  StartTimeBtwShots: 0.2
   PlayerController: {fileID: 0}
   _parent: {fileID: 0}
   _direction: {x: 1, y: -0.1}

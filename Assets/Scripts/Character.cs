@@ -77,6 +77,24 @@ public class Character : MonoBehaviour
         }
     }
 
+    private void CheckIfMoneyCollided(GameObject collidedObject)
+    {
+        if (collidedObject.TryGetComponent<Money>(out Money money))
+        {
+            Destroy(collidedObject);
+            Inventory.AddMoney(money.Cost);
+        }
+    }
+
+    private void CheckIfCrystalCollided(GameObject collidedObject)
+    {
+        if(collidedObject.tag == "Crystal")
+        {
+            Destroy(collidedObject);
+            Inventory.AddCrystal();
+        }
+    }
+
     /// <summary>
     /// Выключает эффект неуязвимости
     /// </summary>
@@ -214,6 +232,8 @@ public class Character : MonoBehaviour
         CheckIfCheeseCollided(collision.gameObject);
         CheckIfShieldCollided(collision.gameObject);
 
+        CheckIfMoneyCollided(collision.gameObject);
+        CheckIfCrystalCollided(collision.gameObject);
         CheckIfKeyCollided(collision.gameObject);
     }
 

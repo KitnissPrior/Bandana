@@ -5,6 +5,7 @@ using UnityEngine;
 public class Chest : MonoBehaviour
 {
     public GameObject[] Bonuses;
+    public Money Money;
     public Transform BonusPoint;
     public float ShowingDelay = 0.4f;
     public Animator Animator;
@@ -14,7 +15,8 @@ public class Chest : MonoBehaviour
         Scissors,
         Cheese,
         Shield,
-        Random
+        Random,
+        Money,
     };
 
     public BonusTypes BonusType = BonusTypes.Random;
@@ -24,13 +26,25 @@ public class Chest : MonoBehaviour
         Animator = GetComponent<Animator>();
     }
 
+    private void GetBonus()
+    {
+        if (BonusType == BonusTypes.Money)
+        {
+            Money money = Instantiate(Money, BonusPoint.position, BonusPoint.rotation);
+            money.SetRandomCost();
+        }
+        else
+        {
+            int index = (BonusType == BonusTypes.Random) ? Random.Range(0, Bonuses.Length) : (int)BonusType;
+            Instantiate(Bonuses[index], BonusPoint.position, BonusPoint.rotation);
+        }
+    }
+
     private IEnumerator ShowBonus()
     {
         yield return new WaitForSeconds(ShowingDelay);
 
-        int index = (BonusType == BonusTypes.Random) ? Random.Range(0, Bonuses.Length) : (int)BonusType;
-        GameObject bonus = Instantiate(Bonuses[index], BonusPoint.position, BonusPoint.rotation);
-
+        GetBonus();
         Destroy(gameObject);
     }
 

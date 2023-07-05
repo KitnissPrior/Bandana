@@ -5,9 +5,4 @@ using UnityEngine;
 public class Trap : MonoBehaviour
 {
     public int Damage;
-    
-    void Start()
-    {
-        Damage = 1;
-    }
 }

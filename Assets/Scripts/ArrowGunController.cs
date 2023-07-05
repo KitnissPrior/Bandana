@@ -6,7 +6,6 @@ public class ArrowGunController : MonoBehaviour
 {
     public ArrowGun ArrowGun;
     public GameObject AnotherController;
-    public Bullet Stone;
 
     private string _characterTag = "Character";
     private int _timeToLeave = 1;
@@ -21,7 +20,7 @@ public class ArrowGunController : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.TryGetComponent<Bullet>(out Bullet bullet))
+        if (collision.gameObject.TryGetComponent<CharacterBullet>(out CharacterBullet bullet))
         {
             Physics2D.IgnoreCollision(bullet.GetComponent<Collider2D>(), gameObject.GetComponent<Collider2D>());
         }

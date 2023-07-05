@@ -43,7 +43,6 @@ public class Inventory : MonoBehaviour
     private int _cheeseCount;
     private int _scissorsCount;
     private int _shieldsCount;
-    private int _moneyCount;
     private int _crystalsCount;
 
     private Shield _shieldCircle;
@@ -59,8 +58,9 @@ public class Inventory : MonoBehaviour
         _cheeseCount = 0;
         _scissorsCount = 0;
         _shieldsCount = 0;
-        _moneyCount = 0;
         _crystalsCount = 0;
+
+        ShowMoneyInfo();
 
         _messages = new Message[]{
             ArrowMessage,
@@ -122,7 +122,7 @@ public class Inventory : MonoBehaviour
 
     void ShowMoneyInfo()
     {
-        _moneyText.text = $"{_moneyCount}";
+        _moneyText.text = $"{CommonData.MoneyCount}";
     }
 
     void ShowCrystalsInfo()
@@ -189,7 +189,6 @@ public class Inventory : MonoBehaviour
 
     public void AddMoney(int count)
     {
-        _moneyCount += count;
         CommonData.AddMoney(count);
         ShowMoneyInfo();
     }

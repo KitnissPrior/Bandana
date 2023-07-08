@@ -10,11 +10,16 @@ public class Enemy : MonoBehaviour
     public CharacterData CharacterData;
     public Transform Target;
     public EnemyHealthBar HealthBar;
+    public string[] NoCollisionTags =
+    {
+        "InvisibleDetector",
+        "Cheese",
+        "Money",
+    };
 
-    private bool _facingRight = false;
-    private int _maxDistanceToTarget = 25;
-    private Rigidbody2D _rb;
-    private string _invisibleDetectorTag = "InvisibleDetector";
+    protected bool _facingRight = false;
+    protected int _maxDistanceToTarget = 25;
+    protected Rigidbody2D _rb;
 
     public void Start()
     {
@@ -71,10 +76,14 @@ public class Enemy : MonoBehaviour
                 transform.Translate(Vector3.left * Speed * Time.deltaTime);
             }
         }
-        if(collision.gameObject.tag == _invisibleDetectorTag)
-        {
-            Physics2D.IgnoreCollision(gameObject.GetComponent<Collider2D>(), collision.gameObject.GetComponent<Collider2D>());
-        }
+        else 
+            foreach(var tag in NoCollisionTags)
+            {
+                if (collision.gameObject.tag == tag)
+                {
+                    Physics2D.IgnoreCollision(gameObject.GetComponent<Collider2D>(), collision.gameObject.GetComponent<Collider2D>());
+                }
+            }
     }
 
 }

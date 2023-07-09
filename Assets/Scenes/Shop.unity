@@ -736,7 +736,7 @@ GameObject:
   - component: {fileID: 587195913}
   - component: {fileID: 587195912}
   m_Layer: 0
-  m_Name: Trade
+  m_Name: Shopping
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1074,7 +1074,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2003131827}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1213,7 +1213,6 @@ RectTransform:
   - {fileID: 231921285}
   - {fileID: 2003131827}
   - {fileID: 1935806544}
-  - {fileID: 1896029320}
   m_Father: {fileID: 269904419}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1314,13 +1313,13 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 776013355}
-  m_Father: {fileID: 1077464488}
-  m_RootOrder: 4
+  m_Father: {fileID: 2003131827}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 351.98004, y: 688.7}
-  m_SizeDelta: {x: 138.42, y: 135.46}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 137.35492, y: -101}
+  m_SizeDelta: {x: 138.42, y: 135.45996}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1896029321
 MonoBehaviour:
@@ -1695,13 +1694,14 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1896029320}
   - {fileID: 935040928}
   m_Father: {fileID: 1077464488}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 12.890015, y: -135.16998}
+  m_AnchoredPosition: {x: 12.890137, y: -135.16992}
   m_SizeDelta: {x: -403.47, y: -335.86}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2003131828

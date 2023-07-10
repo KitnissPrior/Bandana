@@ -28,7 +28,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3493903349391999677}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 51.9, y: 21.98, z: -0.67998105}
   m_LocalScale: {x: 0.23, y: 0.23, z: 1}
   m_ConstrainProportionsScale: 0
@@ -36,7 +36,7 @@ Transform:
   - {fileID: 3493903350495924175}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3493903349391999559
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -143,6 +143,10 @@ MonoBehaviour:
   CharacterData: {fileID: 11400000, guid: 55baff9f537e84649b247840909f61dd, type: 2}
   Target: {fileID: 0}
   HealthBar: {fileID: 3493903350495924172}
+  NoCollisionTags:
+  - InvisibleDetector
+  - Cheese
+  - Money
 --- !u!114 &3493903349391999675
 MonoBehaviour:
   m_ObjectHideFlags: 0

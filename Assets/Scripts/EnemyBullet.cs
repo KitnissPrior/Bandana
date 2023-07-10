@@ -6,10 +6,8 @@ public class EnemyBullet : CharacterBullet
 {
     public Transform Target;
 
-    public void Initialize(Transform target)
-    {
-        Target = target;
-    }
+    [SerializeField] private float _distance;
+    [HideInInspector] public Vector2 Direction;
 
     void Start()
     {
@@ -23,20 +21,18 @@ public class EnemyBullet : CharacterBullet
             "Shield",
             "Cheese",
             "Chest",
+            "ArrowButton"
         };
 
         DestroyingTags = new List<string> {
             "Block",
             "Arrow",
-            "ArrowButton"
         };
 
-        Offset = 0;
         _thisCollider = GetComponent<Collider2D>();
         IgnoreSomeCollisions();
 
-        StartMoving();
-        StartCoroutine(DestroyOnLifetimeOut());
+        Destroy(gameObject, Lifetime);
     }
 
     public void OnCollisionEnter2D(Collision2D collision)
@@ -47,14 +43,8 @@ public class EnemyBullet : CharacterBullet
         }
     }
 
-    void StartMoving()
+    void Update()
     {
-        _rb = GetComponent<Rigidbody2D>();
-
-        Vector3 diference = Camera.main.ScreenToWorldPoint(Target.position) - transform.position;
-        float rotateZ = Mathf.Atan2(diference.y, diference.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0f, 0f, rotateZ + Offset);
-
-        _rb.velocity = transform.up * Speed;
+        transform.Translate(Direction * Speed * Time.deltaTime);
     }
 }

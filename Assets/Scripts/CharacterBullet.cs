@@ -19,7 +19,7 @@ public class CharacterBullet : MonoBehaviour
     protected Collider2D _thisCollider;
     private string _enemyTag = "Enemy";
 
-    void Start()
+    public void Start()
     {
         NoCollisionTags = new List<string> {
             "Clew",
@@ -29,15 +29,15 @@ public class CharacterBullet : MonoBehaviour
             "Character",
             "Key",
             "Chest",
+            "Shield",
+            "ArrowButton",
+            "Scissors",
+            "Cheese",
         };
 
         DestroyingTags = new List<string> {
             "Block",
             "Arrow",
-            "ArrowButton",
-            "Scissors",
-            "Shield",
-            "Cheese",
         };
 
         _thisCollider = GetComponent<Collider2D>();

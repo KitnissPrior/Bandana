@@ -10,17 +10,26 @@ public class ShootingEnemy : Enemy
     public float TimeBtwShots;
     public float StartTimeBtwShots;
 
-    private int _shootingDistance = 5;
+    private int _shootingDistance = 6;
+    private float _offset = 0f;
 
     public void FixedUpdate()
     {
         Move();
         Fire();
+        TakeAim();
 
         if (Health.HitPoints <= 0)
         {
             Destroy(gameObject);
         }
+    }
+
+    public void TakeAim()
+    {
+        Vector3 difference = Target.transform.position - transform.position;
+        float rot2 = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
+        ShotPoint.rotation = Quaternion.Euler(0f, 0f, rot2 + _offset);
     }
 
     public void Move()
@@ -33,15 +42,27 @@ public class ShootingEnemy : Enemy
         }
     }
 
+    public void CheckDirection()
+    {
+        if (!_facingRight && Target.transform.position.x > transform.position.x)
+        {
+            Flip();
+            _offset = 0f;
+            Bullet.Direction = Vector2.right;
+        }
+        else if (_facingRight && Target.transform.position.x < transform.position.x)
+        {
+            Flip();
+            _offset = 180f;
+            Bullet.Direction = Vector2.left;
+        }
+    }
+
     void Fire()
     {
         if (TimeBtwShots <= 0 && Vector3.Distance(Target.position, transform.position) < _shootingDistance)
         {
-            Bullet.Initialize(Target);
-            Vector3 bulletPosition = GetBulletPosition();
-            EnemyBullet bullet = Instantiate(Bullet, bulletPosition, Target.rotation);
-            Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-            rb.AddRelativeForce(Vector3.forward * 3, ForceMode2D.Impulse);
+            Instantiate(Bullet, ShotPoint.position, ShotPoint.rotation);
 
             TimeBtwShots = StartTimeBtwShots;
         }

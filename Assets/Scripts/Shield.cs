@@ -7,13 +7,13 @@ public class Shield : MonoBehaviour
 {
     public bool IsActive;
     public int ProtectingTime = 10;
-    public GameObject Knife;
+    public GameObject Bullet;
     public GameObject Cheese;
 
     void Start()
     {
         IsActive = false;
-        Physics2D.IgnoreCollision(Knife.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+        Physics2D.IgnoreCollision(Bullet.GetComponent<Collider2D>(), GetComponent<Collider2D>());
         Physics2D.IgnoreCollision(Cheese.GetComponent<Collider2D>(), GetComponent<Collider2D>());
     }
 
@@ -34,6 +34,10 @@ public class Shield : MonoBehaviour
         if (collision.gameObject.tag == "Clew")
         {
             Destroy(collision.gameObject);
+        }
+        if(collision.gameObject.TryGetComponent<CharacterBullet>(out CharacterBullet bullet))
+        {
+            Physics2D.IgnoreCollision(bullet.GetComponent<Collider2D>(), GetComponent<Collider2D>());
         }
     }
 }

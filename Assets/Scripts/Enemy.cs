@@ -10,23 +10,27 @@ public class Enemy : MonoBehaviour
     public CharacterData CharacterData;
     public Transform Target;
     public EnemyHealthBar HealthBar;
-    public string[] NoCollisionTags =
-    {
-        "InvisibleDetector",
-        "Cheese",
-        "Money",
-    };
 
+    public List<string> NoCollisionTags;
     protected bool _facingRight = false;
     protected int _maxDistanceToTarget = 25;
     protected Rigidbody2D _rb;
 
-    public void Start()
+    void Start()
     {
         Health.Initialize(CharacterData.HP);
         Target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         _rb = gameObject.GetComponent<Rigidbody2D>();
         Speed = CharacterData.Speed;
+
+        NoCollisionTags = new List<string> { 
+            "InvisibleDetector",
+            "Cheese",
+            "Money",
+            "Chest",
+            "Scissors",
+            "Shield"
+        };
     }
 
     public void Move()
@@ -58,10 +62,10 @@ public class Enemy : MonoBehaviour
 
     public void CheckDirection()
     {
-        if (_facingRight == false && _rb.velocity.x <= 0) Flip();
-
-        else if (_facingRight == true && _rb.velocity.x > 0) Flip();
-
+        if (!_facingRight && Target.transform.position.x > transform.position.x) 
+            Flip();
+        else if(_facingRight && Target.transform.position.x < transform.position.x)
+            Flip();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

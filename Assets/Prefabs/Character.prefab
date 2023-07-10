@@ -343,7 +343,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsActive: 1
   ProtectingTime: 10
-  Knife: {fileID: 3470832350744789284, guid: 2b75793a58623be4291ddfa1e4bf18a2, type: 3}
+  Bullet: {fileID: 3470832350744789284, guid: 2b75793a58623be4291ddfa1e4bf18a2, type: 3}
   Cheese: {fileID: 6701883855153371406, guid: 54d0e4500369ef34291f2af5c3cd1d38, type: 3}
 --- !u!222 &8204335503612785099
 CanvasRenderer:

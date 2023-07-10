@@ -441,7 +441,7 @@ GameObject:
   - component: {fileID: 4493800799927788733}
   - component: {fileID: 4493800799927788731}
   - component: {fileID: 4493800799927788732}
-  - component: {fileID: 4493800799927788730}
+  - component: {fileID: 8575785236809155949}
   m_Layer: 5
   m_Name: Joystick
   m_TagString: Untagged
@@ -511,7 +511,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &4493800799927788730
+--- !u!114 &8575785236809155949
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -520,7 +520,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4493800799927788734}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20b1db6e0319f3243bf5988dc65c5b48, type: 3}
+  m_Script: {fileID: 11500000, guid: edc2f6e54a3adfb4cb0ef1ae7c5c4694, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &4493800800451782687

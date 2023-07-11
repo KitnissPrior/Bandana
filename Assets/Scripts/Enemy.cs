@@ -53,9 +53,9 @@ public class Enemy : MonoBehaviour
 
     public void CheckDirection()
     {
-        if (_facingRight == false && _rb.velocity.x <= 0) Flip();
+        if (!_facingRight && Target.transform.position.x > transform.position.x) Flip();
 
-        else if (_facingRight == true && _rb.velocity.x > 0) Flip();
+        else if (_facingRight && Target.transform.position.x < transform.position.x) Flip();
 
     }
 

@@ -431,10 +431,10 @@ RectTransform:
   m_Father: {fileID: 1077464488}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 14, y: -233}
-  m_SizeDelta: {x: 741.35, y: 144.05}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 34, y: 291}
+  m_SizeDelta: {x: 741.35, y: 144.04999}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &231921286
 MonoBehaviour:
@@ -519,7 +519,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c60a25af3f08624581f5b6f50777ae1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CommonData: {fileID: 0}
+  CommonData: {fileID: 538286027}
 --- !u!1 &344931868
 GameObject:
   m_ObjectHideFlags: 0
@@ -751,6 +751,18 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: FirstLevel
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 519420033}
+        m_TargetAssemblyTypeName: SceneController, Assembly-CSharp
+        m_MethodName: SetCurrentLevel
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &510432687
@@ -1028,12 +1040,12 @@ RectTransform:
   m_Children:
   - {fileID: 1360732998}
   m_Father: {fileID: 1077464488}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 1360, y: 465}
-  m_SizeDelta: {x: 617.66, y: 524.28}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 412, y: -112}
+  m_SizeDelta: {x: 617.6599, y: 524.28}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &731278280
 MonoBehaviour:
@@ -1373,7 +1385,7 @@ GameObject:
   - component: {fileID: 1077464490}
   - component: {fileID: 1077464489}
   m_Layer: 0
-  m_Name: GoodCanvas
+  m_Name: LevelsCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1394,9 +1406,9 @@ RectTransform:
   - {fileID: 2003131827}
   - {fileID: 1929181714}
   - {fileID: 231921285}
-  - {fileID: 1935806544}
   - {fileID: 1896029320}
   - {fileID: 731278279}
+  - {fileID: 1935806544}
   m_Father: {fileID: 269904419}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1640,6 +1652,18 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: SecondLevel
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 519420033}
+        m_TargetAssemblyTypeName: SceneController, Assembly-CSharp
+        m_MethodName: SetCurrentLevel
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1360733000
@@ -1940,12 +1964,12 @@ RectTransform:
   m_Children:
   - {fileID: 510432685}
   m_Father: {fileID: 1077464488}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 561, y: 465}
-  m_SizeDelta: {x: 617.66, y: 524.28}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -366, y: -112}
+  m_SizeDelta: {x: 617.6599, y: 524.28}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1896029321
 MonoBehaviour:
@@ -2189,7 +2213,7 @@ RectTransform:
   m_Children:
   - {fileID: 216614124}
   m_Father: {fileID: 1077464488}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}

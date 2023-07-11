@@ -8,7 +8,7 @@ public class Gun : MonoBehaviour
     public float Offset;
     public CharacterBullet Bullet;
     public Transform ShotPoint;
-    private float TimeBtwShots;
+    public float TimeBtwShots;
     public float StartTimeBtwShots;
     public PlayerController PlayerController;
 

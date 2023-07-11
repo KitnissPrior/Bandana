@@ -11,17 +11,26 @@ public class Enemy : MonoBehaviour
     public Transform Target;
     public EnemyHealthBar HealthBar;
 
-    private bool _facingRight = false;
-    private int _maxDistanceToTarget = 25;
-    private Rigidbody2D _rb;
-    private string _invisibleDetectorTag = "InvisibleDetector";
+    public List<string> NoCollisionTags;
+    protected bool _facingRight = false;
+    protected int _maxDistanceToTarget = 25;
+    protected Rigidbody2D _rb;
 
-    public void Start()
+    void Start()
     {
         Health.Initialize(CharacterData.HP);
         Target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         _rb = gameObject.GetComponent<Rigidbody2D>();
         Speed = CharacterData.Speed;
+
+        NoCollisionTags = new List<string> { 
+            "InvisibleDetector",
+            "Cheese",
+            "Money",
+            "Chest",
+            "Scissors",
+            "Shield"
+        };
     }
 
     public void Move()
@@ -53,10 +62,10 @@ public class Enemy : MonoBehaviour
 
     public void CheckDirection()
     {
-        if (_facingRight == false && _rb.velocity.x <= 0) Flip();
-
-        else if (_facingRight == true && _rb.velocity.x > 0) Flip();
-
+        if (!_facingRight && Target.transform.position.x > transform.position.x) 
+            Flip();
+        else if(_facingRight && Target.transform.position.x < transform.position.x)
+            Flip();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -71,10 +80,14 @@ public class Enemy : MonoBehaviour
                 transform.Translate(Vector3.left * Speed * Time.deltaTime);
             }
         }
-        if(collision.gameObject.tag == _invisibleDetectorTag)
-        {
-            Physics2D.IgnoreCollision(gameObject.GetComponent<Collider2D>(), collision.gameObject.GetComponent<Collider2D>());
-        }
+        else 
+            foreach(var tag in NoCollisionTags)
+            {
+                if (collision.gameObject.tag == tag)
+                {
+                    Physics2D.IgnoreCollision(gameObject.GetComponent<Collider2D>(), collision.gameObject.GetComponent<Collider2D>());
+                }
+            }
     }
 
 }

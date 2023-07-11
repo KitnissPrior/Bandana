@@ -13,31 +13,31 @@ public class CharacterBullet : MonoBehaviour
     public List<string> NoCollisionTags;
     public DamageReceiver Parent;
     public UnityEvent OnDestroy;
+    public float Offset = -90;
 
-    private Rigidbody2D _rb;
-    private float _offset = -90;
-    private Collider2D _thisCollider;
+    protected Rigidbody2D _rb;
+    protected Collider2D _thisCollider;
     private string _enemyTag = "Enemy";
 
-    void Start()
+    public void Start()
     {
-        DestroyingTags = new List<string> {
-            "Block",
-            "Arrow",
-            "ArrowButton",
-            "Scissors",
-            "Shield",
-            "Cheese",
-            "Chest",
-        };
-
-        NoCollisionTags = new List<string>
-        {
+        NoCollisionTags = new List<string> {
             "Clew",
+            "Money",
             "Trap",
             "InvisibleDetector",
             "Character",
             "Key",
+            "Chest",
+            "Shield",
+            "ArrowButton",
+            "Scissors",
+            "Cheese",
+        };
+
+        DestroyingTags = new List<string> {
+            "Block",
+            "Arrow",
         };
 
         _thisCollider = GetComponent<Collider2D>();
@@ -53,12 +53,12 @@ public class CharacterBullet : MonoBehaviour
 
         Vector3 diference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         float rotateZ = Mathf.Atan2(diference.y, diference.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0f, 0f, rotateZ + _offset);
+        transform.rotation = Quaternion.Euler(0f, 0f, rotateZ + Offset);
 
         _rb.velocity = transform.up * Speed;
     }
 
-    private void IgnoreSomeCollisions()
+    public void IgnoreSomeCollisions()
     {
         foreach (var tag in NoCollisionTags)
         {
@@ -101,7 +101,7 @@ public class CharacterBullet : MonoBehaviour
         OnDestroy.Invoke();
     }
 
-    private IEnumerator DestroyOnLifetimeOut()
+    public IEnumerator DestroyOnLifetimeOut()
     {
         yield return new WaitForSeconds(Lifetime);
         DestroyBullet();

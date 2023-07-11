@@ -17,7 +17,14 @@ public class SceneController : MonoBehaviour
     {
         SceneManager.LoadScene("LoadingScene");
 
-        if(nextScene != "") CommonData.NextScene = nextScene;
+        if (nextScene != "")
+        {
+            CommonData.NextScene = nextScene;
+        }
     }
 
+    public void SetCurrentLevel(int level)
+    {
+        CommonData.CurrentLevel = level;
+    }
 }

@@ -127,6 +127,18 @@ public class Character : MonoBehaviour
         }
     }
 
+    private void CheckIfEnemyBulletCollided(GameObject collidedObject)
+    {
+        if (collidedObject.TryGetComponent<EnemyBullet>(out EnemyBullet bullet) && !Shield.IsActive && !Invulnerable)
+        {
+            Health.TakeDamage(bullet.Damage);
+            HealthView.HP -= bullet.Damage;
+            CheckIfNotDead();
+
+            StartInvulnerability();
+        }
+    }
+
     private IEnumerator RestartCollision(Collider2D collider)
     {
         yield return new WaitForSeconds(_restartCollisionDelay);
@@ -225,6 +237,7 @@ public class Character : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         CheckIfEnemyCollided(collision.gameObject);
+        CheckIfEnemyBulletCollided(collision.gameObject);
         CheckIfTrapCollided(collision.gameObject);
         CheckIfClewCollided(collision.gameObject);
 

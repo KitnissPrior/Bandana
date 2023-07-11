@@ -5,14 +5,12 @@ using UnityEngine;
 public class Money : MonoBehaviour
 {
     public int Cost = 1;
-    public int MaxCost => _maxCost;
-    public int MinCost => _minCost;
-
-    private int _maxCost = 50;
-    private int _minCost = 3;
+    public int MinCost = 3;
+    public CommonData CommonData;
 
     public void SetRandomCost()
     {
-        Cost = Random.Range(MinCost, MaxCost);
+        int level = CommonData.CurrentLevel;
+        Cost = Random.Range(MinCost, CommonData.LevelsMoney[level]);
     }
 }

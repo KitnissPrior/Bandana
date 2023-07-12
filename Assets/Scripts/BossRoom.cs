@@ -8,7 +8,7 @@ public class BossRoom : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.TryGetComponent<Bullet>(out Bullet bullet))
+        if (collision.gameObject.TryGetComponent<CharacterBullet>(out CharacterBullet bullet))
         {
             Physics2D.IgnoreCollision(bullet.GetComponent<Collider2D>(), gameObject.GetComponent<Collider2D>());
         }

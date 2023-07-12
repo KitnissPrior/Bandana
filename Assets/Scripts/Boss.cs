@@ -24,7 +24,7 @@ public class Boss : Enemy
             Move();
             Invoke("Fire", FireDelay);
 
-            DoorIn.SetActive(true);
+            if(!DoorIn.activeSelf) DoorIn.SetActive(true);
         }
 
         if (Health.HitPoints <= 0)

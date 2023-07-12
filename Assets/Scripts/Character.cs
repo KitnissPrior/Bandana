@@ -185,7 +185,7 @@ public class Character : MonoBehaviour
 
     private void CheckIfClewCollided(GameObject collidedObject)
     {
-        if (collidedObject.tag == "Clew")
+        if (collidedObject.tag == "Clew" || collidedObject.tag == "LianaBullet")
         {
             Destroy(collidedObject);
 

@@ -55,7 +55,7 @@ public class ShootingBoss : ShootingEnemy
 
     void Fire()
     {
-        if (TimeBtwShots <= 0 && Vector3.Distance(Target.position, transform.position) < _shootingDistance)
+        if (gameObject != null && TimeBtwShots <= 0 && Vector3.Distance(Target.position, transform.position) < _shootingDistance)
         {
             _bulletsCount++;
             switch (_bulletsCount)

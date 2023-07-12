@@ -5,11 +5,20 @@ using UnityEngine;
 public class CommonData : MonoBehaviour
 {
     public static string NextScene = "Levels";
-    public static int MoneyCount => _moneyCount;
     public static Dictionary<int,int> LevelsMoney = new Dictionary<int,int>();
+
+    public static int MoneyCount => _moneyCount;
+    public static int ScissorsCount => _scissorsCount;
+    public static int CheeseCount => _cheeseCount;
+    public static int ShieldsCount => _shieldsCount;
+
     public static int CurrentLevel = 1;
+    public static bool IsFirstLevelPassed = false;
 
     private static int _moneyCount = 0;
+    private static int _scissorsCount = 0;
+    private static int _cheeseCount = 0;
+    private static int _shieldsCount = 0;
 
     private void Start()
     {
@@ -30,5 +39,20 @@ public class CommonData : MonoBehaviour
     public void SetCurrentLevel(int level)
     {
         CurrentLevel = level;
+    }
+
+    public void SetCheeseCount(int count)
+    {
+        _cheeseCount += count;
+    }
+
+    public void SetShieldsCount(int count)
+    {
+        _shieldsCount += count;
+    }
+
+    public void SetScissorsCount(int count)
+    {
+        _scissorsCount += count;
     }
 }

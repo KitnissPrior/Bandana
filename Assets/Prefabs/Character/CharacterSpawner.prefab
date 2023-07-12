@@ -151,6 +151,7 @@ MonoBehaviour:
   Inventory: {fileID: 0}
   BindingBar: {fileID: 2916857152199470115}
   ShieldBar: {fileID: 0}
+  CommonData: {fileID: 6128839987262984154, guid: 74ddedf938671fd468557ec4d262d952, type: 3}
 --- !u!114 &2916857152199470115
 MonoBehaviour:
   m_ObjectHideFlags: 0

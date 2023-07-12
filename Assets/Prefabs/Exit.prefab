@@ -74,6 +74,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GoodEndScene: Win_Level_1
+  CommonData: {fileID: 6128839987262984154, guid: 74ddedf938671fd468557ec4d262d952, type: 3}
 --- !u!212 &7428087031144006113
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -31,6 +31,7 @@ public class Character : MonoBehaviour
     private int _barSmoothingCoeff = 10;
     private bool _hasKey = false;
 
+    private CommonData _commonData;
     private Collider2D _characterCollider;
     private Collider2D _shieldCollider;
     private float _restartCollisionDelay = 0.8f;
@@ -39,9 +40,10 @@ public class Character : MonoBehaviour
     private bool _invulnerable = false;
 
     internal void Initialize(CharacterData characterData, HealthView healthView, Inventory inventory,
-        ProgressBar bindingBar, ProgressBar shieldBar)
+        ProgressBar bindingBar, ProgressBar shieldBar, CommonData commonData)
     {
         CharacterData = characterData;
+        _commonData = commonData;
         HealthView = healthView;
         Health.Initialize(CharacterData.HP);
         PlayerRun.Initialize(CharacterData.Speed);

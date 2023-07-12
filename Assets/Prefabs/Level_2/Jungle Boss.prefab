@@ -325,7 +325,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: 458328f8325c38445a072423a8dc4062, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -411,13 +411,11 @@ MonoBehaviour:
   Bullet: {fileID: 5285124487089197042, guid: 8d0c32caaf0417244a53a8d5378dea7b, type: 3}
   TimeBtwShots: 0
   StartTimeBtwShots: 0.5
-  Liana: {fileID: -6824417185090571771, guid: b700138a8b4c71e40a8dae4bc23f9aaf, type: 3}
+  Liana: {fileID: 5285124487089197042, guid: 6140d8834462cfe4890081c2fc24aa17, type: 3}
   Key: {fileID: 4891859448509977094, guid: ff3fcbe8315d53e42bbc849d11ef9563, type: 3}
   KeyPoint: {fileID: 4895563988625828088}
   IsCharacterEntered: 0
   FireDelay: 3
-  FireRate: 0.5
-  NextFire: 0
 --- !u!1 &4895563990571859222
 GameObject:
   m_ObjectHideFlags: 0

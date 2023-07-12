@@ -44,6 +44,7 @@ public class Inventory : MonoBehaviour
     private int _scissorsCount;
     private int _shieldsCount;
     private int _crystalsCount;
+    private int _itemWeight = 1;
 
     private Shield _shieldCircle;
     private ProgressBar _shieldBar;
@@ -55,9 +56,9 @@ public class Inventory : MonoBehaviour
         _shieldCircle = shieldCircle;
         _shieldBar = shieldBar;
 
-        _cheeseCount = 0;
-        _scissorsCount = 0;
-        _shieldsCount = 0;
+        _cheeseCount = CommonData.CheeseCount;
+        _scissorsCount = CommonData.ScissorsCount;
+        _shieldsCount = CommonData.ShieldsCount;
         _crystalsCount = 0;
 
         ShowMoneyInfo();
@@ -80,9 +81,9 @@ public class Inventory : MonoBehaviour
 
     void ShowCheeseInfo ()
     {
-        _cheeseText.text = GetItemInfo(_cheeseCount);
+        _cheeseText.text = GetItemInfo(CommonData.CheeseCount);
 
-        if (_cheeseCount > 0)
+        if (CommonData.CheeseCount > 0)
         {
             _eatButton.GetComponent<Image>().sprite = _brightCheese;
         }
@@ -94,9 +95,9 @@ public class Inventory : MonoBehaviour
 
     void ShowScissorsInfo()
     {
-        _scissorsText.text = GetItemInfo(_scissorsCount);
+        _scissorsText.text = GetItemInfo(CommonData.ScissorsCount);
 
-        if(_scissorsCount > 0)
+        if(CommonData.ScissorsCount > 0)
         {
             _useScissorsButton.GetComponent<Image>().sprite = _brightScissors;
         }
@@ -108,9 +109,9 @@ public class Inventory : MonoBehaviour
 
     void ShowShieldInfo()
     {
-        _shieldText.text = GetItemInfo(_shieldsCount);
+        _shieldText.text = GetItemInfo(CommonData.ShieldsCount);
 
-        if (_shieldsCount > 0)
+        if (CommonData.ShieldsCount > 0)
         {
             _useShieldButton.GetComponent<Image>().sprite = _brightShield;
         }
@@ -184,7 +185,7 @@ public class Inventory : MonoBehaviour
 
     public void AddCheese()
     {
-        _cheeseCount++;
+        CommonData.SetCheeseCount(_itemWeight);
     }
 
     public void AddMoney(int count)
@@ -203,9 +204,9 @@ public class Inventory : MonoBehaviour
     {
         if (CheeseMessage) Destroy(CheeseMessage.gameObject);
 
-        if (_cheeseCount > 0 && _character.Health.HitPoints < _character.Health.MaxHP)
+        if (CommonData.CheeseCount > 0 && _character.Health.HitPoints < _character.Health.MaxHP)
         {
-            _cheeseCount--;
+            CommonData.SetCheeseCount(-_itemWeight);
 
             _character.Health.Heal(_cheeseHP);
             _character.HealthView.HP += _cheeseHP;
@@ -214,16 +215,16 @@ public class Inventory : MonoBehaviour
 
     public void AddScissors()
     {
-        _scissorsCount++;
+        CommonData.SetScissorsCount(_itemWeight);
     }
 
     public void UseScissors()
     {
         if (ScissorsMessage) Destroy(ScissorsMessage.gameObject);
 
-        if (_scissorsCount > 0 && _isFrozen)
+        if (CommonData.ScissorsCount > 0 && _isFrozen)
         {
-            _scissorsCount--;
+            CommonData.SetScissorsCount(-_itemWeight);
             _character.BindingBar.ReduceTimeLeft(_character.FreezingDelay);
             _character.UnfreezeCharacter();
 
@@ -233,7 +234,7 @@ public class Inventory : MonoBehaviour
 
     public void AddShield()
     {
-        _shieldsCount++;
+        CommonData.SetShieldsCount(_itemWeight);
     }
 
     public void DeactivateShield()
@@ -243,9 +244,9 @@ public class Inventory : MonoBehaviour
 
     public void UseShield()
     {
-        if(_shieldsCount > 0 && !_shieldCircle.IsActive)
+        if(CommonData.ShieldsCount > 0 && !_shieldCircle.IsActive)
         {
-            _shieldsCount--;
+            CommonData.SetShieldsCount(-_itemWeight);
             _shieldCircle.IsActive = true;
 
             _shieldBar.Value = 1f;

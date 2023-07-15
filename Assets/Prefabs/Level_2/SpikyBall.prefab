@@ -99,7 +99,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 0.1
+  m_Mass: 0.3
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -138,7 +138,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Damage: 1
   Speed: 14
-  Lifetime: 2
+  Lifetime: 0.5
   DestroyingTags:
   - Block
   - Arrow
@@ -171,4 +171,4 @@ MonoBehaviour:
   Offset: -90
   Target: {fileID: 0}
   _distance: 0
-  Direction: {x: 1, y: 0}
+  Direction: {x: -1, y: 0}

@@ -10,8 +10,8 @@ public class ShootingEnemy : Enemy
     public float TimeBtwShots;
     public float StartTimeBtwShots;
 
-    private int _shootingDistance = 6;
-    private float _offset = 0f;
+    protected int _shootingDistance = 6;
+    protected float _offset = 0f;
 
     public void FixedUpdate()
     {
@@ -34,7 +34,7 @@ public class ShootingEnemy : Enemy
 
     public void Move()
     {
-        if (Target != null && Vector3.Distance(Target.position, transform.position) < _maxDistanceToTarget)
+        if (Target != null && Vector3.Distance(Target.position, transform.position) < MaxDistanceToTarget)
         {
             Fire();
             transform.position = Vector2.MoveTowards(transform.position, Target.position, Speed * Time.deltaTime);

@@ -10,13 +10,13 @@ public class Enemy : MonoBehaviour
     public CharacterData CharacterData;
     public Transform Target;
     public EnemyHealthBar HealthBar;
+    public int MaxDistanceToTarget = 25;
 
     public List<string> NoCollisionTags;
     protected bool _facingRight = false;
-    protected int _maxDistanceToTarget = 25;
     protected Rigidbody2D _rb;
 
-    void Start()
+    public void Start()
     {
         Health.Initialize(CharacterData.HP);
         Target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
@@ -35,7 +35,7 @@ public class Enemy : MonoBehaviour
 
     public void Move()
     {
-        if (Target != null && Vector3.Distance(Target.position, transform.position) < _maxDistanceToTarget)
+        if (Target != null && Vector3.Distance(Target.position, transform.position) < MaxDistanceToTarget)
         {
             transform.position = Vector2.MoveTowards(transform.position, Target.position, Speed * Time.deltaTime);
             CheckDirection();

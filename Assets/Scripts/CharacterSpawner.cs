@@ -14,13 +14,14 @@ public class CharacterSpawner : MonoBehaviour
     public Inventory Inventory;
     public ProgressBar BindingBar;
     public ProgressBar ShieldBar;
+    public CommonData CommonData;
 
     private Character _character;
 
     void Start()
     {
         _character = Instantiate(CharacterPrefab, transform.position, transform.rotation);
-        _character.Initialize(CharacterData, HealthView, Inventory, BindingBar, ShieldBar);
+        _character.Initialize(CharacterData, HealthView, Inventory, BindingBar, ShieldBar, CommonData);
         Instantiate(CharacterData.Graphics, _character.transform);
         Camera.Follow = _character.transform;
     }

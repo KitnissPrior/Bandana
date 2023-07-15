@@ -13,7 +13,8 @@ public class ClewBullet : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == _blockTag || collision.gameObject.tag == _trapTag 
-            || collision.gameObject.TryGetComponent<Boss>(out Boss boss))
+            || collision.gameObject.TryGetComponent<Boss>(out Boss boss) 
+            || collision.gameObject.TryGetComponent<ShootingBoss>(out ShootingBoss boss2))
         {
             Destroy(gameObject);
         }

@@ -238,7 +238,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4895563989689965075}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.04, y: -2.96, z: 0}
+  m_LocalPosition: {x: -1.09, y: -2.11, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -258,7 +258,7 @@ GameObject:
   - component: {fileID: 4895563990496886893}
   - component: {fileID: 4895563990496886892}
   - component: {fileID: 4895563990496886898}
-  - component: {fileID: 4895563990496886895}
+  - component: {fileID: -692832609241204478}
   m_Layer: 0
   m_Name: Jungle Boss
   m_TagString: Enemy
@@ -325,7 +325,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: 458328f8325c38445a072423a8dc4062, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -388,7 +388,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHP: 10
   _hitPoints: 10
---- !u!114 &4895563990496886895
+--- !u!114 &-692832609241204478
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -397,7 +397,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4895563990496886896}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a73c8f55c8345094d919dc4a6d08a100, type: 3}
+  m_Script: {fileID: 11500000, guid: 347384df544bc2f43b9d90f20643d358, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Health: {fileID: 4895563990496886898}
@@ -405,15 +405,17 @@ MonoBehaviour:
   CharacterData: {fileID: 11400000, guid: e3709f41e09de5e4db1744da184a2897, type: 2}
   Target: {fileID: 0}
   HealthBar: {fileID: 4895563990571859216}
-  Clew: {fileID: 4664594154594189527, guid: 0f16d2bd4b21d224e9f470abb428cc88, type: 3}
+  MaxDistanceToTarget: 25
+  NoCollisionTags: []
   ShotPoint: {fileID: 4895563989689965068}
+  Bullet: {fileID: 5285124487089197042, guid: 8d0c32caaf0417244a53a8d5378dea7b, type: 3}
+  TimeBtwShots: 0
+  StartTimeBtwShots: 0.5
+  Liana: {fileID: 5285124487089197042, guid: 6140d8834462cfe4890081c2fc24aa17, type: 3}
   Key: {fileID: 4891859448509977094, guid: ff3fcbe8315d53e42bbc849d11ef9563, type: 3}
   KeyPoint: {fileID: 4895563988625828088}
   IsCharacterEntered: 0
-  DoorIn: {fileID: 0}
   FireDelay: 3
-  FireRate: 2
-  NextFire: 0
 --- !u!1 &4895563990571859222
 GameObject:
   m_ObjectHideFlags: 0

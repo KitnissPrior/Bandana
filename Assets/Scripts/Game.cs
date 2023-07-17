@@ -15,17 +15,22 @@ public class Game : MonoBehaviour
     private string _fileName = "/SavedData.save";
     private Vector3 _characterPosition;
     private Character _character;
+    private Vector3 _defaultPosition = new Vector3(-2.25f, -4.48f, 0f);
 
     void Start()
     {
-        _characterPosition = new Vector3(9.36f, -88.65f, 0f);
-        _character = CharacterSpawner.CharacterPrefab;
+        _characterPosition = _defaultPosition;
+    }
+
+    public void Initialize(Character character)
+    {
+        _character = character;
     }
 
     private void GetPositions()
     {
         CharacterXToSave = _character.transform.position.x;
-        Debug.Log(CharacterXToSave);
+        Debug.Log(_character.transform.position.x);
         CharacterYToSave = _character.transform.position.y;
         CharacterZToSave = _character.transform.position.z;
     }
@@ -46,19 +51,20 @@ public class Game : MonoBehaviour
     {
         SaveData save = CreateSaveGameObject();
         BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Create(Application.persistentDataPath + _fileName);
+        FileStream file = File.Create(_fileName);
 
         bf.Serialize(file, save);
         file.Close();
         Debug.Log("Game data saved");
+
     }
 
     public Vector3 LoadGame()
     {
-        if (File.Exists(Application.persistentDataPath + _fileName))
+        if (File.Exists(_fileName))
         {
             BinaryFormatter bf = new BinaryFormatter();
-            FileStream file = File.Open(Application.persistentDataPath + _fileName, FileMode.Open);
+            FileStream file = File.Open(_fileName, FileMode.Open);
 
             SaveData save = (SaveData)bf.Deserialize(file);
             file.Close();
@@ -76,10 +82,10 @@ public class Game : MonoBehaviour
 
     public void ResetGame()
     {
-        if (File.Exists(Application.persistentDataPath + _fileName))
+        if (File.Exists(_fileName))
         {
-            File.Delete(Application.persistentDataPath + _fileName);
-            GetPositions();
+            File.Delete(_fileName);
+            _characterPosition = _defaultPosition;
 
             Debug.Log("Data reset complete!");
         }

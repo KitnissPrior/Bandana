@@ -27,6 +27,7 @@ public class CharacterSpawner : MonoBehaviour
         _character.Initialize(CharacterData, HealthView, Inventory, BindingBar, ShieldBar, CommonData);
         Instantiate(CharacterData.Graphics, _character.transform);
         Camera.Follow = _character.transform;
+        SavingController.Initialize(_character);
     }
 
     void Update()

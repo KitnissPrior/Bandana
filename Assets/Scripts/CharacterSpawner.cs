@@ -15,15 +15,19 @@ public class CharacterSpawner : MonoBehaviour
     public ProgressBar BindingBar;
     public ProgressBar ShieldBar;
     public CommonData CommonData;
+    public Game SavingController;
 
     private Character _character;
+    private Vector3 _position;
 
     void Start()
     {
-        _character = Instantiate(CharacterPrefab, transform.position, transform.rotation);
+        _position = SavingController.LoadGame();
+        _character = Instantiate(CharacterPrefab, _position, transform.rotation);
         _character.Initialize(CharacterData, HealthView, Inventory, BindingBar, ShieldBar, CommonData);
         Instantiate(CharacterData.Graphics, _character.transform);
         Camera.Follow = _character.transform;
+        SavingController.Initialize(_character);
     }
 
     void Update()

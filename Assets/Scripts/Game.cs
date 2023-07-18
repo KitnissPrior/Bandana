@@ -16,10 +16,12 @@ public class Game : MonoBehaviour
     private Vector3 _characterPosition;
     private Character _character;
     private Vector3 _defaultPosition = new Vector3(-2.25f, -4.48f, 0f);
+    private CommonData _commonData;
 
     void Start()
     {
         _characterPosition = _defaultPosition;
+        _commonData = new CommonData();
     }
 
     public void Initialize(Character character)
@@ -69,7 +71,6 @@ public class Game : MonoBehaviour
             SaveData save = (SaveData)bf.Deserialize(file);
             file.Close();
 
-            //CharacterSpawner.transform.position = new Vector3(save.SavedCharacterX, save.SavedCharacterY, save.SavedCharacterZ);
             _characterPosition = new Vector3(save.SavedCharacterX, save.SavedCharacterY, save.SavedCharacterZ);
 
             Debug.Log("Game data loaded!");
@@ -86,6 +87,7 @@ public class Game : MonoBehaviour
         {
             File.Delete(_fileName);
             _characterPosition = _defaultPosition;
+            _commonData.ResetHP();
 
             Debug.Log("Data reset complete!");
         }

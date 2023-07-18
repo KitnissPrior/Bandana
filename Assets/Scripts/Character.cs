@@ -9,6 +9,7 @@ using UnityEngine.InputSystem;
 public class Character : MonoBehaviour
 {
     public PlayerRun PlayerRun;
+    public Game Game;
     public Health Health;
     public Gun Gun;
     public Transform GunPosition;
@@ -45,7 +46,7 @@ public class Character : MonoBehaviour
         CharacterData = characterData;
         _commonData = commonData;
         HealthView = healthView;
-        Health.Initialize(CharacterData.HP);
+        Health.Initialize(CommonData.HP);
         PlayerRun.Initialize(CharacterData.Speed);
 
         BindingBar = bindingBar;
@@ -59,6 +60,7 @@ public class Character : MonoBehaviour
 
         _characterCollider = gameObject.GetComponent<Collider2D>();
         _shieldCollider = Shield.GetComponent<Collider2D>();
+        Game = new Game();
     }
 
     public void CheckIfNotDead()
@@ -67,6 +69,7 @@ public class Character : MonoBehaviour
         {
             Destroy(gameObject);
             SceneManager.LoadScene(_badEndScene);
+            Game.ResetGame();
         }
     }
 
@@ -122,7 +125,8 @@ public class Character : MonoBehaviour
         if (collidedObject.TryGetComponent<Enemy>(out Enemy enemy) && !Shield.IsActive && !Invulnerable)
         {
             Health.TakeDamage(enemy.CharacterData.Damage);
-            HealthView.HP -= enemy.CharacterData.Damage;
+            _commonData.SetHP(-enemy.CharacterData.Damage);
+
             CheckIfNotDead();
 
             StartInvulnerability();
@@ -134,7 +138,8 @@ public class Character : MonoBehaviour
         if (collidedObject.TryGetComponent<EnemyBullet>(out EnemyBullet bullet) && !Shield.IsActive && !Invulnerable)
         {
             Health.TakeDamage(bullet.Damage);
-            HealthView.HP -= bullet.Damage;
+            _commonData.SetHP(-bullet.Damage);
+
             CheckIfNotDead();
 
             StartInvulnerability();
@@ -161,7 +166,7 @@ public class Character : MonoBehaviour
             else
             {
                 Health.TakeDamage(trap.Damage);
-                HealthView.HP -= trap.Damage;
+                _commonData.SetHP(-trap.Damage);
                 CheckIfNotDead();
             }
 

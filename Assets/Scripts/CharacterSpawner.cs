@@ -28,6 +28,7 @@ public class CharacterSpawner : MonoBehaviour
         Instantiate(CharacterData.Graphics, _character.transform);
         Camera.Follow = _character.transform;
         SavingController.Initialize(_character);
+        if (CommonData.CharacterData == null) CommonData.CharacterData = CharacterData;
     }
 
     void Update()

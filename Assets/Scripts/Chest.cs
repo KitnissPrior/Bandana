@@ -9,6 +9,7 @@ public class Chest : MonoBehaviour
     public Transform BonusPoint;
     public float ShowingDelay = 0.4f;
     public Animator Animator;
+    public CurrentBonuses CurrentBonuses;
 
     public enum BonusTypes
     {

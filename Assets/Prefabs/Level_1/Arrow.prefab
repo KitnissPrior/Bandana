@@ -139,7 +139,10 @@ MonoBehaviour:
   Distance: 0
   Damage: 1
   Parent: {fileID: 0}
-  ItemTags: []
+  DestroyingTags: []
+  NoCollisionTags: []
+  EnemyTag: Enemy
+  CommonData: {fileID: 6128839987262984154, guid: 74ddedf938671fd468557ec4d262d952, type: 3}
 --- !u!60 &1358872272936016643
 PolygonCollider2D:
   m_ObjectHideFlags: 0

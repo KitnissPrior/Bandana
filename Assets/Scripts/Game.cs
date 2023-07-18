@@ -11,15 +11,22 @@ public class Game : MonoBehaviour
     public float CharacterXToSave;
     public float CharacterYToSave;
     public float CharacterZToSave;
+    public List<int> DeadEnemyIdsToSave;
+    public List<int> OpenedChestIdsToSave;
+    public List<int> GainedMoneyIdsToSave;
+    public CurrentBonuses CurrentBonuses;
 
-    private string _fileName = "/SavedData.save";
+    private string _fileName = "/SavedData.dat";
     private Vector3 _characterPosition;
     private Character _character;
-    private Vector3 _defaultPosition = new Vector3(-2.25f, -4.48f, 0f);
+    private GameSettings _settings;
 
     void Start()
     {
-        _characterPosition = _defaultPosition;
+        _settings = new GameSettings();
+        DeadEnemyIdsToSave = new List<int>();
+        OpenedChestIdsToSave = new List<int>();
+        GainedMoneyIdsToSave = new List<int>();
     }
 
     public void Initialize(Character character)
@@ -35,6 +42,44 @@ public class Game : MonoBehaviour
         CharacterZToSave = _character.transform.position.z;
     }
 
+    public void DeleteGainedBonuses()
+    {
+        foreach (var id in _settings.OpenedChestIds)
+            Destroy(CurrentBonuses.Chests[id].gameObject);
+        foreach (var id in _settings.GainedMoneyIds)
+            Destroy(CurrentBonuses.Coins[id].gameObject);
+    }
+
+    public List<int> GetDeadEnemies()
+    {
+        DeadEnemyIdsToSave = new List<int>(CharacterSpawner.DeadEnemyIds);
+        return DeadEnemyIdsToSave;
+    }
+
+    public List<int> GetOpenedChests()
+    {
+        OpenedChestIdsToSave = CurrentBonuses.CheckChests();
+        return OpenedChestIdsToSave;
+    }
+
+    public List<int> GetGainedMoney()
+    {
+        GainedMoneyIdsToSave = CurrentBonuses.CheckCoins();
+        return GainedMoneyIdsToSave;
+    }
+
+    public void OpenChest(int id)
+    {
+        if(!_settings.OpenedChestIds.Contains(id))
+            _settings.OpenedChestIds.Add(id);
+    }
+
+    public void GainMoney(int id)
+    {
+        if (!_settings.GainedMoneyIds.Contains(id))
+            _settings.GainedMoneyIds.Add(id);
+    }
+
     private SaveData CreateSaveGameObject()
     {
         SaveData save = new SaveData();
@@ -43,6 +88,9 @@ public class Game : MonoBehaviour
         save.SavedCharacterX = CharacterXToSave;
         save.SavedCharacterY = CharacterYToSave;
         save.SavedCharacterZ = CharacterZToSave;
+        save.SavedDeadEnemyIds = GetDeadEnemies();
+        save.SavedGainedMoneyIds = GetGainedMoney();
+        save.SavedOpenedChestIds = GetOpenedChests();
 
         return save;
     }
@@ -59,25 +107,30 @@ public class Game : MonoBehaviour
 
     }
 
-    public Vector3 LoadGame()
+    public GameSettings LoadGame()
     {
         if (File.Exists(_fileName))
         {
+            Debug.Log("File exists");
             BinaryFormatter bf = new BinaryFormatter();
             FileStream file = File.Open(_fileName, FileMode.Open);
 
             SaveData save = (SaveData)bf.Deserialize(file);
             file.Close();
 
-            //CharacterSpawner.transform.position = new Vector3(save.SavedCharacterX, save.SavedCharacterY, save.SavedCharacterZ);
-            _characterPosition = new Vector3(save.SavedCharacterX, save.SavedCharacterY, save.SavedCharacterZ);
+            _settings.CharacterPosition = new Vector3(save.SavedCharacterX, save.SavedCharacterY, save.SavedCharacterZ);
+            _settings.DeadEnemyIds = save.SavedDeadEnemyIds;
+            _settings.GainedMoneyIds = save.SavedGainedMoneyIds;
+            _settings.OpenedChestIds = save.SavedOpenedChestIds;
+
+            DeleteGainedBonuses();
 
             Debug.Log("Game data loaded!");
         }
         else
             Debug.Log("There is no save data!");
 
-        return _characterPosition;
+        return _settings;
     }
 
     public void ResetGame()
@@ -85,7 +138,11 @@ public class Game : MonoBehaviour
         if (File.Exists(_fileName))
         {
             File.Delete(_fileName);
-            _characterPosition = _defaultPosition;
+
+            DeadEnemyIdsToSave.Clear();
+            GainedMoneyIdsToSave.Clear();
+            OpenedChestIdsToSave.Clear();
+            _settings = new GameSettings();
 
             Debug.Log("Data reset complete!");
         }

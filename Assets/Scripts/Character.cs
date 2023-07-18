@@ -38,14 +38,15 @@ public class Character : MonoBehaviour
 
     private float _invulnerabilityDelay = 2f;
     private bool _invulnerable = false;
+    private Game _savingController;
 
     internal void Initialize(CharacterData characterData, HealthView healthView, Inventory inventory,
-        ProgressBar bindingBar, ProgressBar shieldBar, CommonData commonData)
+        ProgressBar bindingBar, ProgressBar shieldBar, CommonData commonData, Game savingController)
     {
         CharacterData = characterData;
         _commonData = commonData;
         HealthView = healthView;
-        Health.Initialize(CharacterData.HP);
+        Health.Initialize(CommonData.HP);
         PlayerRun.Initialize(CharacterData.Speed);
 
         BindingBar = bindingBar;
@@ -59,12 +60,15 @@ public class Character : MonoBehaviour
 
         _characterCollider = gameObject.GetComponent<Collider2D>();
         _shieldCollider = Shield.GetComponent<Collider2D>();
+        _savingController = savingController;
     }
 
     public void CheckIfNotDead()
     {
         if (Health.HitPoints <= 0)
         {
+            _savingController.ResetGame();
+            _commonData.ResetHP();
             Destroy(gameObject);
             SceneManager.LoadScene(_badEndScene);
         }
@@ -122,7 +126,8 @@ public class Character : MonoBehaviour
         if (collidedObject.TryGetComponent<Enemy>(out Enemy enemy) && !Shield.IsActive && !Invulnerable)
         {
             Health.TakeDamage(enemy.CharacterData.Damage);
-            HealthView.HP -= enemy.CharacterData.Damage;
+            _commonData.SetHP(-enemy.CharacterData.Damage);
+
             CheckIfNotDead();
 
             StartInvulnerability();
@@ -134,7 +139,8 @@ public class Character : MonoBehaviour
         if (collidedObject.TryGetComponent<EnemyBullet>(out EnemyBullet bullet) && !Shield.IsActive && !Invulnerable)
         {
             Health.TakeDamage(bullet.Damage);
-            HealthView.HP -= bullet.Damage;
+            _commonData.SetHP(-bullet.Damage);
+
             CheckIfNotDead();
 
             StartInvulnerability();
@@ -161,7 +167,7 @@ public class Character : MonoBehaviour
             else
             {
                 Health.TakeDamage(trap.Damage);
-                HealthView.HP -= trap.Damage;
+                _commonData.SetHP(-trap.Damage);
                 CheckIfNotDead();
             }
 

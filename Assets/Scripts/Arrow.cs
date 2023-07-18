@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Arrow : Bullet
 {
+    public CommonData CommonData;
+
     private string _characterTag = "Character";
 
     private void CheckIfCharacterCollided(GameObject collidedObject)
@@ -22,7 +24,7 @@ public class Arrow : Bullet
                 if (!character.Shield.IsActive && !character.Invulnerable)
                 {
                     health.TakeDamage(Damage);
-                    character.HealthView.HP -= Damage;
+                    CommonData.SetHP(-Damage);
 
                     character.CheckIfNotDead();
                     character.StartInvulnerability();

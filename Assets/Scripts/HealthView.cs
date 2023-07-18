@@ -5,10 +5,10 @@ using UnityEngine.UI;
 
 public class HealthView : MonoBehaviour
 {
-    public int HP;
     public float BlinkingDelay = 0.4f;
+    public CommonData CommonData;
 
-    [SerializeField] private CharacterData _characterData;
+    [SerializeField] private CharacterData _characterData;    
     [SerializeField] private Image[] _healthImages;
     [SerializeField] private Sprite _healthSprite;
     [SerializeField] private Character _character;
@@ -17,8 +17,24 @@ public class HealthView : MonoBehaviour
 
     private void Start()
     {
-        HP = _characterData.HP;
-        _maxHealth = HP;
+        _maxHealth = _characterData.HP;
+        for (int i = 0; i < _maxHealth; i++)
+        {
+            if (i < CommonData.HP)
+            {
+                _healthImages[i].sprite = _healthSprite;
+
+                if (!_healthImages[i].gameObject.activeSelf)
+                {
+                    _healthImages[i].gameObject.SetActive(true);
+
+                }
+            }
+            else
+            {
+                _healthImages[i].gameObject.SetActive(false);
+            }
+        }
     }
 
     private IEnumerator HideHP(int index)
@@ -32,7 +48,7 @@ public class HealthView : MonoBehaviour
     {
         for (int i = 0; i < _maxHealth; i++)
         {
-            if(i < HP)
+            if(i < CommonData.HP)
             {
                 _healthImages[i].sprite = _healthSprite;
                 _healthImages[i].GetComponent<Animator>().SetBool("isDamaged", false);

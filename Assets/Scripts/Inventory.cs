@@ -207,9 +207,7 @@ public class Inventory : MonoBehaviour
         if (CommonData.CheeseCount > 0 && _character.Health.HitPoints < _character.Health.MaxHP)
         {
             CommonData.SetCheeseCount(-_itemWeight);
-
             _character.Health.Heal(_cheeseHP);
-            _character.HealthView.HP += _cheeseHP;
         }
     }
 

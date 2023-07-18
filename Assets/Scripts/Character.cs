@@ -9,7 +9,6 @@ using UnityEngine.InputSystem;
 public class Character : MonoBehaviour
 {
     public PlayerRun PlayerRun;
-    public Game Game;
     public Health Health;
     public Gun Gun;
     public Transform GunPosition;
@@ -39,9 +38,10 @@ public class Character : MonoBehaviour
 
     private float _invulnerabilityDelay = 2f;
     private bool _invulnerable = false;
+    private Game _savingController;
 
     internal void Initialize(CharacterData characterData, HealthView healthView, Inventory inventory,
-        ProgressBar bindingBar, ProgressBar shieldBar, CommonData commonData)
+        ProgressBar bindingBar, ProgressBar shieldBar, CommonData commonData, Game savingController)
     {
         CharacterData = characterData;
         _commonData = commonData;
@@ -60,14 +60,14 @@ public class Character : MonoBehaviour
 
         _characterCollider = gameObject.GetComponent<Collider2D>();
         _shieldCollider = Shield.GetComponent<Collider2D>();
-        Game = new Game();
+        _savingController = savingController;
     }
 
     public void CheckIfNotDead()
     {
         if (Health.HitPoints <= 0)
         {
-            Game.ResetGame();
+            _savingController.ResetGame();
             _commonData.ResetHP();
             Destroy(gameObject);
             SceneManager.LoadScene(_badEndScene);

@@ -9,7 +9,8 @@ public class SaveData
     public float SavedCharacterY;
     public float SavedCharacterZ;
 
-    public List<int> SavedEnemyIds;
+    public List<int> SavedDeadEnemyIds;
     public List<int> SavedBonusIds;
-    public List<int> SavedMoneyIds;
+    public List<int> SavedGainedMoneyIds;
+    public List<int> SavedOpenedChestIds;
 }

@@ -4,6 +4,7 @@ using UnityEngine;
 using System;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
+using System.Linq;
 
 public class Game : MonoBehaviour
 {
@@ -11,17 +12,20 @@ public class Game : MonoBehaviour
     public float CharacterXToSave;
     public float CharacterYToSave;
     public float CharacterZToSave;
+    public List<int> EnemyIdsToSave;
 
     private string _fileName = "/SavedData.save";
     private Vector3 _characterPosition;
     private Character _character;
     private Vector3 _defaultPosition = new Vector3(-2.25f, -4.48f, 0f);
-    private CommonData _commonData;
+    //private List<int> _defaultEnemyIds;
 
     void Start()
     {
         _characterPosition = _defaultPosition;
-        _commonData = new CommonData();
+
+        //GetObjects();
+        //_defaultEnemyIds = new List<int>(EnemyIdsToSave);
     }
 
     public void Initialize(Character character)
@@ -32,19 +36,25 @@ public class Game : MonoBehaviour
     private void GetPositions()
     {
         CharacterXToSave = _character.transform.position.x;
-        Debug.Log(_character.transform.position.x);
         CharacterYToSave = _character.transform.position.y;
         CharacterZToSave = _character.transform.position.z;
+    }
+
+    private void GetObjects()
+    {
+        //EnemyIdsToSave = Enumerable.Range(0, CharacterSpawner.Enemies.Length).ToList();
     }
 
     private SaveData CreateSaveGameObject()
     {
         SaveData save = new SaveData();
         GetPositions();
+        //GetObjects();
 
         save.SavedCharacterX = CharacterXToSave;
         save.SavedCharacterY = CharacterYToSave;
         save.SavedCharacterZ = CharacterZToSave;
+        //save.SavedEnemyIds = EnemyIdsToSave;
 
         return save;
     }
@@ -72,12 +82,13 @@ public class Game : MonoBehaviour
             file.Close();
 
             _characterPosition = new Vector3(save.SavedCharacterX, save.SavedCharacterY, save.SavedCharacterZ);
+            //CharacterSpawner.Enemies = save.SavedEnemies;
 
             Debug.Log("Game data loaded!");
         }
         else
             Debug.Log("There is no save data!");
-
+        //Debug.Log(CharacterSpawner.Enemies.Length);
         return _characterPosition;
     }
 
@@ -87,11 +98,11 @@ public class Game : MonoBehaviour
         {
             File.Delete(_fileName);
             _characterPosition = _defaultPosition;
-            _commonData.ResetHP();
+            //CharacterSpawner.Enemies = _defaultEnemyIds;
 
             Debug.Log("Data reset complete!");
         }
         else
-            Debug.LogError("No save data to delete.");
+            Debug.Log("No save data to delete.");
     }
 }

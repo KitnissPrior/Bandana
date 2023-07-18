@@ -18,7 +18,8 @@ public class CommonData : MonoBehaviour
     public static int CurrentLevel = 1;
     public static bool IsFirstLevelPassed = false;
 
-    private static int _hp;
+    private static int _defaultHP = 5;
+    private static int _hp = _defaultHP;
     private static int _moneyCount = 0;
     private static int _scissorsCount = 0;
     private static int _cheeseCount = 0;
@@ -26,8 +27,6 @@ public class CommonData : MonoBehaviour
 
     private void Start()
     {
-        _hp = CharacterData.HP;
-        
         LevelsMoney[1] = 30;
         LevelsMoney[2] = 50;
     }
@@ -70,6 +69,6 @@ public class CommonData : MonoBehaviour
 
     public void ResetHP()
     {
-        _hp = CharacterData.HP;
+        _hp = _defaultHP;
     }
 }

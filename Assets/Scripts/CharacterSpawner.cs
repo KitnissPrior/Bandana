@@ -29,6 +29,15 @@ public class CharacterSpawner : MonoBehaviour
         Camera.Follow = _character.transform;
         SavingController.Initialize(_character);
         if (CommonData.CharacterData == null) CommonData.CharacterData = CharacterData;
+
+    }
+
+    void DeleteKilledEnemies()
+    {
+        /*for(int i = 0; i < SavingController.EnemyIdsToSave.Count; i++)
+        {
+            Destroy(Enemies[i].gameObject);
+        }*/
     }
 
     void Update()

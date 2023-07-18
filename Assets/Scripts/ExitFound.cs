@@ -13,6 +13,7 @@ public class ExitFound : MonoBehaviour
         SceneManager.LoadScene(GoodEndScene);
         Game game = new Game();
         game.ResetGame();
+        CommonData.ResetHP();
         if (CommonData.CurrentLevel == 1) CommonData.IsFirstLevelPassed = true;
     }
 }

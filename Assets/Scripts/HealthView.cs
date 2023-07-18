@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class HealthView : MonoBehaviour
 {
-    //public int HP;
     public float BlinkingDelay = 0.4f;
     public CommonData CommonData;
 
@@ -18,8 +17,24 @@ public class HealthView : MonoBehaviour
 
     private void Start()
     {
-        //HP = CommonData.HP;
         _maxHealth = _characterData.HP;
+        for (int i = 0; i < _maxHealth; i++)
+        {
+            if (i < CommonData.HP)
+            {
+                _healthImages[i].sprite = _healthSprite;
+
+                if (!_healthImages[i].gameObject.activeSelf)
+                {
+                    _healthImages[i].gameObject.SetActive(true);
+
+                }
+            }
+            else
+            {
+                _healthImages[i].gameObject.SetActive(false);
+            }
+        }
     }
 
     private IEnumerator HideHP(int index)
@@ -31,7 +46,6 @@ public class HealthView : MonoBehaviour
 
     private void Update()
     {
-        //HP = CommonData.HP;
         for (int i = 0; i < _maxHealth; i++)
         {
             if(i < CommonData.HP)

@@ -519,7 +519,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c60a25af3f08624581f5b6f50777ae1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CommonData: {fileID: 0}
+  CommonData: {fileID: 538286027}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1616,8 +1616,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 519420033}
         m_TargetAssemblyTypeName: SceneController, Assembly-CSharp
-        m_MethodName: OpenScene
-        m_Mode: 5
+        m_MethodName: OpenMenu
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

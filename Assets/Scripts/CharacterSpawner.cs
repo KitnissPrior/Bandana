@@ -24,7 +24,7 @@ public class CharacterSpawner : MonoBehaviour
 
     void LoadGame()
     {
-        GameSettings settings = SavingController.LoadGame();
+        GameSettings settings = SavingController.LoadGame(CommonData.ShouldResetGame);
         _deadEnemyIds = settings.DeadEnemyIds;
         _position = settings.CharacterPosition;
     }
@@ -41,7 +41,8 @@ public class CharacterSpawner : MonoBehaviour
         DeleteKilledEnemies();
 
         _character = Instantiate(CharacterPrefab, _position, transform.rotation);
-        _character.Initialize(CharacterData, HealthView, Inventory, BindingBar, ShieldBar, CommonData, SavingController);
+        _character.Initialize(CharacterData, HealthView, Inventory, BindingBar, ShieldBar, 
+            CommonData, SavingController);
         Instantiate(CharacterData.Graphics, _character.transform);
         Camera.Follow = _character.transform;
         SavingController.Initialize(_character);

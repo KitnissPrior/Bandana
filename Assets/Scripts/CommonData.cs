@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+using System.IO;
 
 public class CommonData : MonoBehaviour
 {
@@ -17,6 +19,8 @@ public class CommonData : MonoBehaviour
 
     public static int CurrentLevel = 1;
     public static bool IsFirstLevelPassed = false;
+    public static bool ShouldResetGame => _shouldResetGame;
+    public static string SavedDataFile => _savedDataFile;
 
     private static int _defaultHP = 5;
     private static int _hp = _defaultHP;
@@ -24,11 +28,28 @@ public class CommonData : MonoBehaviour
     private static int _scissorsCount = 0;
     private static int _cheeseCount = 0;
     private static int _shieldsCount = 0;
+    private static bool _shouldResetGame;
+    private static string _savedDataFile = "/SavedData.save";
 
     private void Start()
     {
         LevelsMoney[1] = 30;
         LevelsMoney[2] = 50;
+    }
+
+    public bool IsSavedData() => File.Exists(_savedDataFile);
+
+    public void ResetValues()
+    {
+        ReduseMoney(MoneyCount);
+        SetCheeseCount(-CheeseCount);
+        SetScissorsCount(-ScissorsCount);
+        SetShieldsCount(-ShieldsCount);
+
+        IsFirstLevelPassed = false;
+        CurrentLevel = 1;
+        _shouldResetGame = true;
+        NextScene = "Levels";
     }
 
     public void AddMoney(int money)

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 using TMPro;
 using UnityEngine.UI;
 
@@ -50,6 +51,17 @@ public class Inventory : MonoBehaviour
     private ProgressBar _shieldBar;
     private Message[] _messages;
 
+    private void GetMessages()
+    {
+        _messages = new Message[]{
+            ArrowMessage,
+            CheeseMessage,
+            ScissorsMessage,
+            ClewMessage,
+            FightMessage,
+        };
+    }
+
     public void Initialize(Character player, Shield shieldCircle, ProgressBar shieldBar)
     {
         _character = player;
@@ -62,14 +74,7 @@ public class Inventory : MonoBehaviour
         _crystalsCount = 0;
 
         ShowMoneyInfo();
-
-        _messages = new Message[]{
-            ArrowMessage,
-            CheeseMessage,
-            ScissorsMessage,
-            ClewMessage,
-            FightMessage,
-        };
+        GetMessages();
     }
 
     string GetItemInfo(int count)

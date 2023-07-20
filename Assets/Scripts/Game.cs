@@ -4,6 +4,7 @@ using UnityEngine;
 using System;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
+using UnityEngine.SceneManagement;
 
 public class Game : MonoBehaviour
 {
@@ -15,8 +16,8 @@ public class Game : MonoBehaviour
     public List<int> OpenedChestIdsToSave;
     public List<int> GainedMoneyIdsToSave;
     public CurrentBonuses CurrentBonuses;
+    public CommonData CommonData;
 
-    private string _fileName = "/SavedData.dat";
     private Vector3 _characterPosition;
     private Character _character;
     private GameSettings _settings;
@@ -24,6 +25,7 @@ public class Game : MonoBehaviour
     void Start()
     {
         _settings = new GameSettings();
+        _settings.Initialize();
         DeadEnemyIdsToSave = new List<int>();
         OpenedChestIdsToSave = new List<int>();
         GainedMoneyIdsToSave = new List<int>();
@@ -37,7 +39,6 @@ public class Game : MonoBehaviour
     private void GetPositions()
     {
         CharacterXToSave = _character.transform.position.x;
-        Debug.Log(_character.transform.position.x);
         CharacterYToSave = _character.transform.position.y;
         CharacterZToSave = _character.transform.position.z;
     }
@@ -84,6 +85,7 @@ public class Game : MonoBehaviour
     {
         SaveData save = new SaveData();
         GetPositions();
+        CommonData.NextScene = SceneManager.GetActiveScene().name;
 
         save.SavedCharacterX = CharacterXToSave;
         save.SavedCharacterY = CharacterYToSave;
@@ -99,7 +101,7 @@ public class Game : MonoBehaviour
     {
         SaveData save = CreateSaveGameObject();
         BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Create(_fileName);
+        FileStream file = File.Create(CommonData.SavedDataFile);
 
         bf.Serialize(file, save);
         file.Close();
@@ -107,13 +109,17 @@ public class Game : MonoBehaviour
 
     }
 
-    public GameSettings LoadGame()
+    public GameSettings LoadGame(bool shouldReset = false)
     {
-        if (File.Exists(_fileName))
+        if (shouldReset)
         {
-            Debug.Log("File exists");
+            ResetGame();
+            Debug.Log("There is no save data!");
+        }
+        else if (CommonData.IsSavedData())
+        {
             BinaryFormatter bf = new BinaryFormatter();
-            FileStream file = File.Open(_fileName, FileMode.Open);
+            FileStream file = File.Open(CommonData.SavedDataFile, FileMode.Open);
 
             SaveData save = (SaveData)bf.Deserialize(file);
             file.Close();
@@ -128,25 +134,31 @@ public class Game : MonoBehaviour
             Debug.Log("Game data loaded!");
         }
         else
-            Debug.Log("There is no save data!");
+        {
+            _settings = new GameSettings();
+            _settings.Initialize();
+            Debug.Log("INITIZLIZED");
+        }
 
         return _settings;
     }
 
     public void ResetGame()
     {
-        if (File.Exists(_fileName))
+        if (CommonData.IsSavedData())
         {
-            File.Delete(_fileName);
+            File.Delete(CommonData.SavedDataFile);
 
             DeadEnemyIdsToSave.Clear();
             GainedMoneyIdsToSave.Clear();
             OpenedChestIdsToSave.Clear();
-            _settings = new GameSettings();
 
             Debug.Log("Data reset complete!");
         }
         else
-            Debug.LogError("No save data to delete.");
+            Debug.Log("No save data to delete.");
+
+        _settings = new GameSettings();
+        _settings.Initialize();
     }
 }

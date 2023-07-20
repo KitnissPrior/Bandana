@@ -4,9 +4,27 @@ using UnityEngine;
 
 public class GameSettings : MonoBehaviour
 {
-    public Vector3 CharacterPosition = new Vector3(-2.25f, -4.48f, 0f);
-    public List<int> DeadEnemyIds = new List<int>();
-    public List<int> GainedMoneyIds = new List<int>();
-    public List<int> OpenedChestIds = new List<int>();
-    public List<int> ClosedMessageIds = new List<int>();
+    //public Vector3 CharacterPosition = new Vector3(-2.25f, -4.48f, 0f);
+    //спавнится у выхода из лабиринта
+    public Vector3 CharacterPosition;
+    public List<int> DeadEnemyIds;
+    public List<int> GainedMoneyIds;
+    public List<int> OpenedChestIds;
+
+    //private Vector3 _position1 = new Vector3(-2.25f, -4.48f, 0f);
+    //спавнится у выхода из лабиринта
+    private Vector3 _position1 = new Vector3(-10.6f, -98f, 0f);
+    private Vector3 _position2 = new Vector3(6.32f, -0.05f, 0f);
+
+    public void Initialize()
+    {
+        if (CommonData.CurrentLevel == 1)
+            CharacterPosition = _position1;
+        else
+            CharacterPosition = _position2;
+
+        DeadEnemyIds = new List<int>();
+        GainedMoneyIds = new List<int>();
+        OpenedChestIds = new List<int>();
+    }
 }

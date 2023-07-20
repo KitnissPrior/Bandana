@@ -7,9 +7,15 @@ public class SceneController : MonoBehaviour
 {
     public CommonData CommonData;
 
+    public void OpenMenu()
+    {
+        SceneManager.LoadScene("MenuScene");
+    }
+
     public void OpenScene(string scene)
     {
-        CommonData.NextScene = scene;
+        if (scene != "Shop")
+            CommonData.NextScene = scene;
         SceneManager.LoadScene(scene);
     }
 

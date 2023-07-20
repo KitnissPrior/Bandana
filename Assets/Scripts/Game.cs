@@ -25,6 +25,7 @@ public class Game : MonoBehaviour
     void Start()
     {
         _settings = new GameSettings();
+        _settings.Initialize();
         DeadEnemyIdsToSave = new List<int>();
         OpenedChestIdsToSave = new List<int>();
         GainedMoneyIdsToSave = new List<int>();
@@ -132,6 +133,12 @@ public class Game : MonoBehaviour
 
             Debug.Log("Game data loaded!");
         }
+        else
+        {
+            _settings = new GameSettings();
+            _settings.Initialize();
+            Debug.Log("INITIZLIZED");
+        }
 
         return _settings;
     }
@@ -145,11 +152,13 @@ public class Game : MonoBehaviour
             DeadEnemyIdsToSave.Clear();
             GainedMoneyIdsToSave.Clear();
             OpenedChestIdsToSave.Clear();
-            _settings = new GameSettings();
 
             Debug.Log("Data reset complete!");
         }
         else
             Debug.Log("No save data to delete.");
+
+        _settings = new GameSettings();
+        _settings.Initialize();
     }
 }

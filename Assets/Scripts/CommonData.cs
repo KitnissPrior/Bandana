@@ -52,6 +52,11 @@ public class CommonData : MonoBehaviour
         NextScene = "Levels";
     }
 
+    public void NotResetGame()
+    {
+        _shouldResetGame = false;
+    }
+
     public void AddMoney(int money)
     {
         _moneyCount += money;

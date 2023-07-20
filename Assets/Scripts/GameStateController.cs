@@ -18,7 +18,7 @@ public class GameStateController : MonoBehaviour
     void Start()
     {
         Panel.SetActive(false);
-        if(CommonData.IsSavedData())
+        if(CommonData.IsSavedData() || CommonData.IsFirstLevelPassed)
         {
             StartButtonText.text = _continueText;
             if(!NewGameButton.gameObject.activeSelf)
@@ -34,7 +34,7 @@ public class GameStateController : MonoBehaviour
     public void StartGame()
     {
         SceneManager.LoadScene("LoadingScene");
-        if (CommonData.IsFirstLevelPassed) CommonData.NextScene = "Levels";
+        if (CommonData.IsFirstLevelPassed && CommonData.CurrentLevel == 1) CommonData.NextScene = "Levels";
     }
 
     public void ClosePanel()

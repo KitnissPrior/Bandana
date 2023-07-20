@@ -14,7 +14,10 @@ public class ExitFound : MonoBehaviour
         SceneManager.LoadScene(GoodEndScene);
         Game.ResetGame();
         CommonData.ResetHP();
-        if (CommonData.CurrentLevel == 1) CommonData.IsFirstLevelPassed = true;
+        if (CommonData.CurrentLevel == 1)
+        {
+            CommonData.IsFirstLevelPassed = true;
+        }
         CommonData.NextScene = "Levels";
     }
 }

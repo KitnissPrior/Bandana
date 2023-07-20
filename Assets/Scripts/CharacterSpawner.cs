@@ -25,6 +25,9 @@ public class CharacterSpawner : MonoBehaviour
     void LoadGame()
     {
         GameSettings settings = SavingController.LoadGame(CommonData.ShouldResetGame);
+
+        Debug.Log($"Current Level:{CommonData.CurrentLevel}");
+        Debug.Log($"ShouldResetGame:{CommonData.ShouldResetGame}");
         _deadEnemyIds = settings.DeadEnemyIds;
         _position = settings.CharacterPosition;
     }

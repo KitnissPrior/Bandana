@@ -40,11 +40,6 @@ public class Inventory : MonoBehaviour
 
     private Character _character;
     private bool _isFrozen;
-
-    private int _cheeseCount;
-    private int _scissorsCount;
-    private int _shieldsCount;
-    private int _crystalsCount;
     private int _itemWeight = 1;
 
     private Shield _shieldCircle;
@@ -67,11 +62,6 @@ public class Inventory : MonoBehaviour
         _character = player;
         _shieldCircle = shieldCircle;
         _shieldBar = shieldBar;
-
-        _cheeseCount = CommonData.CheeseCount;
-        _scissorsCount = CommonData.ScissorsCount;
-        _shieldsCount = CommonData.ShieldsCount;
-        _crystalsCount = 0;
 
         ShowMoneyInfo();
         GetMessages();
@@ -133,7 +123,7 @@ public class Inventory : MonoBehaviour
 
     void ShowCrystalsInfo()
     {
-        _crystalsText.text = $"{_crystalsCount}/{MaxCrystalsCount}";
+        _crystalsText.text = $"{CommonData.CrystalsCount}/{MaxCrystalsCount}";
     }
 
     void ControlUsingItemsByKeyBoard()
@@ -176,6 +166,7 @@ public class Inventory : MonoBehaviour
         ShowCheeseInfo();
         ShowScissorsInfo();
         ShowShieldInfo();
+        ShowCrystalsInfo();
 
         CloseUnneccessaryMessages();
 
@@ -191,6 +182,7 @@ public class Inventory : MonoBehaviour
     public void AddCheese()
     {
         CommonData.SetCheeseCount(_itemWeight);
+        ShowCheeseInfo();
     }
 
     public void AddMoney(int count)
@@ -201,7 +193,7 @@ public class Inventory : MonoBehaviour
 
     public void AddCrystal()
     {
-        _crystalsCount++;
+        CommonData.SetCrystalsCount(_itemWeight);
         ShowCrystalsInfo();
     }
 
@@ -213,6 +205,7 @@ public class Inventory : MonoBehaviour
         {
             CommonData.SetCheeseCount(-_itemWeight);
             _character.Health.Heal(_cheeseHP);
+            ShowCheeseInfo();
         }
     }
 

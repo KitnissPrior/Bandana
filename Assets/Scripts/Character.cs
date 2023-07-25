@@ -36,7 +36,7 @@ public class Character : MonoBehaviour
     private Collider2D _shieldCollider;
     private float _restartCollisionDelay = 0.8f;
 
-    private float _invulnerabilityDelay = 2f;
+    private float _invulnerabilityDelay = 1f;
     private bool _invulnerable = false;
     private Game _savingController;
 

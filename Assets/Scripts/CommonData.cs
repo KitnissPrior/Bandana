@@ -16,6 +16,7 @@ public class CommonData : MonoBehaviour
     public static int ScissorsCount => _scissorsCount;
     public static int CheeseCount => _cheeseCount;
     public static int ShieldsCount => _shieldsCount;
+    public static int CrystalsCount => _crystalsCount;
 
     public static int CurrentLevel = 1;
     public static bool IsFirstLevelPassed = false;
@@ -28,7 +29,8 @@ public class CommonData : MonoBehaviour
     private static int _scissorsCount = 0;
     private static int _cheeseCount = 0;
     private static int _shieldsCount = 0;
-    private static bool _shouldResetGame;
+    private static int _crystalsCount = 0;
+    private static bool _shouldResetGame = false;
     private static string _savedDataFile = "/SavedData.save";
 
     private void Start()
@@ -45,6 +47,7 @@ public class CommonData : MonoBehaviour
         SetCheeseCount(-CheeseCount);
         SetScissorsCount(-ScissorsCount);
         SetShieldsCount(-ShieldsCount);
+        SetCrystalsCount(-CrystalsCount);
 
         IsFirstLevelPassed = false;
         CurrentLevel = 1;
@@ -86,6 +89,11 @@ public class CommonData : MonoBehaviour
     public void SetScissorsCount(int count)
     {
         _scissorsCount += count;
+    }
+
+    public void SetCrystalsCount(int count)
+    {
+        _crystalsCount += count;
     }
 
     public void SetHP(int hp)

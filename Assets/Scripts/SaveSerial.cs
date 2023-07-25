@@ -13,4 +13,5 @@ public class SaveData
     public List<int> SavedBonusIds;
     public List<int> SavedGainedMoneyIds;
     public List<int> SavedOpenedChestIds;
+    public List<int> SavedCrystalsIds;
 }

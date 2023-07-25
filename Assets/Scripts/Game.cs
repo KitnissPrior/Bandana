@@ -15,6 +15,7 @@ public class Game : MonoBehaviour
     public List<int> DeadEnemyIdsToSave;
     public List<int> OpenedChestIdsToSave;
     public List<int> GainedMoneyIdsToSave;
+    public List<int> CrystalsIdsToSave;
     public CurrentBonuses CurrentBonuses;
     public CommonData CommonData;
 
@@ -49,6 +50,9 @@ public class Game : MonoBehaviour
             Destroy(CurrentBonuses.Chests[id].gameObject);
         foreach (var id in _settings.GainedMoneyIds)
             Destroy(CurrentBonuses.Coins[id].gameObject);
+        if (_settings.CrystalsIds != null) 
+            foreach (var id in _settings.CrystalsIds)
+                Destroy(CurrentBonuses.Crystals[id].gameObject);
     }
 
     public List<int> GetDeadEnemies()
@@ -69,6 +73,13 @@ public class Game : MonoBehaviour
         return GainedMoneyIdsToSave;
     }
 
+    public List<int> GetCrystals()
+    {
+        CrystalsIdsToSave = CurrentBonuses.CheckCrystals();
+        Debug.Log(CrystalsIdsToSave.Count);
+        return CrystalsIdsToSave;
+    }
+
     public void OpenChest(int id)
     {
         if(!_settings.OpenedChestIds.Contains(id))
@@ -79,6 +90,12 @@ public class Game : MonoBehaviour
     {
         if (!_settings.GainedMoneyIds.Contains(id))
             _settings.GainedMoneyIds.Add(id);
+    }
+
+    public void AddCrystal(int id)
+    {
+        if (!_settings.CrystalsIds.Contains(id))
+            _settings.CrystalsIds.Add(id);
     }
 
     private SaveData CreateSaveGameObject()
@@ -93,6 +110,8 @@ public class Game : MonoBehaviour
         save.SavedDeadEnemyIds = GetDeadEnemies();
         save.SavedGainedMoneyIds = GetGainedMoney();
         save.SavedOpenedChestIds = GetOpenedChests();
+        if (CommonData.CurrentLevel == 2)
+            save.SavedCrystalsIds = GetCrystals();
 
         return save;
     }
@@ -109,7 +128,7 @@ public class Game : MonoBehaviour
 
     }
 
-    public GameSettings LoadGame(bool shouldReset = false)
+    public GameSettings LoadGame(bool shouldReset)
     {
         if (shouldReset)
         {
@@ -124,10 +143,12 @@ public class Game : MonoBehaviour
             SaveData save = (SaveData)bf.Deserialize(file);
             file.Close();
 
+            Start();
             _settings.CharacterPosition = new Vector3(save.SavedCharacterX, save.SavedCharacterY, save.SavedCharacterZ);
             _settings.DeadEnemyIds = save.SavedDeadEnemyIds;
             _settings.GainedMoneyIds = save.SavedGainedMoneyIds;
             _settings.OpenedChestIds = save.SavedOpenedChestIds;
+            _settings.CrystalsIds = save.SavedCrystalsIds;
 
             DeleteGainedBonuses();
 
@@ -137,7 +158,7 @@ public class Game : MonoBehaviour
         {
             _settings = new GameSettings();
             _settings.Initialize();
-            Debug.Log("INITIZLIZED");
+            CommonData.SetCrystalsCount(-CommonData.CrystalsCount);
         }
 
         return _settings;
@@ -152,6 +173,9 @@ public class Game : MonoBehaviour
             DeadEnemyIdsToSave.Clear();
             GainedMoneyIdsToSave.Clear();
             OpenedChestIdsToSave.Clear();
+            CrystalsIdsToSave.Clear();
+            CommonData.SetCrystalsCount(-CommonData.CrystalsCount);
+            CommonData.NotResetGame();
 
             Debug.Log("Data reset complete!");
         }

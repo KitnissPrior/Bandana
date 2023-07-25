@@ -4,16 +4,15 @@ using UnityEngine;
 
 public class GameSettings : MonoBehaviour
 {
-    //public Vector3 CharacterPosition = new Vector3(-2.25f, -4.48f, 0f);
-    //спавнится у выхода из лабиринта
     public Vector3 CharacterPosition;
     public List<int> DeadEnemyIds;
     public List<int> GainedMoneyIds;
     public List<int> OpenedChestIds;
+    public List<int> CrystalsIds;
 
-    //private Vector3 _position1 = new Vector3(-2.25f, -4.48f, 0f);
-    //спавнится у выхода из лабиринта
-    private Vector3 _position1 = new Vector3(-10.6f, -98f, 0f);
+    private Vector3 _position1 = new Vector3(-2.25f, -4.48f, 0f);
+    //спавнится у выхода из лабиринта:
+    //private Vector3 _position1 = new Vector3(-10.6f, -98f, 0f);
     private Vector3 _position2 = new Vector3(6.32f, -0.05f, 0f);
 
     public void Initialize()
@@ -26,5 +25,6 @@ public class GameSettings : MonoBehaviour
         DeadEnemyIds = new List<int>();
         GainedMoneyIds = new List<int>();
         OpenedChestIds = new List<int>();
+        CrystalsIds = new List<int>();
     }
 }

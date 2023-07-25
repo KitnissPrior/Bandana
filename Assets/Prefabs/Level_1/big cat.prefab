@@ -346,7 +346,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: 32a9048d979d5904fa12d7df6eea89e1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -412,10 +412,8 @@ MonoBehaviour:
   CharacterData: {fileID: 11400000, guid: df0424225415ece4e91a780f9ad8cfd1, type: 2}
   Target: {fileID: 0}
   HealthBar: {fileID: 20496145336078752}
-  _noCollisionTags:
-  - InvisibleDetector
-  - Cheese
-  - Money
+  MaxDistanceToTarget: 25
+  NoCollisionTags: []
 --- !u!114 &20496146019809994
 MonoBehaviour:
   m_ObjectHideFlags: 0

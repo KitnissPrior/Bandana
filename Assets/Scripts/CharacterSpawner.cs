@@ -28,6 +28,8 @@ public class CharacterSpawner : MonoBehaviour
 
         _deadEnemyIds = settings.DeadEnemyIds;
         _position = settings.CharacterPosition;
+        if (CommonData.CharacterData != null)
+            CharacterData = CommonData.CharacterData;
     }
 
     void DeleteKilledEnemies()
@@ -47,7 +49,6 @@ public class CharacterSpawner : MonoBehaviour
         Instantiate(CharacterData.Graphics, _character.transform);
         Camera.Follow = _character.transform;
         SavingController.Initialize(_character);
-        if (CommonData.CharacterData == null) CommonData.CharacterData = CharacterData;
 
     }
 

@@ -11,6 +11,10 @@ public class CommonData : MonoBehaviour
 
     public static int HP => _hp;
     public static CharacterData CharacterData;
+    public static CharacterData StandardSkin;
+    public static CharacterData BlueSkin;
+    public static CharacterData GirlSkin;
+    public static List<CharacterData> Skins;
 
     public static int MoneyCount => _moneyCount;
     public static int ScissorsCount => _scissorsCount;
@@ -37,6 +41,11 @@ public class CommonData : MonoBehaviour
     {
         LevelsMoney[1] = 30;
         LevelsMoney[2] = 50;
+        /*Skins = new List<CharacterData>();
+        Skins.Add(StandardSkin);
+        Skins.Add(BlueSkin);
+        Skins.Add(GirlSkin);*/
+        //CharacterData = StandardSkin;
     }
 
     public bool IsSavedData() => File.Exists(_savedDataFile);

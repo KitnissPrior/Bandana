@@ -16,8 +16,6 @@ public class Inventory : MonoBehaviour
 
     public CommonData CommonData;
 
-    public int MaxCrystalsCount;
-
     [SerializeField] private int _cheeseHP = 1;
 
     [SerializeField] private TMP_Text _cheeseText;
@@ -123,7 +121,7 @@ public class Inventory : MonoBehaviour
 
     void ShowCrystalsInfo()
     {
-        _crystalsText.text = $"{CommonData.CrystalsCount}/{MaxCrystalsCount}";
+        _crystalsText.text = $"{CommonData.CrystalsCount}/{CommonData.MaxCrystalsCount}";
     }
 
     void ControlUsingItemsByKeyBoard()

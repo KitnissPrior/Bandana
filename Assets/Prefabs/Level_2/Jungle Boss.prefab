@@ -402,10 +402,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Health: {fileID: 4895563990496886898}
   Speed: 0
-  CharacterData: {fileID: 11400000, guid: e3709f41e09de5e4db1744da184a2897, type: 2}
+  CharacterData: {fileID: 11400000, guid: f2c805327315d7541927e3be4f8be5ce, type: 2}
   Target: {fileID: 0}
   HealthBar: {fileID: 4895563990571859216}
-  MaxDistanceToTarget: 25
+  MaxDistanceToTarget: 100
   NoCollisionTags: []
   ShotPoint: {fileID: 4895563989689965068}
   Bullet: {fileID: 5285124487089197042, guid: 8d0c32caaf0417244a53a8d5378dea7b, type: 3}

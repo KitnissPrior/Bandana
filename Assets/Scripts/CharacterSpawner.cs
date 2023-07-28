@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class CharacterSpawner : MonoBehaviour
 {
@@ -25,7 +26,6 @@ public class CharacterSpawner : MonoBehaviour
     void LoadGame()
     {
         GameSettings settings = SavingController.LoadGame(CommonData.ShouldResetGame);
-
         _deadEnemyIds = settings.DeadEnemyIds;
         _position = settings.CharacterPosition;
         if (CommonData.CharacterData != null)
@@ -40,15 +40,23 @@ public class CharacterSpawner : MonoBehaviour
 
     void Start()
     {
-        LoadGame();
-        DeleteKilledEnemies();
+        bool isntBossScene = SceneManager.GetActiveScene().name != "boss 2";
+
+        if (isntBossScene)
+        {
+            LoadGame();
+            DeleteKilledEnemies();
+        }
+        else 
+            _position = transform.position;
 
         _character = Instantiate(CharacterPrefab, _position, transform.rotation);
         _character.Initialize(CharacterData, HealthView, Inventory, BindingBar, ShieldBar, 
             CommonData, SavingController);
         Instantiate(CharacterData.Graphics, _character.transform);
         Camera.Follow = _character.transform;
-        SavingController.Initialize(_character);
+        if (isntBossScene) 
+            SavingController.Initialize(_character);
 
     }
 
@@ -61,7 +69,7 @@ public class CharacterSpawner : MonoBehaviour
             {
                 if(Enemies[i] != null)
                     Enemies[i].Target = _character.transform;
-                else if(!_deadEnemyIds.Contains(i)) 
+                else if(_deadEnemyIds != null && !_deadEnemyIds.Contains(i)) 
                     _deadEnemyIds.Add(i);
             }
         }

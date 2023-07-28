@@ -67,7 +67,7 @@ public class Character : MonoBehaviour
     {
         if (Health.HitPoints <= 0)
         {
-            _savingController.ResetGame();
+            if(_savingController != null) _savingController.ResetGame();
             _commonData.ResetHP();
             Destroy(gameObject);
             SceneManager.LoadScene(_badEndScene);

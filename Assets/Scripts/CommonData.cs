@@ -21,6 +21,7 @@ public class CommonData : MonoBehaviour
     public static int CheeseCount => _cheeseCount;
     public static int ShieldsCount => _shieldsCount;
     public static int CrystalsCount => _crystalsCount;
+    public static int MaxCrystalsCount => _maxCrystalsCount;
 
     public static int CurrentLevel = 1;
     public static bool IsFirstLevelPassed = false;
@@ -34,6 +35,7 @@ public class CommonData : MonoBehaviour
     private static int _cheeseCount = 0;
     private static int _shieldsCount = 0;
     private static int _crystalsCount = 0;
+    private static int _maxCrystalsCount = 20;
     private static bool _shouldResetGame = false;
     private static string _savedDataFile = "/SavedData.save";
 
@@ -62,7 +64,13 @@ public class CommonData : MonoBehaviour
         CurrentLevel = 1;
         _shouldResetGame = true;
         NextScene = "Levels";
-    }
+
+        StandardSkin.IsActive = true;
+        BlueSkin.IsInStock = false;
+        BlueSkin.IsActive = false;
+        GirlSkin.IsInStock = false;
+        GirlSkin.IsActive = false;
+}
 
     public void NotResetGame()
     {

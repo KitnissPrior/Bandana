@@ -34,7 +34,7 @@ public class GameStateController : MonoBehaviour
     public void StartGame()
     {
         SceneManager.LoadScene("LoadingScene");
-        if (CommonData.IsFirstLevelPassed && CommonData.CurrentLevel == 1) CommonData.NextScene = "Levels";
+        if (CommonData.IsFirstLevelPassed) CommonData.NextScene = "Levels";
     }
 
     public void ClosePanel()

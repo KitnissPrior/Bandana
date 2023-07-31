@@ -46,10 +46,12 @@ public class Game : MonoBehaviour
 
     public void DeleteGainedBonuses()
     {
-        foreach (var id in _settings.OpenedChestIds)
-            Destroy(CurrentBonuses.Chests[id].gameObject);
-        foreach (var id in _settings.GainedMoneyIds)
-            Destroy(CurrentBonuses.Coins[id].gameObject);
+        if (_settings.OpenedChestIds != null)
+            foreach (var id in _settings.OpenedChestIds)
+                Destroy(CurrentBonuses.Chests[id].gameObject);
+        if (_settings.GainedMoneyIds != null)
+            foreach (var id in _settings.GainedMoneyIds)
+                Destroy(CurrentBonuses.Coins[id].gameObject);
         if (_settings.CrystalsIds != null) 
             foreach (var id in _settings.CrystalsIds)
                 Destroy(CurrentBonuses.Crystals[id].gameObject);

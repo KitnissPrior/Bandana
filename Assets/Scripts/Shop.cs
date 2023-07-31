@@ -8,6 +8,10 @@ using UnityEngine.UI;
 public class Shop : MonoBehaviour
 {
     public TMP_Text MoneyText;
+    public CharacterBullet Stone;
+    public CharacterBullet Dart;
+    public CharacterBullet Coconut;
+    public CharacterBullet Bomb;
     public CommonData CommonData;
 
     [SerializeField] private GameObject _standardSkinButton;
@@ -17,6 +21,10 @@ public class Shop : MonoBehaviour
     [SerializeField] private TMP_Text _standardText;
     [SerializeField] private TMP_Text _blueText;
     [SerializeField] private TMP_Text _girlText;
+    [SerializeField] private TMP_Text _stoneText;
+    [SerializeField] private TMP_Text _dartText;
+    [SerializeField] private TMP_Text _coconutText;
+    [SerializeField] private TMP_Text _bombText;
 
     [SerializeField] private Sprite _activeButtonSprite;
     [SerializeField] private Sprite _inactiveButtonSprite;
@@ -81,8 +89,9 @@ public class Shop : MonoBehaviour
 
     public void SetSkinBlue()
     {
-        if (!CommonData.BlueSkin.IsInStock && 
-            (int.TryParse(_blueText.GetParsedText(), out int num) && CommonData.MoneyCount >= num))
+        string[] parts = _blueText.GetParsedText().Split(' ');
+        if (!CommonData.BlueSkin.IsInStock && parts.Length == 3 &&
+            (int.TryParse(parts[2], out int num) && CommonData.MoneyCount >= num))
         {
             CommonData.BlueSkin.IsInStock = true;
             CommonData.ReduseMoney(num);
@@ -117,5 +126,24 @@ public class Shop : MonoBehaviour
         }
     }
 
+    public void SetStone()
+    {
+        CommonData.CharacterData.Gun.Bullet = Stone;
+    }
 
+    public void SetDart()
+    {
+        Debug.Log(CommonData.CharacterData);
+        CommonData.CharacterData.Gun.Bullet = Dart;
+    }
+
+    public void SetCoconut()
+    {
+        CommonData.CharacterData.Gun.Bullet = Coconut;
+    }
+
+    public void SetBomb()
+    {
+        CommonData.CharacterData.Gun.Bullet = Bomb;
+    }
 }

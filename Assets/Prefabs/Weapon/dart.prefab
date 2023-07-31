@@ -121,8 +121,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Damage: 1
-  Speed: 15
-  Lifetime: 0.5
+  Speed: 20
+  Lifetime: 2
   DestroyingTags: []
   NoCollisionTags: []
   Parent: {fileID: 0}
@@ -141,6 +141,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  Offset: -90
 --- !u!60 &-6204911307499512686
 PolygonCollider2D:
   m_ObjectHideFlags: 0

@@ -33,6 +33,7 @@ public class CharacterBullet : MonoBehaviour
             "ArrowButton",
             "Scissors",
             "Cheese",
+            "Crystal"
         };
 
         DestroyingTags = new List<string> {

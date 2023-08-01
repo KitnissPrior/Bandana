@@ -47,7 +47,7 @@ public class CommonData : MonoBehaviour
         Skins.Add(StandardSkin);
         Skins.Add(BlueSkin);
         Skins.Add(GirlSkin);*/
-        //CharacterData = StandardSkin;
+        CharacterData = StandardSkin;
     }
 
     public bool IsSavedData() => File.Exists(_savedDataFile);
@@ -65,7 +65,7 @@ public class CommonData : MonoBehaviour
         _shouldResetGame = true;
         NextScene = "Levels";
 
-        StandardSkin.IsActive = true;
+        if(StandardSkin != null) StandardSkin.IsActive = true;
         BlueSkin.IsInStock = false;
         BlueSkin.IsActive = false;
         GirlSkin.IsInStock = false;

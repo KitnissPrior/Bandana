@@ -31,6 +31,7 @@ public class SceneController : MonoBehaviour
 
     public void SetCurrentLevel(int level)
     {
+        //if (CommonData.CurrentLevel == 2)
         CommonData.CurrentLevel = level;
     }
 }

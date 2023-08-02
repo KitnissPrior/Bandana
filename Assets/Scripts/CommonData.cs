@@ -11,10 +11,7 @@ public class CommonData : MonoBehaviour
 
     public static int HP => _hp;
     public static CharacterData CharacterData;
-    public static CharacterData StandardSkin;
-    public static CharacterData BlueSkin;
-    public static CharacterData GirlSkin;
-    public static List<CharacterData> Skins;
+    public static ShopItems ShopItems;
 
     public static int MoneyCount => _moneyCount;
     public static int ScissorsCount => _scissorsCount;
@@ -30,7 +27,7 @@ public class CommonData : MonoBehaviour
 
     private static int _defaultHP = 5;
     private static int _hp = _defaultHP;
-    private static int _moneyCount = 0;
+    private static int _moneyCount = 4000;
     private static int _scissorsCount = 0;
     private static int _cheeseCount = 0;
     private static int _shieldsCount = 0;
@@ -43,11 +40,7 @@ public class CommonData : MonoBehaviour
     {
         LevelsMoney[1] = 30;
         LevelsMoney[2] = 50;
-        /*Skins = new List<CharacterData>();
-        Skins.Add(StandardSkin);
-        Skins.Add(BlueSkin);
-        Skins.Add(GirlSkin);*/
-        CharacterData = StandardSkin;
+        CharacterData = ShopItems.StandardSkin;
     }
 
     public bool IsSavedData() => File.Exists(_savedDataFile);
@@ -65,12 +58,8 @@ public class CommonData : MonoBehaviour
         _shouldResetGame = true;
         NextScene = "Levels";
 
-        if(StandardSkin != null) StandardSkin.IsActive = true;
-        BlueSkin.IsInStock = false;
-        BlueSkin.IsActive = false;
-        GirlSkin.IsInStock = false;
-        GirlSkin.IsActive = false;
-}
+        ShopItems.Reset();
+    }
 
     public void NotResetGame()
     {

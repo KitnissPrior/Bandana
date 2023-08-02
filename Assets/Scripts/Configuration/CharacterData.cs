@@ -13,4 +13,5 @@ public class CharacterData : ScriptableObject
     public bool IsInStock;
     public bool IsActive;
     public bool IsAvailable;
+    public string Name;
 }

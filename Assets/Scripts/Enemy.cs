@@ -60,6 +60,11 @@ public class Enemy : MonoBehaviour
         transform.localScale = Scaler;
     }
 
+    public void ReduceSpeed()
+    {
+        Speed = Speed / 2;
+    }
+
     public void CheckDirection()
     {
         if (!_facingRight && Target.transform.position.x > transform.position.x) 

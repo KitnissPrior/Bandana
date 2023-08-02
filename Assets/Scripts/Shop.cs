@@ -8,15 +8,16 @@ using UnityEngine.UI;
 public class Shop : MonoBehaviour
 {
     public TMP_Text MoneyText;
-    public CharacterBullet Stone;
-    public CharacterBullet Dart;
-    public CharacterBullet Coconut;
-    public CharacterBullet Bomb;
     public CommonData CommonData;
+    public ShopItems ShopItems;
 
     [SerializeField] private GameObject _standardSkinButton;
     [SerializeField] private GameObject _blueSkinButton;
     [SerializeField] private GameObject _girlSkinButton;
+    [SerializeField] private GameObject _stoneButton;
+    [SerializeField] private GameObject _dartButton;
+    [SerializeField] private GameObject _coconutButton;
+    [SerializeField] private GameObject _bombButton;
 
     [SerializeField] private TMP_Text _standardText;
     [SerializeField] private TMP_Text _blueText;
@@ -33,6 +34,8 @@ public class Shop : MonoBehaviour
     private GameObject[] _skinsWithoutBlue;
     private GameObject[] _skinsWithoutGirl;
     private string _useText = "Использовать";
+    private Color _useColor = new Color(0f, 0f, 0f);
+    private Color _usingColor = new Color(255f, 0f, 0f);
 
     void ShowMoneyInfo()
     {
@@ -44,27 +47,46 @@ public class Shop : MonoBehaviour
         activeButton.GetComponent<Image>().sprite = _activeButtonSprite;
         _standardText.text = _useText;
         activeText.text = "Используется";
+        activeText.color = _usingColor;
         foreach (var button in inactiveButtons)
+        {
             button.GetComponent<Image>().sprite = _inactiveButtonSprite;
+        }
     }
 
     void SetButtonsBackground()
     {
-        if (CommonData.StandardSkin.IsActive)
+        if (ShopItems.StandardSkin.IsActive)
         {
             SetSkinButtonActive(_standardSkinButton, _standardText, _skinsWithoutStandard);
-            if (CommonData.BlueSkin.IsInStock) _blueText.text = _useText;
-            if (CommonData.GirlSkin.IsInStock) _girlText.text = _useText;
+            if (ShopItems.BlueSkin.IsInStock)
+            {
+                _blueText.text = _useText;
+                _blueText.color = _useColor;
+            }
+            if (ShopItems.GirlSkin.IsInStock)
+            {
+                _girlText.text = _useText;
+                _girlText.color = _useColor;
+            }
         }        
-        else if (CommonData.BlueSkin.IsActive)
+        else if (ShopItems.BlueSkin.IsActive)
         {
             SetSkinButtonActive(_blueSkinButton, _blueText, _skinsWithoutBlue);
-            if (CommonData.GirlSkin.IsInStock) _girlText.text = _useText;
+            if (ShopItems.GirlSkin.IsInStock)
+            {
+                _girlText.text = _useText;
+                _girlText.color = _useColor;
+            }
         }
         else
         {
             SetSkinButtonActive(_girlSkinButton, _girlText, _skinsWithoutGirl);
-            if (CommonData.BlueSkin.IsInStock) _blueText.text = _useText;
+            if (ShopItems.BlueSkin.IsInStock)
+            {
+                _blueText.text = _useText;
+                _blueText.color = _useColor;
+            }
         }
     }
 
@@ -78,72 +100,100 @@ public class Shop : MonoBehaviour
         SetButtonsBackground();
     }
 
+    void SetSkinActive(CharacterData activeSkin)
+    {
+        if (!activeSkin.IsActive)
+        {
+            CommonData.CharacterData = activeSkin;
+            foreach (var skin in ShopItems.Skins)
+            {
+                Debug.Log(skin);
+                if (skin.Name != activeSkin.Name)
+                    skin.IsActive = false;
+                else
+                    skin.IsActive = true;
+            }
+            SetButtonsBackground();
+        }
+    }
+
+    void SetWeaponActive(CharacterBullet activeWeapon)
+    {
+        CommonData.CharacterData.Gun.Bullet = activeWeapon;
+        foreach (var weapon in ShopItems.Weapons)
+        {
+            if (weapon.Name != activeWeapon.Name)
+                weapon.IsActive = false;
+            else
+                weapon.IsActive = true;
+        }
+        SetButtonsBackground();
+    }
+
     public void SetSkinStandard()
     {
-        CommonData.CharacterData = CommonData.StandardSkin;
-        CommonData.StandardSkin.IsActive = true;
-        CommonData.BlueSkin.IsActive = false;
-        CommonData.GirlSkin.IsActive = false;
-        SetButtonsBackground();
+        SetSkinActive(ShopItems.StandardSkin);
+    }
+
+    void SetSkin(CharacterData skin, TMP_Text buttonText)
+    {
+        string[] parts = buttonText.GetParsedText().Split(' ');
+        if (!skin.IsInStock && parts.Length == 3 &&
+            (int.TryParse(parts[2], out int num) && CommonData.MoneyCount >= num))
+        {
+            skin.IsInStock = true;
+            CommonData.ReduseMoney(num);
+            ShowMoneyInfo();
+        }
+        if (skin.IsInStock)
+        {
+            SetSkinActive(skin);
+        }
+    }
+
+    void SetWeapon(CharacterBullet weapon, TMP_Text buttonText)
+    {
+        string[] parts = buttonText.GetParsedText().Split(' ');
+        if (!weapon.IsInStock && parts.Length == 3 &&
+            (int.TryParse(parts[2], out int num) && CommonData.MoneyCount >= num))
+        {
+            weapon.IsInStock = true;
+            CommonData.ReduseMoney(num);
+            ShowMoneyInfo();
+        }
+        if (weapon.IsInStock)
+        {
+            SetWeaponActive(weapon);
+        }
     }
 
     public void SetSkinBlue()
     {
-        string[] parts = _blueText.GetParsedText().Split(' ');
-        if (!CommonData.BlueSkin.IsInStock && parts.Length == 3 &&
-            (int.TryParse(parts[2], out int num) && CommonData.MoneyCount >= num))
-        {
-            CommonData.BlueSkin.IsInStock = true;
-            CommonData.ReduseMoney(num);
-            ShowMoneyInfo();
-        }
-        if (CommonData.BlueSkin.IsInStock)
-        {
-            CommonData.CharacterData = CommonData.BlueSkin;
-            CommonData.BlueSkin.IsActive = true;
-            CommonData.StandardSkin.IsActive = false;
-            CommonData.GirlSkin.IsActive = false;
-            SetButtonsBackground();
-        }
+        SetSkin(ShopItems.BlueSkin, _blueText);
     }
 
     public void SetSkinGirl()
     {
-        if (!CommonData.GirlSkin.IsInStock && 
-            (int.TryParse(_girlText.GetParsedText(), out int num) && CommonData.MoneyCount >= num))
-        {
-            CommonData.GirlSkin.IsInStock = true;
-            CommonData.ReduseMoney(num);
-            ShowMoneyInfo();
-        }
-        if (CommonData.GirlSkin.IsInStock)
-        {
-            CommonData.CharacterData = CommonData.GirlSkin;
-            CommonData.GirlSkin.IsActive = true;
-            CommonData.BlueSkin.IsActive = false;
-            CommonData.StandardSkin.IsActive = false;
-            SetButtonsBackground();
-        }
+        SetSkin(ShopItems.GirlSkin, _girlText);
     }
 
     public void SetStone()
     {
-        CommonData.CharacterData.Gun.Bullet = Stone;
+        SetWeapon(ShopItems.Stone, _stoneText);
     }
 
     public void SetDart()
     {
-        Debug.Log(CommonData.CharacterData);
-        CommonData.CharacterData.Gun.Bullet = Dart;
+        SetWeapon(ShopItems.Dart, _dartText);
     }
 
     public void SetCoconut()
     {
-        CommonData.CharacterData.Gun.Bullet = Coconut;
+        SetWeapon(ShopItems.Coconut, _coconutText);
     }
 
     public void SetBomb()
     {
-        CommonData.CharacterData.Gun.Bullet = Bomb;
+        SetWeapon(ShopItems.Bomb, _bombText);
     }
 }

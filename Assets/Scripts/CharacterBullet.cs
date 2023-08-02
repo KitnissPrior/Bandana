@@ -8,6 +8,10 @@ public class CharacterBullet : MonoBehaviour
     public int Damage;
     public float Speed;
     public float Lifetime;
+    public bool IsActive;
+    public bool IsInStock;
+    public bool IsAvailable;
+    public string Name;
 
     public List<string> DestroyingTags;
     public List<string> NoCollisionTags;

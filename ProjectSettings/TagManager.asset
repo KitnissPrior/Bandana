@@ -21,6 +21,7 @@ TagManager:
   - Money
   - Crystal
   - LianaBullet
+  - Dart
   layers:
   - Default
   - TransparentFX

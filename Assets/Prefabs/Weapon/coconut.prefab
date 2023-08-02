@@ -123,6 +123,10 @@ MonoBehaviour:
   Damage: 2
   Speed: 12
   Lifetime: 2
+  IsActive: 0
+  IsInStock: 0
+  IsAvailable: 0
+  Name: Coconut
   DestroyingTags: []
   NoCollisionTags: []
   Parent: {fileID: 0}

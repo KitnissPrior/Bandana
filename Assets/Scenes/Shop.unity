@@ -2032,14 +2032,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MoneyText: {fileID: 776013356}
-  Stone: {fileID: -6000007623783262534, guid: 2b75793a58623be4291ddfa1e4bf18a2, type: 3}
-  Dart: {fileID: -6000007623783262534, guid: 06aa143cc165b924b8bd603c31422936, type: 3}
-  Coconut: {fileID: -6000007623783262534, guid: 387c2521547b6054c8ee73e6dcd8083f, type: 3}
-  Bomb: {fileID: -6000007623783262534, guid: cde95ba9538fb624bbb000e711346341, type: 3}
   CommonData: {fileID: 538286027}
+  ShopItems: {fileID: 1178275888900549061, guid: cc682d384312d2c45841ed16ce1bc308, type: 3}
   _standardSkinButton: {fileID: 1117104246}
   _blueSkinButton: {fileID: 1800110948}
   _girlSkinButton: {fileID: 306147156}
+  _stoneButton: {fileID: 1008196173}
+  _dartButton: {fileID: 380305624}
+  _coconutButton: {fileID: 752605294}
+  _bombButton: {fileID: 695742608}
   _standardText: {fileID: 1062922329}
   _blueText: {fileID: 1701821595}
   _girlText: {fileID: 314370497}

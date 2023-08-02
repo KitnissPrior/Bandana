@@ -20,3 +20,4 @@ MonoBehaviour:
   IsInStock: 1
   IsActive: 1
   IsAvailable: 1
+  Name: StandardSkin

@@ -14,16 +14,11 @@ public class ShopItems : MonoBehaviour
     public static CharacterBullet Bomb;
     public static List<CharacterBullet> Weapons;
 
-    void Start()
-    {
-        Debug.Log("ShopItems started");
-        Skins = new List<CharacterData>() { StandardSkin, BlueSkin, GirlSkin };
-        Weapons = new List<CharacterBullet>() { Stone, Dart, Coconut, Bomb };
-    }
-
     public void SetItems()
     {
-        if(CommonData.CharacterData == null)
+        Skins = new List<CharacterData>() { StandardSkin, BlueSkin, GirlSkin };
+        Weapons = new List<CharacterBullet>() { Stone, Dart, Coconut, Bomb };
+        if (CommonData.CharacterData == null)
             CommonData.CharacterData = StandardSkin;
     }
 

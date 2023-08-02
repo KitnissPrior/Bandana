@@ -29,6 +29,7 @@ public class Goods : MonoBehaviour
             ShopItems.Coconut = Coconut;
         if (ShopItems.Bomb == null)
             ShopItems.Bomb = Bomb;
+        ShopItems.SetItems();
         if (CommonData.ShopItems == null)
             CommonData.ShopItems = ShopItems;
     }

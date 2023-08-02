@@ -145,7 +145,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  Offset: 0
+  Offset: -90
 --- !u!60 &2974222824454604423
 PolygonCollider2D:
   m_ObjectHideFlags: 0

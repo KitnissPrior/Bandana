@@ -92,6 +92,7 @@ public class CharacterBullet : MonoBehaviour
             {
                 Enemy enemy = collision.gameObject.GetComponent<Enemy>();
 
+                if (Name == "Dart") enemy.ReduceSpeed();
                 enemy.HealthBar.ReduceValue(1f / health.MaxHP);
                 health.TakeDamage(Damage);
 

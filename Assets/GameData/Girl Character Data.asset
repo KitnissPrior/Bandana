@@ -17,7 +17,4 @@ MonoBehaviour:
   Speed: 7
   Graphics: {fileID: 1479163244201193703, guid: 7340f9411f6b5ef40be1e6e6ca13f9bf, type: 3}
   Damage: 0
-  IsInStock: 0
-  IsActive: 0
-  IsAvailable: 0
-  Name: GirlSkin
+  ShopItem: {fileID: 0}

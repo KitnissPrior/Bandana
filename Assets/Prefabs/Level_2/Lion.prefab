@@ -427,6 +427,7 @@ MonoBehaviour:
   CharacterData: {fileID: 11400000, guid: df0424225415ece4e91a780f9ad8cfd1, type: 2}
   Target: {fileID: 0}
   HealthBar: {fileID: 20496145336078752}
+  MaxDistanceToTarget: 25
   NoCollisionTags:
   - InvisibleDetector
   - Cheese
@@ -434,7 +435,7 @@ MonoBehaviour:
   ShotPoint: {fileID: 7351887956669296352}
   Bullet: {fileID: 5285124487089197042, guid: 8d0c32caaf0417244a53a8d5378dea7b, type: 3}
   TimeBtwShots: 0
-  StartTimeBtwShots: 0.5
+  StartTimeBtwShots: 1
 --- !u!1 &4716452909304810842
 GameObject:
   m_ObjectHideFlags: 0

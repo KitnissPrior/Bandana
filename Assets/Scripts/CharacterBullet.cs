@@ -8,10 +8,7 @@ public class CharacterBullet : MonoBehaviour
     public int Damage;
     public float Speed;
     public float Lifetime;
-    public bool IsActive;
-    public bool IsInStock;
-    public bool IsAvailable;
-    public string Name;
+    public ShopItem ShopItem;
 
     public List<string> DestroyingTags;
     public List<string> NoCollisionTags;
@@ -92,7 +89,7 @@ public class CharacterBullet : MonoBehaviour
             {
                 Enemy enemy = collision.gameObject.GetComponent<Enemy>();
 
-                if (Name == "Dart") enemy.ReduceSpeed();
+                if (ShopItem.Name == "Dart") enemy.ReduceSpeed();
                 enemy.HealthBar.ReduceValue(1f / health.MaxHP);
                 health.TakeDamage(Damage);
 

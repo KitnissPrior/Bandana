@@ -7,37 +7,39 @@ public class ShopItems : MonoBehaviour
     public static CharacterData StandardSkin;
     public static CharacterData BlueSkin;
     public static CharacterData GirlSkin;
-    public static List<CharacterData> Skins;
+
     public static CharacterBullet Stone;
     public static CharacterBullet Dart;
     public static CharacterBullet Coconut;
     public static CharacterBullet Bomb;
-    public static List<CharacterBullet> Weapons;
+
+    public static List<ShopItem> Skins;
+    public static List<ShopItem> Weapons;
 
     public void SetItems()
     {
-        Skins = new List<CharacterData>() { StandardSkin, BlueSkin, GirlSkin };
-        Weapons = new List<CharacterBullet>() { Stone, Dart, Coconut, Bomb };
+        Skins = new List<ShopItem>() { StandardSkin.ShopItem, BlueSkin.ShopItem, GirlSkin.ShopItem };
+        Weapons = new List<ShopItem>() { Stone.ShopItem, Dart.ShopItem, Coconut.ShopItem, Bomb.ShopItem };
         if (CommonData.CharacterData == null)
             CommonData.CharacterData = StandardSkin;
     }
 
     public void Reset()
     {
-        if (StandardSkin != null) StandardSkin.IsActive = true;
+        if (StandardSkin != null) StandardSkin.ShopItem.IsActive = true;
         foreach (var skin in Skins)
         {
-            if (skin != StandardSkin && skin != null)
+            if (skin != null && skin.Name != StandardSkin.ShopItem.Name)
             {
                 skin.IsActive = false;
                 skin.IsInStock = false;
             }
         }
 
+        if (Stone != null) Stone.ShopItem.IsActive = true;
         foreach (var weapon in Weapons)
         {
-            if(Stone != null) Stone.IsActive = true;
-            if(weapon != Stone && weapon != null)
+            if(weapon != null && weapon.Name != Stone.ShopItem.Name)
             {
                 weapon.IsActive = false;
                 weapon.IsInStock = false;

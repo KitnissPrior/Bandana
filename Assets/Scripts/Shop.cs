@@ -10,190 +10,143 @@ public class Shop : MonoBehaviour
     public TMP_Text MoneyText;
     public CommonData CommonData;
     public ShopItems ShopItems;
-
-    [SerializeField] private GameObject _standardSkinButton;
-    [SerializeField] private GameObject _blueSkinButton;
-    [SerializeField] private GameObject _girlSkinButton;
-    [SerializeField] private GameObject _stoneButton;
-    [SerializeField] private GameObject _dartButton;
-    [SerializeField] private GameObject _coconutButton;
-    [SerializeField] private GameObject _bombButton;
-
-    [SerializeField] private TMP_Text _standardText;
-    [SerializeField] private TMP_Text _blueText;
-    [SerializeField] private TMP_Text _girlText;
-    [SerializeField] private TMP_Text _stoneText;
-    [SerializeField] private TMP_Text _dartText;
-    [SerializeField] private TMP_Text _coconutText;
-    [SerializeField] private TMP_Text _bombText;
+    public ShopProperties ShopProperties;
 
     [SerializeField] private Sprite _activeButtonSprite;
     [SerializeField] private Sprite _inactiveButtonSprite;
 
-    private GameObject[] _skinsWithoutStandard;
-    private GameObject[] _skinsWithoutBlue;
-    private GameObject[] _skinsWithoutGirl;
-    private string _useText = "Использовать";
+    //private string _useText = "Использовать";
+    //private string _usingText = "Используется";
     private Color _useColor = new Color(0f, 0f, 0f);
-    private Color _usingColor = new Color(255f, 0f, 0f);
+    private Color _usingColor = new Color(193f, 193f, 193f);
 
     void ShowMoneyInfo()
     {
         MoneyText.text = $"{CommonData.MoneyCount}";
     }
 
-    void SetSkinButtonActive(GameObject activeButton, TMP_Text activeText, GameObject[] inactiveButtons)
+    void SetButtonsBackground(List<ShopItem> items)
     {
-        activeButton.GetComponent<Image>().sprite = _activeButtonSprite;
-        _standardText.text = _useText;
-        activeText.text = "Используется";
-        activeText.color = _usingColor;
-        foreach (var button in inactiveButtons)
+        Debug.Log($"{items[0].Name} inStock={items[0].IsInStock}");
+        foreach(var item in items)
         {
-            button.GetComponent<Image>().sprite = _inactiveButtonSprite;
-        }
-    }
-
-    void SetButtonsBackground()
-    {
-        if (ShopItems.StandardSkin.IsActive)
-        {
-            SetSkinButtonActive(_standardSkinButton, _standardText, _skinsWithoutStandard);
-            if (ShopItems.BlueSkin.IsInStock)
+            if (item.IsActive)
             {
-                _blueText.text = _useText;
-                _blueText.color = _useColor;
+                item.ChangeButtonView(_activeButtonSprite, _usingColor, false);
             }
-            if (ShopItems.GirlSkin.IsInStock)
-            {
-                _girlText.text = _useText;
-                _girlText.color = _useColor;
-            }
-        }        
-        else if (ShopItems.BlueSkin.IsActive)
-        {
-            SetSkinButtonActive(_blueSkinButton, _blueText, _skinsWithoutBlue);
-            if (ShopItems.GirlSkin.IsInStock)
-            {
-                _girlText.text = _useText;
-                _girlText.color = _useColor;
-            }
-        }
-        else
-        {
-            SetSkinButtonActive(_girlSkinButton, _girlText, _skinsWithoutGirl);
-            if (ShopItems.BlueSkin.IsInStock)
-            {
-                _blueText.text = _useText;
-                _blueText.color = _useColor;
-            }
+            else if (item.IsInStock)
+                item.ChangeButtonView(_inactiveButtonSprite, _useColor, false);
         }
     }
 
     void Start()
     {
-        _skinsWithoutStandard = new GameObject[] { _blueSkinButton, _girlSkinButton };
-        _skinsWithoutBlue = new GameObject[] { _standardSkinButton, _girlSkinButton };
-        _skinsWithoutGirl = new GameObject[] { _standardSkinButton, _blueSkinButton };
-
         ShowMoneyInfo();
-        SetButtonsBackground();
+        ShopProperties.SetProperties();
+        ShopItems.SetItems();
+        if(ShopItems.Skins[0] != null)
+            SetButtonsBackground(ShopItems.Skins);
+        if (ShopItems.Weapons[0] != null)
+            SetButtonsBackground(ShopItems.Weapons);
     }
 
-    void SetSkinActive(CharacterData activeSkin)
+    void SetItemActive(ShopItem selectedItem, List<ShopItem> items)
     {
-        if (!activeSkin.IsActive)
+        if (!selectedItem.IsActive)
         {
-            CommonData.CharacterData = activeSkin;
-            foreach (var skin in ShopItems.Skins)
+            foreach (var item in items)
             {
-                Debug.Log(skin);
-                if (skin.Name != activeSkin.Name)
-                    skin.IsActive = false;
+                if (item.Name != selectedItem.Name)
+                {
+                    item.IsActive = false;
+                }
                 else
-                    skin.IsActive = true;
+                {
+                    item.IsActive = true;
+                }
             }
-            SetButtonsBackground();
+            SetButtonsBackground(items);
         }
     }
 
-    void SetWeaponActive(CharacterBullet activeWeapon)
+    void UseSkin(CharacterData skin)
     {
-        CommonData.CharacterData.Gun.Bullet = activeWeapon;
-        foreach (var weapon in ShopItems.Weapons)
-        {
-            if (weapon.Name != activeWeapon.Name)
-                weapon.IsActive = false;
-            else
-                weapon.IsActive = true;
-        }
-        SetButtonsBackground();
+        CommonData.CharacterData = skin;
     }
 
-    public void SetSkinStandard()
+    void UseWeapon(CharacterBullet weapon)
     {
-        SetSkinActive(ShopItems.StandardSkin);
+        CommonData.CharacterData.Gun.Bullet = weapon;
     }
 
-    void SetSkin(CharacterData skin, TMP_Text buttonText)
+    void ChooseItem(ShopItem item)
     {
-        string[] parts = buttonText.GetParsedText().Split(' ');
-        if (!skin.IsInStock && parts.Length == 3 &&
-            (int.TryParse(parts[2], out int num) && CommonData.MoneyCount >= num))
+        string[] parts = item.ButtonText.GetParsedText().Split(' ');
+        if (!item.IsInStock && parts.Length == 3 &&
+           (int.TryParse(parts[2], out int num) && CommonData.MoneyCount >= num))
         {
-            skin.IsInStock = true;
+            item.IsInStock = true;
             CommonData.ReduseMoney(num);
             ShowMoneyInfo();
         }
-        if (skin.IsInStock)
+    }
+
+    void ChooseSkin(CharacterData skin)
+    {
+        ShopItem item = skin.ShopItem;
+        ChooseItem(item);
+        if (item.IsInStock)
         {
-            SetSkinActive(skin);
+            UseSkin(skin);
+            SetItemActive(item, ShopItems.Skins);
         }
     }
 
-    void SetWeapon(CharacterBullet weapon, TMP_Text buttonText)
+    void ChooseWeapon(CharacterBullet weapon)
     {
-        string[] parts = buttonText.GetParsedText().Split(' ');
-        if (!weapon.IsInStock && parts.Length == 3 &&
-            (int.TryParse(parts[2], out int num) && CommonData.MoneyCount >= num))
+        ShopItem item = weapon.ShopItem;
+        ChooseItem(item);
+        if (item.IsInStock)
         {
-            weapon.IsInStock = true;
-            CommonData.ReduseMoney(num);
-            ShowMoneyInfo();
-        }
-        if (weapon.IsInStock)
-        {
-            SetWeaponActive(weapon);
+            UseWeapon(weapon);
+            SetItemActive(item, ShopItems.Weapons);
         }
     }
 
-    public void SetSkinBlue()
+    public void ChooseSkinStandard()
     {
-        SetSkin(ShopItems.BlueSkin, _blueText);
+        UseSkin(ShopItems.StandardSkin);
+        SetItemActive(ShopItems.StandardSkin.ShopItem, ShopItems.Skins);
     }
 
-    public void SetSkinGirl()
+    public void ChooseBlueSkin()
     {
-        SetSkin(ShopItems.GirlSkin, _girlText);
+        ChooseSkin(ShopItems.BlueSkin);
     }
 
-    public void SetStone()
+    public void ChooseGirlSkin()
     {
-        SetWeapon(ShopItems.Stone, _stoneText);
+        ChooseSkin(ShopItems.GirlSkin);
     }
 
-    public void SetDart()
+    public void ChooseStone()
     {
-        SetWeapon(ShopItems.Dart, _dartText);
+        UseWeapon(ShopItems.Stone);
+        SetItemActive(ShopItems.Stone.ShopItem, ShopItems.Weapons);
     }
 
-    public void SetCoconut()
+    public void ChooseDart()
     {
-        SetWeapon(ShopItems.Coconut, _coconutText);
+        ChooseWeapon(ShopItems.Dart);
     }
 
-    public void SetBomb()
+    public void ChooseCoconut()
     {
-        SetWeapon(ShopItems.Bomb, _bombText);
+        ChooseWeapon(ShopItems.Coconut);
+    }
+
+    public void ChooseBomb()
+    {
+        ChooseWeapon(ShopItems.Bomb);
     }
 }

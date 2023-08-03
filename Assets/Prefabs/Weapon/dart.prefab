@@ -123,10 +123,7 @@ MonoBehaviour:
   Damage: 1
   Speed: 20
   Lifetime: 2
-  IsActive: 0
-  IsInStock: 0
-  IsAvailable: 1
-  Name: Dart
+  ShopItem: {fileID: 0}
   DestroyingTags: []
   NoCollisionTags: []
   Parent: {fileID: 0}

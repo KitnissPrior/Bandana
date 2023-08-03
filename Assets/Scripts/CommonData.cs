@@ -40,7 +40,6 @@ public class CommonData : MonoBehaviour
     {
         LevelsMoney[1] = 30;
         LevelsMoney[2] = 50;
-        CharacterData = ShopItems.StandardSkin;
     }
 
     public bool IsSavedData() => File.Exists(_savedDataFile);

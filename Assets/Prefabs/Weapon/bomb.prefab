@@ -123,10 +123,7 @@ MonoBehaviour:
   Damage: 5
   Speed: 12
   Lifetime: 2
-  IsActive: 0
-  IsInStock: 0
-  IsAvailable: 0
-  Name: Bomb
+  ShopItem: {fileID: 0}
   DestroyingTags: []
   NoCollisionTags: []
   Parent: {fileID: 0}

@@ -10,8 +10,5 @@ public class CharacterData : ScriptableObject
     public float Speed;
     public CharacterGraphics Graphics;
     public int Damage;
-    public bool IsInStock;
-    public bool IsActive;
-    public bool IsAvailable;
-    public string Name;
+    public ShopItem ShopItem;
 }

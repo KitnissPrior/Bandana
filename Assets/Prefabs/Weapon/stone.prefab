@@ -184,10 +184,7 @@ MonoBehaviour:
   Damage: 1
   Speed: 15
   Lifetime: 1
-  IsActive: 1
-  IsInStock: 1
-  IsAvailable: 1
-  Name: Stone
+  ShopItem: {fileID: 0}
   DestroyingTags: []
   NoCollisionTags: []
   Parent: {fileID: 0}

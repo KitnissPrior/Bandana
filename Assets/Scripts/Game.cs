@@ -126,7 +126,7 @@ public class Game : MonoBehaviour
 
         bf.Serialize(file, save);
         file.Close();
-        Debug.Log("Game data saved");
+        //Debug.Log("Game data saved");
 
     }
 
@@ -135,7 +135,7 @@ public class Game : MonoBehaviour
         if (shouldReset)
         {
             ResetGame();
-            Debug.Log("There is no save data!");
+            //Debug.Log("There is no save data!");
         }
         else if (CommonData.IsSavedData())
         {
@@ -154,7 +154,7 @@ public class Game : MonoBehaviour
 
             DeleteGainedBonuses();
 
-            Debug.Log("Game data loaded!");
+            //Debug.Log("Game data loaded!");
         }
         else
         {
@@ -179,10 +179,10 @@ public class Game : MonoBehaviour
             CommonData.SetCrystalsCount(-CommonData.CrystalsCount);
             CommonData.NotResetGame();
 
-            Debug.Log("Data reset complete!");
+            //Debug.Log("Data reset complete!");
         }
         else
-            Debug.Log("No save data to delete.");
+            //Debug.Log("No save data to delete.");
 
         _settings = new GameSettings();
         _settings.Initialize();

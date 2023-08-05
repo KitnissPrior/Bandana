@@ -15,8 +15,6 @@ public class Shop : MonoBehaviour
     [SerializeField] private Sprite _activeButtonSprite;
     [SerializeField] private Sprite _inactiveButtonSprite;
 
-    //private string _useText = "Использовать";
-    //private string _usingText = "Используется";
     private Color _useColor = new Color(0f, 0f, 0f);
     private Color _usingColor = new Color(193f, 193f, 193f);
 
@@ -27,15 +25,14 @@ public class Shop : MonoBehaviour
 
     void SetButtonsBackground(List<ShopItem> items)
     {
-        Debug.Log($"{items[0].Name} inStock={items[0].IsInStock}");
         foreach(var item in items)
         {
             if (item.IsActive)
             {
-                item.ChangeButtonView(_activeButtonSprite, _usingColor, false);
+                item.ChangeButtonView(_activeButtonSprite, _usingColor);
             }
             else if (item.IsInStock)
-                item.ChangeButtonView(_inactiveButtonSprite, _useColor, false);
+                item.ChangeButtonView(_inactiveButtonSprite, _useColor);
         }
     }
 

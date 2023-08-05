@@ -14,11 +14,11 @@ public class ShopItem : MonoBehaviour
     public GameObject Button;
     public GameObject CoinSprite;
 
-    public void ChangeButtonView(Sprite sprite, Color color, bool isCoinActive)
+    public void ChangeButtonView(Sprite sprite, Color color)
     {
         Button.GetComponent<Image>().sprite = sprite;
         ButtonText.color = color;
         ButtonText.text = "";
-        if (CoinSprite != null) CoinSprite.SetActive(isCoinActive);
+        if (CoinSprite != null) CoinSprite.SetActive(false);
     }
 }

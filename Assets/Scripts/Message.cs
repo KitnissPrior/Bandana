@@ -19,7 +19,9 @@ public class Message : MonoBehaviour
         TakeScissors,
         CutClew,
         Fight,
-        Boss
+        Boss,
+        Jungle,
+        Bridge
     };
 
     public MessageType CurrentType;
@@ -82,6 +84,17 @@ public class Message : MonoBehaviour
         "Желаем удачи!",
     };
 
+    private string[] _jungleMessages =
+    {
+        "Зловещее место... Если хочешь выбраться отсюда живым, найди магический барьер.\n"+ 
+        "Он откроется и пропустит тебя дальше, если зарядишь его силой 20 кристаллов. Кристаллы спрятаны где-то в джунглях...",
+    };
+
+    private string[] _bridgeMessages =
+    {
+
+    };
+
     private void FillMessageDictionary()
     {
         Messages = new Dictionary<MessageType, string[]>();
@@ -94,6 +107,8 @@ public class Message : MonoBehaviour
         Messages.Add(MessageType.CutClew, _cutClewMessages);
         Messages.Add(MessageType.Fight, _fightMessages);
         Messages.Add(MessageType.Boss, _bossMessages);
+        Messages.Add(MessageType.Jungle, _jungleMessages);
+        Messages.Add(MessageType.Bridge, _bridgeMessages);
     }
 
     void Start()

@@ -92,7 +92,8 @@ public class Message : MonoBehaviour
 
     private string[] _bridgeMessages =
     {
-
+        "Чтобы перейти на другую сторону, нажми на кнопку.\n"+
+        "Будь осторожен! Если упадешь, лишишься всех жизней разом!"
     };
 
     private void FillMessageDictionary()

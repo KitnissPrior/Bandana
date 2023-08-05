@@ -78,7 +78,6 @@ public class Game : MonoBehaviour
     public List<int> GetCrystals()
     {
         CrystalsIdsToSave = CurrentBonuses.CheckCrystals();
-        Debug.Log(CrystalsIdsToSave.Count);
         return CrystalsIdsToSave;
     }
 

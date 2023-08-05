@@ -31,6 +31,5 @@ public class Goods : MonoBehaviour
             ShopItems.Bomb = Bomb;
         if (CommonData.ShopItems == null)
             CommonData.ShopItems = ShopItems;
-        //ShopItems.SetItems();
     }
 }

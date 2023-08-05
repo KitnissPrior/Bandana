@@ -15,8 +15,11 @@ public class ShopProperties : MonoBehaviour
 
     public void SetProperties()
     {
+        Debug.Log(ShopItems.StandardSkin.ShopItem);
         if (ShopItems.StandardSkin.ShopItem == null)
+        {
             ShopItems.StandardSkin.ShopItem = StandardItem;
+        }
         if (ShopItems.BlueSkin.ShopItem == null)
             ShopItems.BlueSkin.ShopItem = BlueItem;
         if (ShopItems.GirlSkin.ShopItem == null)

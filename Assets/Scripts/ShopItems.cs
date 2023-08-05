@@ -18,8 +18,12 @@ public class ShopItems : MonoBehaviour
 
     public void SetItems()
     {
-        Skins = new List<ShopItem>() { StandardSkin.ShopItem, BlueSkin.ShopItem, GirlSkin.ShopItem };
-        Weapons = new List<ShopItem>() { Stone.ShopItem, Dart.ShopItem, Coconut.ShopItem, Bomb.ShopItem };
+        if (Skins == null || StandardSkin.ShopItem == null)
+        {
+            Skins = new List<ShopItem>() { StandardSkin.ShopItem, BlueSkin.ShopItem, GirlSkin.ShopItem };
+        }
+        if(Weapons == null || Stone.ShopItem == null)
+            Weapons = new List<ShopItem>() { Stone.ShopItem, Dart.ShopItem, Coconut.ShopItem, Bomb.ShopItem };
         if (CommonData.CharacterData == null)
             CommonData.CharacterData = StandardSkin;
     }

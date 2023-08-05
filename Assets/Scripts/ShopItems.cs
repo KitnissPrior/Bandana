@@ -18,8 +18,12 @@ public class ShopItems : MonoBehaviour
 
     public void SetItems()
     {
-        Skins = new List<ShopItem>() { StandardSkin.ShopItem, BlueSkin.ShopItem, GirlSkin.ShopItem };
-        Weapons = new List<ShopItem>() { Stone.ShopItem, Dart.ShopItem, Coconut.ShopItem, Bomb.ShopItem };
+        if (Skins == null || StandardSkin.ShopItem == null)
+        {
+            Skins = new List<ShopItem>() { StandardSkin.ShopItem, BlueSkin.ShopItem, GirlSkin.ShopItem };
+        }
+        if(Weapons == null || Stone.ShopItem == null)
+            Weapons = new List<ShopItem>() { Stone.ShopItem, Dart.ShopItem, Coconut.ShopItem, Bomb.ShopItem };
         if (CommonData.CharacterData == null)
             CommonData.CharacterData = StandardSkin;
     }
@@ -27,23 +31,25 @@ public class ShopItems : MonoBehaviour
     public void Reset()
     {
         if (StandardSkin != null) StandardSkin.ShopItem.IsActive = true;
-        foreach (var skin in Skins)
-        {
-            if (skin != null && skin.Name != StandardSkin.ShopItem.Name)
+        if (Skins != null)
+            foreach (var skin in Skins)
             {
-                skin.IsActive = false;
-                skin.IsInStock = false;
+                if (skin != null && skin.Name != StandardSkin.ShopItem.Name)
+                {
+                    skin.IsActive = false;
+                    skin.IsInStock = false;
+                }
             }
-        }
 
         if (Stone != null) Stone.ShopItem.IsActive = true;
-        foreach (var weapon in Weapons)
-        {
-            if(weapon != null && weapon.Name != Stone.ShopItem.Name)
+        if (Weapons != null)
+            foreach (var weapon in Weapons)
             {
-                weapon.IsActive = false;
-                weapon.IsInStock = false;
+                if(weapon != null && weapon.Name != Stone.ShopItem.Name)
+                {
+                    weapon.IsActive = false;
+                    weapon.IsInStock = false;
+                }
             }
-        }
     }
 }

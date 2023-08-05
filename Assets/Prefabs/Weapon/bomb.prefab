@@ -123,7 +123,7 @@ MonoBehaviour:
   Damage: 5
   Speed: 12
   Lifetime: 2
-  ShopItem: {fileID: 0}
+  ShopItem: {fileID: 8964245585318684557, guid: 3df75af4182bc3a499fb8eed6c0cd5a6, type: 3}
   DestroyingTags: []
   NoCollisionTags: []
   Parent: {fileID: 0}

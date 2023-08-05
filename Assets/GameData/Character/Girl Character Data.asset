@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc4ce68bca2f0934eb65cfec2e60aca7, type: 3}
+  m_Name: Girl Character Data
+  m_EditorClassIdentifier: 
+  HP: 5
+  Gun: {fileID: 8095630895893119974, guid: d2de8116e05ab6b43b37e80059fdf3ee, type: 3}
+  Speed: 7
+  Graphics: {fileID: 1479163244201193703, guid: 7340f9411f6b5ef40be1e6e6ca13f9bf, type: 3}
+  Damage: 0
+  ShopItem: {fileID: 8964245585318684557, guid: 9d838b9c064025c4193b554fdadbe996, type: 3}

@@ -143,6 +143,7 @@ MonoBehaviour:
   CharacterData: {fileID: 11400000, guid: 55baff9f537e84649b247840909f61dd, type: 2}
   Target: {fileID: 0}
   HealthBar: {fileID: 3493903350495924172}
+  MaxDistanceToTarget: 25
   NoCollisionTags:
   - InvisibleDetector
   - Cheese
@@ -159,8 +160,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd26ae41e90572c418faadb82151b938, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHP: 2
-  _hitPoints: 2
+  MaxHP: 3
+  _hitPoints: 3
 --- !u!1 &3493903350196772067
 GameObject:
   m_ObjectHideFlags: 0

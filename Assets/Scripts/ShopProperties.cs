@@ -15,19 +15,13 @@ public class ShopProperties : MonoBehaviour
 
     public void SetProperties()
     {
-        if (ShopItems.StandardSkin.ShopItem == null)
-            ShopItems.StandardSkin.ShopItem = StandardItem;
-        if (ShopItems.BlueSkin.ShopItem == null)
-            ShopItems.BlueSkin.ShopItem = BlueItem;
-        if (ShopItems.GirlSkin.ShopItem == null)
-            ShopItems.GirlSkin.ShopItem = GirlItem;
-        if (ShopItems.Stone.ShopItem == null)
-            ShopItems.Stone.ShopItem = StoneItem;
-        if (ShopItems.Dart.ShopItem == null)
-            ShopItems.Dart.ShopItem = DartItem;
-        if (ShopItems.Coconut.ShopItem == null)
-            ShopItems.Coconut.ShopItem = CoconutItem;
-        if (ShopItems.Bomb.ShopItem == null)
-            ShopItems.Bomb.ShopItem = BombItem;
+        ShopItems.StandardSkin.ShopItem.Initialize(StandardItem.ButtonText, StandardItem.Button, StandardItem.CoinSprite);
+        ShopItems.BlueSkin.ShopItem.Initialize(BlueItem.ButtonText, BlueItem.Button, BlueItem.CoinSprite);
+        ShopItems.GirlSkin.ShopItem.Initialize(GirlItem.ButtonText, GirlItem.Button, GirlItem.CoinSprite);
+
+        ShopItems.Stone.ShopItem.Initialize(StoneItem.ButtonText, StoneItem.Button, StoneItem.CoinSprite);
+        ShopItems.Dart.ShopItem.Initialize(DartItem.ButtonText, DartItem.Button, DartItem.CoinSprite);
+        ShopItems.Coconut.ShopItem.Initialize(CoconutItem.ButtonText, CoconutItem.Button, CoconutItem.CoinSprite);
+        ShopItems.Bomb.ShopItem.Initialize(BombItem.ButtonText, BombItem.Button, BombItem.CoinSprite);
     }
 }

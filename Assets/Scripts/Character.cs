@@ -20,6 +20,7 @@ public class Character : MonoBehaviour
     public ProgressBar ShieldBar;
     public Shield Shield;
     public bool HasKey => _hasKey;
+    public Game SavingController;
     /// <summary>
     /// Неуязвимый
     /// </summary>
@@ -38,7 +39,6 @@ public class Character : MonoBehaviour
 
     private float _invulnerabilityDelay = 1f;
     private bool _invulnerable = false;
-    private Game _savingController;
 
     internal void Initialize(CharacterData characterData, HealthView healthView, Inventory inventory,
         ProgressBar bindingBar, ProgressBar shieldBar, CommonData commonData, Game savingController)
@@ -60,14 +60,14 @@ public class Character : MonoBehaviour
 
         _characterCollider = gameObject.GetComponent<Collider2D>();
         _shieldCollider = Shield.GetComponent<Collider2D>();
-        _savingController = savingController;
+        SavingController = savingController;
     }
 
     public void CheckIfNotDead()
     {
         if (Health.HitPoints <= 0)
         {
-            if(_savingController != null) _savingController.ResetGame();
+            if(SavingController != null) SavingController.ResetGame();
             _commonData.ResetHP();
             Destroy(gameObject);
             SceneManager.LoadScene(_badEndScene);

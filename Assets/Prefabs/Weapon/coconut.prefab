@@ -99,7 +99,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 0.0001
+  m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -123,7 +123,7 @@ MonoBehaviour:
   Damage: 2
   Speed: 12
   Lifetime: 2
-  ShopItem: {fileID: 0}
+  ShopItem: {fileID: 8964245585318684557, guid: 823027727ea68e74eaa74c90cbb6e7f5, type: 3}
   DestroyingTags: []
   NoCollisionTags: []
   Parent: {fileID: 0}

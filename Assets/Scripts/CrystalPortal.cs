@@ -9,8 +9,6 @@ public class CrystalPortal : MonoBehaviour
     public string BossScene;
     public GameObject Message;
 
-    private string _characterTag = "Character";
-
     void Start()
     {
         Message.SetActive(false);
@@ -18,10 +16,13 @@ public class CrystalPortal : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == _characterTag)
+        if (collision.gameObject.TryGetComponent<Character>(out Character character))
         {
             if(CommonData.CrystalsCount >= CommonData.MaxCrystalsCount)
+            {
+                character.SavingController.ResetGame();
                 SceneManager.LoadScene(BossScene);
+            }
             else
                 Message.SetActive(true);
         }

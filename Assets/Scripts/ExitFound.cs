@@ -9,15 +9,20 @@ public class ExitFound : MonoBehaviour
     public CommonData CommonData;
     public Game Game;
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private string _characterTag = "Character";
+
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        SceneManager.LoadScene(GoodEndScene);
-        Game.ResetGame();
-        CommonData.ResetHP();
-        if (CommonData.CurrentLevel == 1)
+        if(collision.gameObject.tag == "Character")
         {
-            CommonData.IsFirstLevelPassed = true;
+            SceneManager.LoadScene(GoodEndScene);
+            Game.ResetGame();
+            CommonData.ResetHP();
+            if (CommonData.CurrentLevel == 1)
+            {
+                CommonData.IsFirstLevelPassed = true;
+            }
+            CommonData.NextScene = "Levels";
         }
-        CommonData.NextScene = "Levels";
     }
 }

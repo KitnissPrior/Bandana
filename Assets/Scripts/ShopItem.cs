@@ -14,6 +14,16 @@ public class ShopItem : MonoBehaviour
     public GameObject Button;
     public GameObject CoinSprite;
 
+    internal void Initialize(TMP_Text buttonText, GameObject button, GameObject coinSprite)
+    {
+        if(Button == null)
+        {
+            ButtonText = buttonText;
+            Button = button;
+            CoinSprite = coinSprite;
+        }
+    }
+
     public void ChangeButtonView(Sprite sprite, Color color)
     {
         Button.GetComponent<Image>().sprite = sprite;

@@ -238,7 +238,7 @@ public class Inventory : MonoBehaviour
 
     public void UseShield()
     {
-        if(CommonData.ShieldsCount > 0 && !_shieldCircle.IsActive)
+        if(CommonData.ShieldsCount > 0 && !_isFrozen && !_shieldCircle.IsActive)
         {
             CommonData.SetShieldsCount(-_itemWeight);
             _shieldCircle.IsActive = true;

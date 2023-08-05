@@ -8,6 +8,7 @@ public class SaveData
     public float SavedCharacterX;
     public float SavedCharacterY;
     public float SavedCharacterZ;
+    public int LevelNum;
 
     public List<int> SavedDeadEnemyIds;
     public List<int> SavedBonusIds;

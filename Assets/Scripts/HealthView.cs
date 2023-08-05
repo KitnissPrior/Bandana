@@ -13,11 +13,10 @@ public class HealthView : MonoBehaviour
     [SerializeField] private Sprite _healthSprite;
     [SerializeField] private Character _character;
 
-    private int _maxHealth;
+    private int _maxHealth = 5;
 
     private void Start()
     {
-        _maxHealth = _characterData.HP;
         for (int i = 0; i < _maxHealth; i++)
         {
             if (i < CommonData.HP)

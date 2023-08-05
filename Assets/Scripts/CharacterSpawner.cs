@@ -47,7 +47,7 @@ public class CharacterSpawner : MonoBehaviour
             LoadGame();
             DeleteKilledEnemies();
         }
-        else 
+        else
             _position = transform.position;
 
         _character = Instantiate(CharacterPrefab, _position, transform.rotation);
@@ -55,9 +55,8 @@ public class CharacterSpawner : MonoBehaviour
             CommonData, SavingController);
         Instantiate(CharacterData.Graphics, _character.transform);
         Camera.Follow = _character.transform;
-        if (isntBossScene) 
+        if (isntBossScene)
             SavingController.Initialize(_character);
-
     }
 
 

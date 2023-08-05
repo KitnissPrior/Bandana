@@ -6,7 +6,7 @@ using System;
 public class Health : MonoBehaviour
 {
     public int HitPoints => _hitPoints;
-    public int MaxHP;
+    public int MaxHP = 5;
     public event Action <int> OnHit;
     public event Action<int> OnHeal;
 
@@ -21,7 +21,6 @@ public class Health : MonoBehaviour
     public void Initialize(int hP)
     {
         _hitPoints = hP;
-        MaxHP = hP;
     }
 
     public void Heal(int hp)

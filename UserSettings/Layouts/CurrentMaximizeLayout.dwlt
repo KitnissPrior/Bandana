@@ -48,7 +48,7 @@ MonoBehaviour:
     x: 240
     y: 73
     width: 765
-    height: 286
+    height: 370
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
@@ -87,7 +87,7 @@ MonoBehaviour:
     m_HSlider: 0
     m_VSlider: 0
     m_IgnoreScrollWheelUntilClicked: 0
-    m_EnableMouseInput: 0
+    m_EnableMouseInput: 1
     m_EnableSliderZoomHorizontal: 0
     m_EnableSliderZoomVertical: 0
     m_UniformScale: 1
@@ -97,22 +97,22 @@ MonoBehaviour:
       x: 0
       y: 21
       width: 765
-      height: 265
-    m_Scale: {x: 0.24537037, y: 0.24537037}
-    m_Translation: {x: 382.5, y: 132.5}
+      height: 349
+    m_Scale: {x: 0.32314816, y: 0.32314816}
+    m_Translation: {x: 382.5, y: 174.5}
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
-      x: -1558.8679
+      x: -1183.6676
       y: -540
-      width: 3117.7358
+      width: 2367.3352
       height: 1080
     m_MinimalGUI: 1
-  m_defaultScale: 0.24537037
-  m_LastWindowPixelSize: {x: 765, y: 286}
+  m_defaultScale: 0.32314816
+  m_LastWindowPixelSize: {x: 765, y: 370}
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1
   m_LowResolutionForAspectRatios: 01000000000000000000
@@ -163,7 +163,7 @@ MonoBehaviour:
     x: 0
     y: 0
     width: 1007
-    height: 307
+    height: 391
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
@@ -186,9 +186,9 @@ MonoBehaviour:
     x: 0
     y: 0
     width: 240
-    height: 307
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+    height: 391
+  m_MinSize: {x: 201, y: 221}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 6}
   m_Panes:
   - {fileID: 6}
@@ -217,7 +217,7 @@ MonoBehaviour:
     x: 0
     y: 73
     width: 239
-    height: 286
+    height: 370
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
@@ -226,9 +226,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 6c790000
+      m_SelectedIDs: fa0d0000
       m_LastClickedID: 0
-      m_ExpandedIDs: c08efcfff2befcff14c2fcffee7bfdffeeacfdff8adafdffc8dcfdff0803feff4811ffff9e11ffffd037ffff265dffff3ca4ffff50caffff0cfbffff8e7b0000b6960000be960000e6960000ee960000f69600000c9700001e970000309700003897000044bd010074bd01006eee010092ee0100d84502004c570200
+      m_ExpandedIDs: c078f5ff06aff5ff0eaff5ff1eaff5ff28aff5ff66aff5ff6caff5ffbab2f5ff06eaf6ffba1bf7ff9a21f7ff44eefaff16a3fbffa6a4fbff26ebfbffb613fcff4a18fcff00a9feff6aabfeff9673ffff62a4ffff22d4ffff98f9ffff0cfbffff5a680000de8f000042980000729800007a9800009e980000a2980000bc980000000d0100300d0100041002003e1a0200021c0200b61d0200101e02002c220200be230200a4260200ac260200d4260200ee2602001c8602002c190400
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -270,7 +270,7 @@ MonoBehaviour:
     x: 240
     y: 0
     width: 767
-    height: 307
+    height: 391
   m_MinSize: {x: 202, y: 221}
   m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 2}
@@ -303,7 +303,7 @@ MonoBehaviour:
     x: 240
     y: 73
     width: 765
-    height: 286
+    height: 370
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
@@ -528,9 +528,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 5.135792, y: -0.50512403, z: 293.99176}
+    m_Target: {x: 797.8961, y: 643.9525, z: 8455.895}
     speed: 2
-    m_Value: {x: 5.135792, y: -0.50512403, z: 293.99176}
+    m_Value: {x: 797.8961, y: 643.9525, z: 8455.895}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -581,9 +581,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 8.225656
+    m_Target: 264.87546
     speed: 2
-    m_Value: 8.225656
+    m_Value: 264.87546
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -700,23 +700,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: ConsoleWindow
+  m_Name: ProjectBrowser
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
     serializedVersion: 2
     x: 0
-    y: 307
+    y: 391
     width: 1007
-    height: 328
-  m_MinSize: {x: 101, y: 121}
-  m_MaxSize: {x: 4001, y: 4021}
-  m_ActualView: {fileID: 12}
+    height: 244
+  m_MinSize: {x: 231, y: 271}
+  m_MaxSize: {x: 10001, y: 10021}
+  m_ActualView: {fileID: 11}
   m_Panes:
   - {fileID: 11}
   - {fileID: 12}
-  m_Selected: 1
-  m_LastSelected: 0
+  m_Selected: 0
+  m_LastSelected: 1
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -738,9 +738,9 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: 380
+    y: 464
     width: 1006
-    height: 307
+    height: 223
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
@@ -759,22 +759,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scenes
+    - Assets/Scripts
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 96
   m_LastFolders:
-  - Assets/Scenes
+  - Assets/Scripts
   m_LastFoldersGridSize: 96
   m_LastProjectPath: D:\UnityProjects\Mouse vs Cats\Game\Bandana
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 165}
-    m_SelectedIDs: 46790000
-    m_LastClickedID: 31046
-    m_ExpandedIDs: 000000002079000044790000
+    scrollPos: {x: 0, y: 121}
+    m_SelectedIDs: 0a660000
+    m_LastClickedID: 26122
+    m_ExpandedIDs: 00000000ee650000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -802,7 +802,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000020790000
+    m_ExpandedIDs: 00000000ee650000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -827,8 +827,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 6c790000
-    m_LastClickedInstanceID: 31084
+    m_SelectedInstanceIDs: fa0d0000
+    m_LastClickedInstanceID: 3578
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c62300008079000038b6000000000000f8810000d46600005072000038730000fc6d0000
     m_RenameOverlay:
@@ -854,7 +854,7 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
     m_NewAssetIndexInList: -1
-    m_ScrollPosition: {x: 0, y: 121}
+    m_ScrollPosition: {x: 0, y: 621}
     m_GridSize: 96
   m_SkipHiddenPackages: 0
   m_DirectoriesAreaWidth: 176
@@ -879,9 +879,9 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: 380
+    y: 464
     width: 1006
-    height: 307
+    height: 223
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default

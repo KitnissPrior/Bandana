@@ -98,7 +98,7 @@ public class CommonData : MonoBehaviour
 
     public void SetCrystalsCount(int count)
     {
-        _crystalsCount += count;
+        _crystalsCount += 20;
     }
 
     public void SetHP(int hp)
